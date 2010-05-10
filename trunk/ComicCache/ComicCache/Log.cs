@@ -9,29 +9,13 @@ namespace ComicCache
 {
     class Log
     {
-        public Log()
-        {
-            //System.Diagnostics.Debug.Print(LogFilePath);
-            System.IO.Directory.CreateDirectory(Path.GetDirectoryName(logFilePath));
-        }
-
-        public static Log Instance
-        {
-            get { return instance; }
-        }
-
-        public bool IsEnabled
-        {
-            get { return enabled; }
-            set { enabled = value; }
-        }
-
-        public void Write(String message)
+		#region Methods
+	        public void Write(String message)
         {
             Write(message, null);
         }
 
-        public void Write(String message, Exception ex)
+        	public void Write(String message, Exception ex)
         {
             if (enabled)
             {
@@ -66,19 +50,36 @@ namespace ComicCache
                 }
 
             }
-        }
-
+        }	
+        	
+		#endregion
+		#region Properties
         private static Log instance = new Log();
         private bool enabled = false;
         private string logFilePath = Path.Combine(
                                 Path.Combine(
                                 System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData), "ComicCache\\"),
-                               "cc.log");
-
-
-        public string LogFilePath
+                               "cc.log");	
+         public bool IsEnabled
+        {
+            get { return enabled; }
+            set { enabled = value; }
+        }       
+         public string LogFilePath
         {
             get { return logFilePath; }
         }
+		#endregion
+		#region Constructors
+    	public Log()
+        {
+            //System.Diagnostics.Debug.Print(LogFilePath);
+            System.IO.Directory.CreateDirectory(Path.GetDirectoryName(logFilePath));
+        }		
+        public static Log Instance
+        {
+            get { return instance; }
+        }   	
+		#endregion
     }
 }
