@@ -10,16 +10,15 @@ using System.Runtime.InteropServices;
 
 namespace ComicCache
 {
-    class Program
-    {
+    class Program{
         [STAThread()]
         static void Main(string[] args)
         {
             try
             {
-
+				Log.Instance.IsEnabled = true;
                 foreach (Process process in Process.GetProcesses())
-                    if (process.Id != Process.GetCurrentProcess().Id && process.ProcessName.Equals("YetAnotherPhotoScreenSaverCE"))
+                    if (process.Id != Process.GetCurrentProcess().Id && process.ProcessName.Equals("ComicCache"))
                         return;
                 if (args.Length > 0)
                     if (args[0].ToLower().Contains("/p"))
@@ -34,7 +33,7 @@ namespace ComicCache
                 Program program = new Program(config);
                 program.End += (obj, e) =>
                 {
-                    Log.Instance.Write("Stopping screen saver");
+                    Log.Instance.Write("Stopping Cacher");
                     program.Stop();
                     Application.Exit();
                 };
@@ -50,14 +49,21 @@ namespace ComicCache
                 // just in case of abnormal termination
             }
         }
+		#region Methods
         public void Run() { }
-        public void Stop() { }
-
+        public void Stop() { }		
+		#endregion
+		#region Constructors
         public Program(Config config)
         {
             this.config = config;
-        }
-        private Config config;
-        public event EventHandler End;
+        }		
+		#endregion
+		#region Properties
+	    private Config config;
+
+      	public event EventHandler End;
+	
+		#endregion
     }
 }
