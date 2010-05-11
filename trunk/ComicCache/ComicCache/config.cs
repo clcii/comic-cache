@@ -58,7 +58,7 @@ namespace ComicCache
        					break;
         		}
         		Log.Instance.Write(Convert.ToString(ts));
-        		intervalabs = (double)ts.Milliseconds;
+        		intervalabs = (double)ts.TotalMilliseconds;
         		
         		return intervalabs; }
         }

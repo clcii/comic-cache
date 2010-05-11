@@ -17,7 +17,8 @@ namespace ComicCache
             try
             {
 				Log.Instance.IsEnabled = true;
-                foreach (Process process in Process.GetProcesses())
+                Application.EnableVisualStyles();
+				foreach (Process process in Process.GetProcesses())
                     if (process.Id != Process.GetCurrentProcess().Id && process.ProcessName.Equals("ComicCache"))
                         return;
                 if (args.Length > 0)
