@@ -57,6 +57,7 @@ namespace ComicCache
         	this.buttonsave.TabIndex = 0;
         	this.buttonsave.Text = "Save";
         	this.buttonsave.UseVisualStyleBackColor = true;
+        	this.buttonsave.Click += new System.EventHandler(this.ButtonsaveClick);
         	// 
         	// buttoncancel
         	// 
@@ -174,10 +175,9 @@ namespace ComicCache
         	// 
         	this.cachetypecombo.FormattingEnabled = true;
         	this.cachetypecombo.Items.AddRange(new object[] {
-        	        	        	"Seconds",
-        	        	        	"Minutes",
-        	        	        	"Hours",
-        	        	        	"Days"});
+        	        	        	"jpg",
+        	        	        	"png",
+        	        	        	"bmp"});
         	this.cachetypecombo.Location = new System.Drawing.Point(161, 82);
         	this.cachetypecombo.Name = "cachetypecombo";
         	this.cachetypecombo.Size = new System.Drawing.Size(101, 21);
