@@ -10,22 +10,43 @@ namespace ComicCache
     {
 		#region Constructors
     	public Config() {
+			Load();
+        }
+    	#endregion
+    	#region Methods
+    	public void Load(){
+    		try {
             RegistryKey reg = Registry.CurrentUser.OpenSubKey(KEY);
             if (reg == null)
                 return;
             folderpath = (string)reg.GetValue("folderpath", folderpath);
-            intervalabs = (int)reg.GetValue("interval", intervalabs);
+            intervalnum = (int)reg.GetValue("intervalnum", intervalnum);
+            intervaltype = (string)reg.GetValue("intervaltype", intervaltype);
             comicpath = (string)reg.GetValue("comicpath", comicpath);
+            cachetype = (string)reg.GetValue("cachetype",cachetype);
             reg.Close();
-        }
-    	#endregion
-    	#region Methods
+    		} catch (Exception ex) {
+    			Log.Instance.Write(ex.Message);
+    		} finally {
+    			
+    		}
+   	
+    	}
         public void Save() {
+    		try {
             RegistryKey reg = Registry.CurrentUser.CreateSubKey(KEY);
             reg.SetValue("folderpath", folderpath,RegistryValueKind.String);
             reg.SetValue("comicpath", comicpath, RegistryValueKind.String);
-            reg.SetValue("interval", intervalabs, RegistryValueKind.DWord);
+            reg.SetValue("intervalnum", intervalnum, RegistryValueKind.DWord);
+            reg.SetValue("intervaltype", intervaltype, RegistryValueKind.String);
+            reg.SetValue("cachetype",cachetype, RegistryValueKind.String);
             reg.Close();
+   			
+    		} catch (Exception ex) {
+    			Log.Instance.Write(ex.Message);
+    		} finally {
+    			
+    		}
         }
         public string FolderPath
         {
@@ -34,7 +55,9 @@ namespace ComicCache
         }
 		#endregion
         #region Properties
-		
+
+        
+        
         public double Intervalabs
         {
             get { 
@@ -79,13 +102,19 @@ namespace ComicCache
 			get { return intervaltype; }
 			set { intervaltype = value; }
 		}
-        private double intervalabs;
-        private int covers;
-        private int intervalnum;
-        private string intervaltype;
+        private double intervalabs=0;
+        private int covers=1;
+        private int intervalnum=0;
+        private string intervaltype ="Minutes";
         //private string interval;
-        private string folderpath;
-        private string comicpath;
+        private string folderpath="";
+        private string comicpath="";
+        private string cachetype="";
+        
+		public string Cachetype {
+			get { return cachetype; }
+			set { cachetype = value; }
+		}
         private static readonly string KEY = "Software\\ComicCache";  
         #endregion 
     }

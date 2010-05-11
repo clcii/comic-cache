@@ -15,10 +15,12 @@ namespace ComicCache
         #region Constructors
 	   	public ConfigWindow()
         {
-	   		
 	   		InitializeComponent();
+	   		LoadConfig();
         }       
         #endregion
+        
+        
         void ButtontestClick(object sender, EventArgs e)
         {
         	CopyConfig();
@@ -30,9 +32,26 @@ namespace ComicCache
         	config.Intervalnum = (int)updowninterval.Value;
         	config.ComicPath = (string)comicfolder.Text;
         	config.Covers = (int)updowncachesize.Value;
-        	
+        	config.FolderPath = (string)cacheFolder.Text;
+        	config.Cachetype = (string)cachetypecombo.Text;
+
         }
-        private Config config = new Config();
+        void LoadConfig(){
+        	combointerval.Text = config.Intervaltype;
+        	updowninterval.Value = config.Intervalnum;
+        	comicfolder.Text = config.ComicPath;
+        	updowncachesize.Value = config.Covers;
+        	cacheFolder.Text = config.FolderPath;
+        	cachetypecombo.Text = config.Cachetype;
+        }
         
+        public Config config = new Config();
+        
+        
+        void ButtonsaveClick(object sender, EventArgs e)
+        {
+        	CopyConfig();
+        	config.Save();
+        }
     }
 }
