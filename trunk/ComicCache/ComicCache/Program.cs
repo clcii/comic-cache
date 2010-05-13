@@ -8,8 +8,8 @@ using System.Diagnostics;
 using System.Threading;
 using System.Runtime.InteropServices;
 
-namespace ComicCache
-{
+
+namespace ComicCache{
     class Program{
         [STAThread()]
         static void Main(string[] args)
@@ -51,8 +51,57 @@ namespace ComicCache
             }
         }
 		#region Methods
-        public void Run() { }
-        public void Stop() { }		
+        public void Run() { 
+		    // start the thread
+            thread = new Thread(ThreadProc);
+            thread.IsBackground = true;
+            thread.Start();
+		}
+        public void Stop() { }	
+        public void ThreadProc(){
+            Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
+            Config myconfig = config;
+            imagesource.Imager img = new ComicCache.imagesource.Imager(config.ComicPath);
+            while (cancel.Equals(false)) {
+            	List<string> cacheitems = new List<string>();
+            	cacheitems.AddRange(Directory.GetFiles(config.FolderPath));
+            	foreach(string file in cacheitems){
+            		try {
+            			File.Delete(file);
+            		} catch (Exception) {
+            		}
+            	}
+				int inum = 0;
+				string newfilename = "";
+				Image newImage = null;
+            	while (Directory.GetFiles(config.FolderPath).Length < config.Covers) {
+					newImage = null;
+					while (newImage==null) {
+						try {
+							newImage = img.GetImage();
+						} catch (Exception) {
+							
+						}
+					}
+            		
+            		
+            		
+            		newfilename = Path.Combine(config.FolderPath, "ComicPic" + Convert.ToString(inum) +"." + config.Cachetype);
+            		while (File.Exists(newfilename)) {
+            			inum++;
+            			newfilename = Path.Combine(config.FolderPath, "ComicPic" + Convert.ToString(inum) +"." + config.Cachetype);
+            		} 
+            		newImage.Save(newfilename);
+            	}
+				Thread.Sleep((int)myconfig.Intervalabs);
+            }
+            
+        
+        }
+        static void Application_ApplicationExit(object sender, EventArgs e)
+        {
+            
+        }
 		#endregion
 		#region Constructors
         public Program(Config config)
@@ -62,8 +111,9 @@ namespace ComicCache
 		#endregion
 		#region Properties
 	    private Config config;
-
+		private Thread thread;
       	public event EventHandler End;
+      	public bool cancel = false;
 	
 		#endregion
     }

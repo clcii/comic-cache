@@ -20,6 +20,7 @@ namespace ComicCache
             if (reg == null)
                 return;
             folderpath = (string)reg.GetValue("folderpath", folderpath);
+            covers = (int)reg.GetValue("cachesize", covers);
             intervalnum = (int)reg.GetValue("intervalnum", intervalnum);
             intervaltype = (string)reg.GetValue("intervaltype", intervaltype);
             comicpath = (string)reg.GetValue("comicpath", comicpath);
@@ -36,10 +37,12 @@ namespace ComicCache
     		try {
             RegistryKey reg = Registry.CurrentUser.CreateSubKey(KEY);
             reg.SetValue("folderpath", folderpath,RegistryValueKind.String);
+            reg.SetValue("cachesize", covers, RegistryValueKind.DWord);
             reg.SetValue("comicpath", comicpath, RegistryValueKind.String);
             reg.SetValue("intervalnum", intervalnum, RegistryValueKind.DWord);
             reg.SetValue("intervaltype", intervaltype, RegistryValueKind.String);
             reg.SetValue("cachetype",cachetype, RegistryValueKind.String);
+            
             reg.Close();
    			
     		} catch (Exception ex) {

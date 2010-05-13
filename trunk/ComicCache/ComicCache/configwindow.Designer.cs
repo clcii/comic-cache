@@ -115,6 +115,7 @@ namespace ComicCache
         	this.comicbasebutton.TabIndex = 18;
         	this.comicbasebutton.Text = "...";
         	this.comicbasebutton.UseVisualStyleBackColor = true;
+        	this.comicbasebutton.Click += new System.EventHandler(this.ComicbasebuttonClick);
         	// 
         	// comicfolder
         	// 
@@ -147,6 +148,7 @@ namespace ComicCache
         	this.cachebrowsebutton.TabIndex = 21;
         	this.cachebrowsebutton.Text = "...";
         	this.cachebrowsebutton.UseVisualStyleBackColor = true;
+        	this.cachebrowsebutton.Click += new System.EventHandler(this.CachebrowsebuttonClick);
         	// 
         	// cachefolderlabel
         	// 
