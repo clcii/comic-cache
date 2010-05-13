@@ -46,6 +46,9 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SevenZipSharp">
+      <HintPath>..\..\..\YAPSSCE\dotnet\YetAnotherPhotoScreenSaver\bin\Debug\SevenZipSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -74,6 +77,8 @@
     <Compile Include="dialogue\multifolder.Designer.cs">
       <DependentUpon>multifolder.cs</DependentUpon>
     </Compile>
+    <Compile Include="imagesource\ComicImager.cs" />
+    <Compile Include="imagesource\Imager.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -92,6 +97,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="7z.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -104,6 +112,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dialogue" />
+    <Folder Include="imagesource" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

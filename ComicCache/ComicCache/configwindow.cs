@@ -24,8 +24,9 @@ namespace ComicCache
         void ButtontestClick(object sender, EventArgs e)
         {
         	CopyConfig();
-        	this.Text = "Abs Interval = " + Convert.ToString( config.Intervalabs);
-        	//Program program = new Program(config);
+        	//this.Text = "Abs Interval = " + Convert.ToString( config.Intervalabs);
+        	Program program = new Program(config);
+        	program.Run();
         }
         void CopyConfig(){
         	config.Intervaltype = combointerval.Text;
@@ -52,6 +53,26 @@ namespace ComicCache
         {
         	CopyConfig();
         	config.Save();
+        }
+        
+        void ComicbasebuttonClick(object sender, EventArgs e)
+        {
+        	clcii.dialogue.multifolder basefolder = new clcii.dialogue.multifolder(comicfolder.Text);
+        	basefolder.ShowDialog();
+        	if (basefolder.Result() == DialogResult.OK) {
+        		comicfolder.Text = basefolder.FileImageSourcePath();
+        	}
+        }
+        
+        void CachebrowsebuttonClick(object sender, EventArgs e)
+        {
+        	FolderBrowserDialog fbd = new FolderBrowserDialog();
+        	fbd.SelectedPath = cacheFolder.Text;
+        	if (fbd.ShowDialog() == DialogResult.OK)
+        	{
+        		cacheFolder.Text = fbd.SelectedPath;
+        	}
+        	
         }
     }
 }
