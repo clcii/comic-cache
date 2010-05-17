@@ -38,6 +38,7 @@ namespace ComicCache{
                     program.Stop();
                     Application.Exit();
                 };
+                program.ShowTrayIcon();
                 program.Run();
                 Application.Run();
             }
@@ -98,6 +99,29 @@ namespace ComicCache{
             
         
         }
+        private void ShowTrayIcon(){
+        	if (notifyicon == null){
+        		notifyicon = new NotifyIcon();
+        	}
+        	notifyicon.Text = "Comic Cache";
+        	notifyicon.DoubleClick += new EventHandler(this.notifyicon_Doubleclick);
+        	notifyicon.Icon = new Icon("test.ico");
+        	notifyicon.Visible = true;	
+        }
+        private void notifyicon_Doubleclick(object Sender, EventArgs e){
+        	ConfigWindow configwindow = new ConfigWindow();
+        	notifyicon.Visible = false;
+        	try {
+        		thread.Abort();
+        	} finally {
+        		
+        	}
+        	
+        	configwindow.ShowDialog();
+        	notifyicon.Visible = true;
+        	thread.Start();
+        	
+        }
         static void Application_ApplicationExit(object sender, EventArgs e)
         {
             
@@ -114,7 +138,7 @@ namespace ComicCache{
 		private Thread thread;
       	public event EventHandler End;
       	public bool cancel = false;
-	
+      	public NotifyIcon notifyicon;
 		#endregion
     }
 }

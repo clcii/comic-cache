@@ -53,6 +53,7 @@ namespace ComicCache
         {
         	CopyConfig();
         	config.Save();
+        	this.Close();
         }
         
         void ComicbasebuttonClick(object sender, EventArgs e)
