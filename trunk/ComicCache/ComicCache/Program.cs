@@ -92,7 +92,8 @@ namespace ComicCache{
             			inum++;
             			newfilename = Path.Combine(config.FolderPath, "ComicPic" + Convert.ToString(inum) +"." + config.Cachetype);
             		} 
-            		newImage.Save(newfilename);
+            		
+            		newImage.Save(newfilename, config.ImageFormat);
             	}
 				Thread.Sleep((int)myconfig.Intervalabs);
             }

@@ -35,6 +35,7 @@ namespace ComicCache
         	config.Covers = (int)updowncachesize.Value;
         	config.FolderPath = (string)cacheFolder.Text;
         	config.Cachetype = (string)cachetypecombo.Text;
+        	config.Resize = (bool)resizepanel.Checked;
 
         }
         void LoadConfig(){
@@ -44,6 +45,8 @@ namespace ComicCache
         	updowncachesize.Value = config.Covers;
         	cacheFolder.Text = config.FolderPath;
         	cachetypecombo.Text = config.Cachetype;
+        	resizepanel.Checked = config.Resize;
+        	
         }
         
         public Config config = new Config();
@@ -73,6 +76,16 @@ namespace ComicCache
         	{
         		cacheFolder.Text = fbd.SelectedPath;
         	}
+        	
+        }
+        
+        void ConfigWindowLoad(object sender, EventArgs e)
+        {
+        	
+        }
+        
+        void CheckBox1CheckedChanged(object sender, EventArgs e)
+        {
         	
         }
     }
