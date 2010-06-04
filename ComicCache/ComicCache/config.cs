@@ -16,16 +16,17 @@ namespace ComicCache
     	#region Methods
     	public void Load(){
     		try {
-            RegistryKey reg = Registry.CurrentUser.OpenSubKey(KEY);
-            if (reg == null)
-                return;
-            folderpath = (string)reg.GetValue("folderpath", folderpath);
-            covers = (int)reg.GetValue("cachesize", covers);
-            intervalnum = (int)reg.GetValue("intervalnum", intervalnum);
-            intervaltype = (string)reg.GetValue("intervaltype", intervaltype);
-            comicpath = (string)reg.GetValue("comicpath", comicpath);
-            cachetype = (string)reg.GetValue("cachetype",cachetype);
-            reg.Close();
+            	RegistryKey reg = Registry.CurrentUser.OpenSubKey(KEY);
+            	if (reg == null)
+                	return;
+            	folderpath = (string)reg.GetValue("folderpath", folderpath);
+            	covers = (int)reg.GetValue("cachesize", covers);
+            	intervalnum = (int)reg.GetValue("intervalnum", intervalnum);
+            	intervaltype = (string)reg.GetValue("intervaltype", intervaltype);
+            	comicpath = (string)reg.GetValue("comicpath", comicpath);
+            	cachetype = (string)reg.GetValue("cachetype",cachetype);
+            	resize = (bool)reg.GetValue("resize", resize);
+            	reg.Close();
     		} catch (Exception ex) {
     			Log.Instance.Write(ex.Message);
     		} finally {
@@ -41,8 +42,8 @@ namespace ComicCache
             reg.SetValue("comicpath", comicpath, RegistryValueKind.String);
             reg.SetValue("intervalnum", intervalnum, RegistryValueKind.DWord);
             reg.SetValue("intervaltype", intervaltype, RegistryValueKind.String);
-            reg.SetValue("cachetype",cachetype, RegistryValueKind.String);
-            
+            reg.SetValue("cachetype", cachetype, RegistryValueKind.String);
+            reg.SetValue("resize", resize, RegistryValueKind.Binary);
             reg.Close();
    			
     		} catch (Exception ex) {
@@ -51,16 +52,41 @@ namespace ComicCache
     			
     		}
         }
+		#endregion
+        #region Properties
+
+		public int Intervalnum {
+			get { return intervalnum; }
+			set { intervalnum = value; }
+		}
+		public string Intervaltype {
+			get { return intervaltype; }
+			set { intervaltype = value; }
+		}        
+        public System.Drawing.Imaging.ImageFormat ImageFormat{
+        	get{ 
+        		System.Drawing.Imaging.ImageFormat result = null;
+        		switch (cachetype) {
+        			case "jpg":
+        				result = System.Drawing.Imaging.ImageFormat.Jpeg;
+        				break;
+        			case "bmp":
+        				result = System.Drawing.Imaging.ImageFormat.Bmp;
+        				break;
+        			case "png":
+        				result = System.Drawing.Imaging.ImageFormat.Png;
+        				break;
+        			}
+        			return result;
+        		}
+        		
+        	}
         public string FolderPath
         {
             get { return folderpath; }
             set { folderpath = value; }
         }
-		#endregion
-        #region Properties
-
-        
-        
+         
         public double Intervalabs
         {
             get { 
@@ -97,14 +123,14 @@ namespace ComicCache
 			get { return covers; }
 			set { covers = value; }
 		}        
-		public int Intervalnum {
-			get { return intervalnum; }
-			set { intervalnum = value; }
+		public bool Resize {
+			get { return resize; }
+			set { resize = value; }
 		}
-		public string Intervaltype {
-			get { return intervaltype; }
-			set { intervaltype = value; }
-		}
+        
+		private bool resize = false;
+		
+
         private double intervalabs=0;
         private int covers=1;
         private int intervalnum=0;
@@ -113,6 +139,8 @@ namespace ComicCache
         private string folderpath="";
         private string comicpath="";
         private string cachetype="";
+        
+      
         
 		public string Cachetype {
 			get { return cachetype; }

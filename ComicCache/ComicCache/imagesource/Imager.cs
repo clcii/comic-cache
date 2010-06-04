@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Drawing.Imaging;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace ComicCache.imagesource
 {
@@ -41,12 +42,61 @@ namespace ComicCache.imagesource
 				result = cis.GetImage(files[filenumber]);
 				files.RemoveAt(filenumber);
 			}
+			if (resize||result != null){
+				Size testSize = new Size(800,600);
+				result = resizeImage(result, testSize);
+				//result = resizeImage(result, newsize);
+			}
 			return result;
 			
 		}
 		
-		private List<string> files = new List<string>();
+	private List<string> files = new List<string>();
 	private string root = "";
 	private clcii.comic.ComicImageSource cis;
+	private bool resize = false;
+	private Size newsize;
+	
+	public Size Newsize {
+		get { return newsize; }
+		set { newsize = value; }
+	}
+	
+	public bool Resize {
+		get { return resize; }
+		set { resize = value; }
+	}
+	private static Image resizeImage(Image imgToResize, Size size)
+	{
+   		
+		int sourceWidth = imgToResize.Width;
+   		int sourceHeight = imgToResize.Height;
+
+   		float nPercent = 0;
+   		float nPercentW = 0;
+   		float nPercentH = 0;
+
+   		nPercentW = ((float)size.Width / (float)sourceWidth);
+   		nPercentH = ((float)size.Height / (float)sourceHeight);
+
+   		if (nPercentH < nPercentW)
+      		nPercent = nPercentH;
+   		else
+      		nPercent = nPercentW;
+
+   		int destWidth = (int)(sourceWidth * nPercent);
+   		int destHeight = (int)(sourceHeight * nPercent);
+
+   		Bitmap b = new Bitmap(destWidth, destHeight);
+   		Graphics g = Graphics.FromImage((Image)b);
+   		g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+
+   		g.DrawImage(imgToResize, 0, 0, destWidth, destHeight);
+   		g.Dispose();
+
+   	return (Image)b;
+	}
+	
+	
 	}
 }
