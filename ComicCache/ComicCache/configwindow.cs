@@ -17,6 +17,8 @@ namespace ComicCache
         {
 	   		InitializeComponent();
 	   		LoadConfig();
+	   		this.Text += config.SettingsFile;
+	   		
         }       
         #endregion
         
@@ -35,7 +37,7 @@ namespace ComicCache
         	config.Covers = (int)updowncachesize.Value;
         	config.FolderPath = (string)cacheFolder.Text;
         	config.Cachetype = (string)cachetypecombo.Text;
-        	config.Resize = (bool)resizepanel.Checked;
+        	config.Resize = (bool)resizeCheckBox.Checked;
 
         }
         void LoadConfig(){
@@ -45,20 +47,17 @@ namespace ComicCache
         	updowncachesize.Value = config.Covers;
         	cacheFolder.Text = config.FolderPath;
         	cachetypecombo.Text = config.Cachetype;
-        	resizepanel.Checked = config.Resize;
+        	resizeCheckBox.Checked = config.Resize;
         	
         }
         
         public Config config = new Config();
-        
-        
         void ButtonsaveClick(object sender, EventArgs e)
         {
         	CopyConfig();
         	config.Save();
         	this.Close();
         }
-        
         void ComicbasebuttonClick(object sender, EventArgs e)
         {
         	clcii.dialogue.multifolder basefolder = new clcii.dialogue.multifolder(comicfolder.Text);
@@ -67,7 +66,6 @@ namespace ComicCache
         		comicfolder.Text = basefolder.FileImageSourcePath();
         	}
         }
-        
         void CachebrowsebuttonClick(object sender, EventArgs e)
         {
         	FolderBrowserDialog fbd = new FolderBrowserDialog();
@@ -78,14 +76,14 @@ namespace ComicCache
         	}
         	
         }
+        void CheckBox1CheckedChanged(object sender, EventArgs e)
+        {
+        	resizePanel.Enabled = resizeCheckBox.Checked;
+        }
         
         void ConfigWindowLoad(object sender, EventArgs e)
         {
-        	
-        }
-        
-        void CheckBox1CheckedChanged(object sender, EventArgs e)
-        {
+        	screensizetextbox.Text = Convert.ToString(System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width) + "x" + Convert.ToString(System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height);
         	
         }
     }

@@ -30,16 +30,17 @@ namespace ComicCache{
                         return;
                     }
 
-                Config config = new Config();
-                Program program = new Program(config);
-                program.End += (obj, e) =>
-                {
-                    Log.Instance.Write("Stopping Cacher");
-                    program.Stop();
-                    Application.Exit();
-                };
+                    Config config = Config.Load();
+                    Log.Instance.Write(config.Cachetype);
+                	Program program = new Program(config);
+                	program.End += (obj, e) =>
+                	{
+                    	Log.Instance.Write("Stopping Cacher");
+                    	program.Stop();
+                    	Application.Exit();
+                	};
                 program.ShowTrayIcon();
-                program.Run();
+                //program.Run();
                 Application.Run();
             }
             catch (Exception ex)
@@ -58,7 +59,11 @@ namespace ComicCache{
             thread.IsBackground = true;
             thread.Start();
 		}
-        public void Stop() { }	
+        public void Stop() {
+		}
+		public void ThreadStop() {
+			thread.Abort();
+		}
         public void ThreadProc(){
             Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
             Config myconfig = config;
@@ -112,15 +117,23 @@ namespace ComicCache{
         private void notifyicon_Doubleclick(object Sender, EventArgs e){
         	ConfigWindow configwindow = new ConfigWindow();
         	notifyicon.Visible = false;
-        	try {
-        		thread.Abort();
-        	} finally {
-        		
+        	if (thread != null){
+	        	if (thread.ThreadState == System.Threading.ThreadState.Running){
+    	    		try {
+        				thread.Abort();
+        			
+        			} catch(Exception ex){
+        				Log.Instance.Write(ex.Message);
+        			}
+        			
+        			finally {
+	        		}
+        		}
         	}
         	
         	configwindow.ShowDialog();
         	notifyicon.Visible = true;
-        	thread.Start();
+        	Run();
         	
         }
         static void Application_ApplicationExit(object sender, EventArgs e)

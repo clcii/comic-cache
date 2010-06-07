@@ -2,33 +2,43 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
+using System.Windows.Forms;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Serialization;
 using Microsoft.Win32;
 
 namespace ComicCache
 {
-    public class Config
+	//[Serializable()]
+	public class Config //: ISerializable
     {
+	
 		#region Constructors
     	public Config() {
-			Load();
+			//settingsFolder = ;
+    		//settingsFile = Path.Combine(settingsFolder, Application.ProductName +".xml");
+			//Load();
         }
     	#endregion
     	#region Methods
-    	public void Load(){
+    	public static Config Load(){
     		try {
-            	RegistryKey reg = Registry.CurrentUser.OpenSubKey(KEY);
-            	if (reg == null)
-                	return;
-            	folderpath = (string)reg.GetValue("folderpath", folderpath);
-            	covers = (int)reg.GetValue("cachesize", covers);
-            	intervalnum = (int)reg.GetValue("intervalnum", intervalnum);
-            	intervaltype = (string)reg.GetValue("intervaltype", intervaltype);
-            	comicpath = (string)reg.GetValue("comicpath", comicpath);
-            	cachetype = (string)reg.GetValue("cachetype",cachetype);
-            	resize = (bool)reg.GetValue("resize", resize);
-            	reg.Close();
-    		} catch (Exception ex) {
+    			if (File.Exists(settingsFile)) {
+    				Stream stream = File.Open(settingsFile, FileMode.Open);
+    				XmlSerializer xs = new XmlSerializer(typeof(Config));
+    				Config cpycfg = (Config)xs.Deserialize(stream);
+    				 return cpycfg;
+    				}
+    			else
+    				{
+    			 		return new Config();
+    				}
+    			}
+    		catch (Exception ex) {
     			Log.Instance.Write(ex.Message);
+    			return null;
     		} finally {
     			
     		}
@@ -36,15 +46,23 @@ namespace ComicCache
     	}
         public void Save() {
     		try {
-            RegistryKey reg = Registry.CurrentUser.CreateSubKey(KEY);
-            reg.SetValue("folderpath", folderpath,RegistryValueKind.String);
-            reg.SetValue("cachesize", covers, RegistryValueKind.DWord);
-            reg.SetValue("comicpath", comicpath, RegistryValueKind.String);
-            reg.SetValue("intervalnum", intervalnum, RegistryValueKind.DWord);
-            reg.SetValue("intervaltype", intervaltype, RegistryValueKind.String);
-            reg.SetValue("cachetype", cachetype, RegistryValueKind.String);
-            reg.SetValue("resize", resize, RegistryValueKind.Binary);
-            reg.Close();
+    				if (Directory.Exists(settingsFolder) == false){
+						Directory.CreateDirectory(settingsFolder);
+						}	
+    			XmlSerializer xs = new XmlSerializer(typeof(Config));
+    			TextWriter tw = new StreamWriter(settingsFile);
+    			xs.Serialize(tw,this);
+    			tw.Close();
+            //RegistryKey reg = Registry.CurrentUser.CreateSubKey(KEY);
+            //reg.SetValue("folderpath", folderpath,RegistryValueKind.String);
+            //reg.SetValue("cachesize", covers, RegistryValueKind.DWord);
+            //reg.SetValue("comicpath", comicpath, RegistryValueKind.String);
+            //reg.SetValue("intervalnum", intervalnum, RegistryValueKind.DWord);
+            //reg.SetValue("intervaltype", intervaltype, RegistryValueKind.String);
+            //reg.SetValue("cachetype", cachetype, RegistryValueKind.String);
+            //reg.SetValue("resize", resize, RegistryValueKind.Binary);
+            //reg.SetValue("selectedCommonResizeSize", selectedCommonResizeSize, RegistryValueKind.String);
+            //reg.Close();
    			
     		} catch (Exception ex) {
     			Log.Instance.Write(ex.Message);
@@ -52,9 +70,17 @@ namespace ComicCache
     			
     		}
         }
-		#endregion
+    	#endregion
         #region Properties
-
+        public static string settingsFolder{
+        	get { return Path.Combine(Application.LocalUserAppDataPath, Application.ProductName + "\\");}
+        
+        }
+        public static string settingsFile{
+        	get { return Path.Combine(settingsFolder, Application.ProductName +".xml");}
+        
+        }
+        
 		public int Intervalnum {
 			get { return intervalnum; }
 			set { intervalnum = value; }
@@ -128,14 +154,41 @@ namespace ComicCache
 			set { resize = value; }
 		}
         
-		private bool resize = false;
+		public string SelectedResizeStyle {
+			get { return selectedResizeStyle; }
+			set { selectedResizeStyle = value; }
+		}
+		public string SelectedCommonResizeSize {
+			get { return selectedCommonResizeSize; }
+			set { selectedCommonResizeSize = value; }
+		}	
+		public int SelectedCustomResizeX {
+			get { return selectedCustomResizeX; }
+			set { selectedCustomResizeX = value; }
+		}
+		public int SelectedCustomResizeY {
+			get { return selectedCustomResizeY; }
+			set { selectedCustomResizeY = value; }
+		}
+        private string selectedCommonResizeSize = "";
+        private int selectedCustomResizeX = 0;
+        private int selectedCustomResizeY = 0;
+        //private string settingsFolder = "";
+        
+//		public string SettingsFolder {
+//			get { return settingsFolder; }
+//		}
+//		private string settingsFile = "";
 		
-
+		public string SettingsFile {
+			get { return settingsFile; }
+		}
+        private bool resize = false;
+        private string selectedResizeStyle = "";		
         private double intervalabs=0;
         private int covers=1;
         private int intervalnum=0;
         private string intervaltype ="Minutes";
-        //private string interval;
         private string folderpath="";
         private string comicpath="";
         private string cachetype="";
@@ -146,8 +199,9 @@ namespace ComicCache
 			get { return cachetype; }
 			set { cachetype = value; }
 		}
-        private static readonly string KEY = "Software\\ComicCache";  
+        //private static readonly string KEY = "Software\\ComicCache";  
         #endregion 
-    }
+    
+	}
    
 }
