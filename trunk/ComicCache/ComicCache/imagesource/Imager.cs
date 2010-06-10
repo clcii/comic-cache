@@ -31,10 +31,14 @@ namespace ComicCache.imagesource
 			Image result = null;
 			if (files.Count == 0) {
 				foreach(string subdir in root.Split(';')){
+					
+					if (Directory.Exists(subdir)){
 					foreach(string sext in cis.ComicExtensions()){
+						
 						files.AddRange(Directory.GetFiles(subdir, "*"+sext,SearchOption.AllDirectories));
 				        		}
 				        }
+					}
 				}
 			if (files.Count !=0) {
 				Random rnd = new Random();
