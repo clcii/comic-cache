@@ -130,10 +130,16 @@ namespace ComicCache{
 	        		}
         		}
         	}
+        	configwindow.TopLevel = true;
         	
-        	configwindow.ShowDialog();
-        	notifyicon.Visible = true;
-        	Run();
+        	configwindow.Show();
+        	configwindow.TopMost = true;
+        	configwindow.Activate();
+        	
+        	//notifyicon.Visible = true;
+        	//if (dr != DialogResult.Abort) null){
+        	//	Run();
+        	//}
         	
         }
         static void Application_ApplicationExit(object sender, EventArgs e)
