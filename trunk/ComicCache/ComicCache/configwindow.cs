@@ -12,13 +12,13 @@ namespace ComicCache
 {
     public partial class ConfigWindow : Form
     {
-        #region Constructors
-	   	public ConfigWindow()
+	private NotifyIcon notifyicon;
+    	#region Constructors
+	   	public ConfigWindow(Config config)
         {
 	   		InitializeComponent();
+	   		this.config = config;
 	   		LoadConfig();
-	   		this.Text += config.SettingsFile;
-	   		
         }       
         #endregion
         
@@ -51,12 +51,12 @@ namespace ComicCache
         	
         }
         
-        public Config config = new Config();
+        public Config config; //= Config.Load();
         void ButtonsaveClick(object sender, EventArgs e)
         {
         	CopyConfig();
         	config.Save();
-        	this.Close();
+        	this.Hide();
         }
         void ComicbasebuttonClick(object sender, EventArgs e)
         {
@@ -85,6 +85,37 @@ namespace ComicCache
         {
         	screensizetextbox.Text = Convert.ToString(System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width) + "x" + Convert.ToString(System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height);
         	
+        }
+        
+        public void ShowNotify(){
+           if (notifyicon == null){
+        		notifyicon = new NotifyIcon();
+        	}
+        	notifyicon.Text = "Comic Cache";
+        	notifyicon.Click += new EventHandler(this.notifyicon_Click);
+        	//notifyicon.DoubleClick += new EventHandler(this.notifyicon_Doubleclick);
+        	notifyicon.Icon = new Icon("test.ico");
+        	notifyicon.Visible = true;	
+        }
+        
+        private void notifyicon_Click(object Sender, EventArgs e){
+        	try{
+        		Show();
+        		BringToFront();
+        		Focus();
+			} catch (Exception ex) {
+				Log.Instance.Write(ex.Message);
+			} finally {
+			}
+        }
+
+        
+        void ConfigWindowFormClosing(object sender, FormClosingEventArgs e)
+        {
+        	if (e.CloseReason == CloseReason.UserClosing){
+        		this.Hide();
+        		e.Cancel = true;
+        		}
         }
     }
 }

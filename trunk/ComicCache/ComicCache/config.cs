@@ -29,7 +29,8 @@ namespace ComicCache
     				Stream stream = File.Open(settingsFile, FileMode.Open);
     				XmlSerializer xs = new XmlSerializer(typeof(Config));
     				Config cpycfg = (Config)xs.Deserialize(stream);
-    				 return cpycfg;
+    				stream.Close();
+    				return cpycfg;
     				}
     			else
     				{
@@ -46,9 +47,9 @@ namespace ComicCache
     	}
         public void Save() {
     		try {
-    				if (Directory.Exists(settingsFolder) == false){
+    			if (Directory.Exists(settingsFolder) == false){
 						Directory.CreateDirectory(settingsFolder);
-						}	
+					}	
     			XmlSerializer xs = new XmlSerializer(typeof(Config));
     			TextWriter tw = new StreamWriter(settingsFile);
     			xs.Serialize(tw,this);
