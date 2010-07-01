@@ -18,20 +18,23 @@ namespace ComicCache{
             {
 				Log.Instance.IsEnabled = true;
                 Application.EnableVisualStyles();
+                
 				foreach (Process process in Process.GetProcesses())
                     if (process.Id != Process.GetCurrentProcess().Id && process.ProcessName.Equals("ComicCache"))
                         return;
+				Config config = Config.Load();
                 if (args.Length > 0)
                     if (args[0].ToLower().Contains("/p"))
                         return;
                     else if (args[0].ToLower().Contains("/c"))
                     {
-                        Application.Run(new ConfigWindow());
+                        Application.Run(new ConfigWindow(config));
                         return;
                     }
 
-                    Config config = Config.Load();
-                    Log.Instance.Write(config.Cachetype);
+
+                    //Log.Instance.Write(config.Cachetype);
+                    
                 	Program program = new Program(config);
                 	program.End += (obj, e) =>
                 	{
@@ -106,43 +109,11 @@ namespace ComicCache{
         
         }
         private void ShowTrayIcon(){
-        	if (notifyicon == null){
-        		notifyicon = new NotifyIcon();
-        	}
-        	notifyicon.Text = "Comic Cache";
-        	notifyicon.DoubleClick += new EventHandler(this.notifyicon_Doubleclick);
-        	notifyicon.Icon = new Icon("test.ico");
-        	notifyicon.Visible = true;	
+			configwindow = new ConfigWindow(config);
+			configwindow.ShowNotify();
         }
-        private void notifyicon_Doubleclick(object Sender, EventArgs e){
-        	ConfigWindow configwindow = new ConfigWindow();
-        	notifyicon.Visible = false;
-        	if (thread != null){
-	        	if (thread.ThreadState == System.Threading.ThreadState.Running){
-    	    		try {
-        				thread.Abort();
-        			
-        			} catch(Exception ex){
-        				Log.Instance.Write(ex.Message);
-        			}
-        			
-        			finally {
-	        		}
-        		}
-        	}
-        	configwindow.TopLevel = true;
-        	
-        	configwindow.Show();
-        	configwindow.TopMost = true;
-        	configwindow.Activate();
-        	
-        	//notifyicon.Visible = true;
-        	//if (dr != DialogResult.Abort) null){
-        	//	Run();
-        	//}
-        	
-        }
-        static void Application_ApplicationExit(object sender, EventArgs e)
+
+		static void Application_ApplicationExit(object sender, EventArgs e)
         {
             
         }
@@ -158,7 +129,7 @@ namespace ComicCache{
 		private Thread thread;
       	public event EventHandler End;
       	public bool cancel = false;
-      	public NotifyIcon notifyicon;
+      	public ConfigWindow configwindow;
 		#endregion
     }
 }

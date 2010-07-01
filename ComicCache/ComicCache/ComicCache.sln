@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComicCache", "ComicCache.csproj", "{260B4C27-FFAA-4975-BF84-190018B213DB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		DebugConfig|Any CPU = DebugConfig|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{260B4C27-FFAA-4975-BF84-190018B213DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{260B4C27-FFAA-4975-BF84-190018B213DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{260B4C27-FFAA-4975-BF84-190018B213DB}.DebugConfig|Any CPU.ActiveCfg = Debug|Any CPU
+		{260B4C27-FFAA-4975-BF84-190018B213DB}.DebugConfig|Any CPU.Build.0 = Debug|Any CPU
+		{260B4C27-FFAA-4975-BF84-190018B213DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{260B4C27-FFAA-4975-BF84-190018B213DB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

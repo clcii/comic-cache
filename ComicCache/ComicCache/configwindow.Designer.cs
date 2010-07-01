@@ -324,6 +324,7 @@ namespace ComicCache
         	this.Name = "ConfigWindow";
         	this.Text = "Comic Cache";
         	this.Load += new System.EventHandler(this.ConfigWindowLoad);
+        	this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ConfigWindowFormClosing);
         	((System.ComponentModel.ISupportInitialize)(this.updowninterval)).EndInit();
         	((System.ComponentModel.ISupportInitialize)(this.updowncachesize)).EndInit();
         	((System.ComponentModel.ISupportInitialize)(this.customXnumeric)).EndInit();
