@@ -46,11 +46,11 @@ namespace ComicCache.imagesource
 				result = cis.GetImage(files[filenumber]);
 				files.RemoveAt(filenumber);
 			}
-			if (resize||result != null){
-				Size testSize = new Size(800,600);
-				result = resizeImage(result, testSize);
-				//result = resizeImage(result, newsize);
-			}
+			//if (resize||result != null){
+			//	Size testSize = new Size(800,600);
+			//	result = resizeImage(result, testSize);
+			//	//result = resizeImage(result, newsize);
+			//}
 			return result;
 			
 		}
