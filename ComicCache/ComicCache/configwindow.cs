@@ -38,7 +38,7 @@ namespace ComicCache
         	config.FolderPath = (string)cacheFolder.Text;
         	config.Cachetype = (string)cachetypecombo.Text;
         	config.Resize = (bool)resizeCheckBox.Checked;
-
+            config.SelectedResizeStyle = CurrentResizeStyle();
         }
         void LoadConfig(){
         	combointerval.Text = config.Intervaltype;
@@ -117,5 +117,32 @@ namespace ComicCache
         		e.Cancel = true;
         		}
         }
+
+        private void resizePanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private ResizeStyle CurrentResizeStyle() { 
+            ResizeStyle result = ResizeStyle.None;
+            if(screenSizeRadioButton.Checked){
+                result = ResizeStyle.CurrentScreen;
+            }
+            else if (commonRadioButton.Checked) { 
+                result = ResizeStyle.Common;
+            }
+            else if (customRadioButton.Checked){
+                result = ResizeStyle.Custom;
+            }
+            if (resizeCheckBox.Checked) { 
+                result = ResizeStyle.None; }
+            return result;
+        }
+    }
+    public enum ResizeStyle { 
+        None,
+        CurrentScreen,
+        Common,
+        Custom
     }
 }
