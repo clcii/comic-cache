@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
+using System.Drawing;
 using Microsoft.Win32;
 
 namespace ComicCache
@@ -28,7 +29,18 @@ namespace ComicCache
     			if (File.Exists(settingsFile)) {
     				Stream stream = File.Open(settingsFile, FileMode.Open);
     				XmlSerializer xs = new XmlSerializer(typeof(Config));
-    				Config cpycfg = (Config)xs.Deserialize(stream);
+                    Config cpycfg;
+                    try
+                    {
+                        cpycfg = (Config)xs.Deserialize(stream);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Instance.Write(ex.Message);
+                        Log.Instance.Write("Loading default");
+                        cpycfg = new Config();
+                    }
+    				
     				stream.Close();
     				return cpycfg;
     				}
@@ -155,7 +167,7 @@ namespace ComicCache
 			set { resize = value; }
 		}
         
-		public string SelectedResizeStyle {
+		public ResizeStyle SelectedResizeStyle {
 			get { return selectedResizeStyle; }
 			set { selectedResizeStyle = value; }
 		}
@@ -174,6 +186,7 @@ namespace ComicCache
         private string selectedCommonResizeSize = "";
         private int selectedCustomResizeX = 0;
         private int selectedCustomResizeY = 0;
+        
         //private string settingsFolder = "";
         
 //		public string SettingsFolder {
@@ -185,7 +198,7 @@ namespace ComicCache
 			get { return settingsFile; }
 		}
         private bool resize = false;
-        private string selectedResizeStyle = "";		
+        private ResizeStyle selectedResizeStyle = ResizeStyle.None;		
         private double intervalabs=0;
         private int covers=1;
         private int intervalnum=0;
@@ -193,9 +206,15 @@ namespace ComicCache
         private string folderpath="";
         private string comicpath="";
         private string cachetype="";
-        
-      
-        
+        private Size imagesize = new Size();
+
+        public Size ImageSize
+        {
+            get { 
+                return imagesize; }
+            set { imagesize = value; }
+        }
+
 		public string Cachetype {
 			get { return cachetype; }
 			set { cachetype = value; }

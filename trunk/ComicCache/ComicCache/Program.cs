@@ -70,11 +70,12 @@ namespace ComicCache{
         public void ThreadProc(){
             Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
             Config myconfig = config;
-            imagesource.Imager img = new ComicCache.imagesource.Imager(config.ComicPath);
+            //imagesource.Imager img = new ComicCache.imagesource.Imager(config.ComicPath);
             while (cancel.Equals(false)) {
             	List<string> cacheitems = new List<string>();
             	cacheitems.AddRange(Directory.GetFiles(config.FolderPath));
-            	foreach(string file in cacheitems){
+            	foreach(string file in cacheitems)
+                {
             		try {
             			File.Delete(file);
             		} catch (Exception) {
@@ -82,26 +83,34 @@ namespace ComicCache{
             	}
 				int inum = 0;
 				string newfilename = "";
-				Image newImage = null;
-            	while (Directory.GetFiles(config.FolderPath).Length < config.Covers) {
-					newImage = null;
-					while (newImage==null) {
-						try {
-							newImage = img.GetImage();
-						} catch (Exception) {
-							
-						}
-					}
-            		
-            		
-            		
+				//Image newImage = null;
+                ComicCache.objects.ComicConverter cc = new objects.ComicConverter(config.ComicPath, config.ImageFormat, config.ImageSize);
+            	while (Directory.GetFiles(config.FolderPath).Length < config.Covers) 
+                {
             		newfilename = Path.Combine(config.FolderPath, "ComicPic" + Convert.ToString(inum) +"." + config.Cachetype);
             		while (File.Exists(newfilename)) {
             			inum++;
             			newfilename = Path.Combine(config.FolderPath, "ComicPic" + Convert.ToString(inum) +"." + config.Cachetype);
-            		} 
+            		}
+                    
+
+					//newImage = null;
+					//while (newImage==null) {
+						try {
+					        cc.Save(newfilename);
+						} catch (Exception ex) {
+                            Log.Instance.Write(ex.Message);	
+						}
+					//}
+                    //try
+                    //{
+                    //    newImage.Save(newfilename, config.ImageFormat);
+                    //}
+                    //catch (Exception ex)
+                    //{
+                        //Log.Instance.Write(ex.Message);
+                    //}
             		
-            		newImage.Save(newfilename, config.ImageFormat);
             	}
 				Thread.Sleep((int)myconfig.Intervalabs);
             }
