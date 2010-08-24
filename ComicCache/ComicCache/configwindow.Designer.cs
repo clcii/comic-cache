@@ -69,7 +69,7 @@ namespace ComicCache
             this.buttonsave.Location = new System.Drawing.Point(23, 344);
             this.buttonsave.Name = "buttonsave";
             this.buttonsave.Size = new System.Drawing.Size(75, 23);
-            this.buttonsave.TabIndex = 0;
+            this.buttonsave.TabIndex = 19;
             this.buttonsave.Text = "Save";
             this.buttonsave.UseVisualStyleBackColor = true;
             this.buttonsave.Click += new System.EventHandler(this.ButtonsaveClick);
@@ -79,7 +79,7 @@ namespace ComicCache
             this.buttoncancel.Location = new System.Drawing.Point(104, 344);
             this.buttoncancel.Name = "buttoncancel";
             this.buttoncancel.Size = new System.Drawing.Size(75, 23);
-            this.buttoncancel.TabIndex = 1;
+            this.buttoncancel.TabIndex = 20;
             this.buttoncancel.Text = "Cancel";
             this.buttoncancel.UseVisualStyleBackColor = true;
             // 
@@ -88,7 +88,7 @@ namespace ComicCache
             this.buttontest.Location = new System.Drawing.Point(186, 344);
             this.buttontest.Name = "buttontest";
             this.buttontest.Size = new System.Drawing.Size(75, 23);
-            this.buttontest.TabIndex = 2;
+            this.buttontest.TabIndex = 21;
             this.buttontest.Text = "Test";
             this.buttontest.UseVisualStyleBackColor = true;
             this.buttontest.Click += new System.EventHandler(this.ButtontestClick);
@@ -202,17 +202,29 @@ namespace ComicCache
             // 
             // customXnumeric
             // 
+            this.customXnumeric.Enabled = false;
             this.customXnumeric.Location = new System.Drawing.Point(105, 62);
+            this.customXnumeric.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
             this.customXnumeric.Name = "customXnumeric";
             this.customXnumeric.Size = new System.Drawing.Size(62, 20);
-            this.customXnumeric.TabIndex = 9;
+            this.customXnumeric.TabIndex = 17;
             // 
             // customYnumberic
             // 
+            this.customYnumberic.Enabled = false;
             this.customYnumberic.Location = new System.Drawing.Point(194, 62);
+            this.customYnumberic.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
             this.customYnumberic.Name = "customYnumberic";
             this.customYnumberic.Size = new System.Drawing.Size(57, 20);
-            this.customYnumberic.TabIndex = 10;
+            this.customYnumberic.TabIndex = 18;
             // 
             // label3
             // 
@@ -236,7 +248,7 @@ namespace ComicCache
             this.resizePanel.Location = new System.Drawing.Point(12, 237);
             this.resizePanel.Name = "resizePanel";
             this.resizePanel.Size = new System.Drawing.Size(262, 101);
-            this.resizePanel.TabIndex = 33;
+            this.resizePanel.TabIndex = 12;
             this.resizePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.resizePanel_Paint);
             // 
             // screensizetextbox
@@ -245,10 +257,11 @@ namespace ComicCache
             this.screensizetextbox.Location = new System.Drawing.Point(105, 6);
             this.screensizetextbox.Name = "screensizetextbox";
             this.screensizetextbox.Size = new System.Drawing.Size(144, 20);
-            this.screensizetextbox.TabIndex = 33;
+            this.screensizetextbox.TabIndex = 13;
             // 
             // commonComboBox
             // 
+            this.commonComboBox.Enabled = false;
             this.commonComboBox.FormattingEnabled = true;
             this.commonComboBox.Items.AddRange(new object[] {
             "800x600",
@@ -258,14 +271,14 @@ namespace ComicCache
             this.commonComboBox.Location = new System.Drawing.Point(105, 31);
             this.commonComboBox.Name = "commonComboBox";
             this.commonComboBox.Size = new System.Drawing.Size(144, 21);
-            this.commonComboBox.TabIndex = 32;
+            this.commonComboBox.TabIndex = 15;
             // 
             // screenSizeRadioButton
             // 
             this.screenSizeRadioButton.Location = new System.Drawing.Point(3, 3);
             this.screenSizeRadioButton.Name = "screenSizeRadioButton";
             this.screenSizeRadioButton.Size = new System.Drawing.Size(92, 24);
-            this.screenSizeRadioButton.TabIndex = 2;
+            this.screenSizeRadioButton.TabIndex = 12;
             this.screenSizeRadioButton.TabStop = true;
             this.screenSizeRadioButton.Text = "Screen Size";
             this.screenSizeRadioButton.UseVisualStyleBackColor = true;
@@ -275,37 +288,40 @@ namespace ComicCache
             this.commonRadioButton.Location = new System.Drawing.Point(3, 31);
             this.commonRadioButton.Name = "commonRadioButton";
             this.commonRadioButton.Size = new System.Drawing.Size(71, 24);
-            this.commonRadioButton.TabIndex = 1;
+            this.commonRadioButton.TabIndex = 14;
             this.commonRadioButton.TabStop = true;
             this.commonRadioButton.Text = "Common";
             this.commonRadioButton.UseVisualStyleBackColor = true;
+            this.commonRadioButton.CheckedChanged += new System.EventHandler(this.commonRadioButton_CheckedChanged);
             // 
             // customRadioButton
             // 
             this.customRadioButton.Location = new System.Drawing.Point(3, 61);
             this.customRadioButton.Name = "customRadioButton";
             this.customRadioButton.Size = new System.Drawing.Size(71, 24);
-            this.customRadioButton.TabIndex = 0;
+            this.customRadioButton.TabIndex = 16;
             this.customRadioButton.TabStop = true;
             this.customRadioButton.Text = "Custom";
             this.customRadioButton.UseVisualStyleBackColor = true;
+            this.customRadioButton.CheckedChanged += new System.EventHandler(this.customRadioButton_CheckedChanged);
             // 
             // resizeCheckBox
             // 
             this.resizeCheckBox.Location = new System.Drawing.Point(15, 210);
             this.resizeCheckBox.Name = "resizeCheckBox";
             this.resizeCheckBox.Size = new System.Drawing.Size(67, 24);
-            this.resizeCheckBox.TabIndex = 34;
+            this.resizeCheckBox.TabIndex = 11;
             this.resizeCheckBox.Text = "Resize";
             this.resizeCheckBox.UseVisualStyleBackColor = true;
             this.resizeCheckBox.CheckedChanged += new System.EventHandler(this.CheckBox1CheckedChanged);
             // 
             // filelimitertextbox
             // 
+            this.filelimitertextbox.Enabled = false;
             this.filelimitertextbox.Location = new System.Drawing.Point(11, 184);
             this.filelimitertextbox.Name = "filelimitertextbox";
             this.filelimitertextbox.Size = new System.Drawing.Size(250, 20);
-            this.filelimitertextbox.TabIndex = 35;
+            this.filelimitertextbox.TabIndex = 10;
             // 
             // limitfilescheckbox
             // 
@@ -313,9 +329,10 @@ namespace ComicCache
             this.limitfilescheckbox.Location = new System.Drawing.Point(12, 161);
             this.limitfilescheckbox.Name = "limitfilescheckbox";
             this.limitfilescheckbox.Size = new System.Drawing.Size(194, 17);
-            this.limitfilescheckbox.TabIndex = 36;
+            this.limitfilescheckbox.TabIndex = 9;
             this.limitfilescheckbox.Text = "Limit to Files with Names Containing";
             this.limitfilescheckbox.UseVisualStyleBackColor = true;
+            this.limitfilescheckbox.CheckedChanged += new System.EventHandler(this.limitfilescheckbox_CheckedChanged);
             // 
             // ConfigWindow
             // 

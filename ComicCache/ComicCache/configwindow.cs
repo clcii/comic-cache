@@ -166,6 +166,22 @@ namespace ComicCache
             }
             return result;
         }
+
+        private void commonRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            this.commonComboBox.Enabled = commonRadioButton.Checked; ;
+        }
+
+        private void customRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            customXnumeric.Enabled = customRadioButton.Checked;
+            customYnumberic.Enabled = customRadioButton.Checked;
+        }
+
+        private void limitfilescheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            filelimitertextbox.Enabled = limitfilescheckbox.Checked;
+        }
         
     }
     
