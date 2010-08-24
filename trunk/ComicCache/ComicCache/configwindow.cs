@@ -39,6 +39,9 @@ namespace ComicCache
         	config.Cachetype = (string)cachetypecombo.Text;
         	config.Resize = (bool)resizeCheckBox.Checked;
             config.SelectedResizeStyle = CurrentResizeStyle();
+            config.SelectedCommonResizeSize = commonComboBox.Text;
+            config.SelectedCustomResizeX = (int)customXnumeric.Value;
+            config.SelectedCustomResizeY = (int)customYnumberic.Value;
         }
         void LoadConfig(){
         	combointerval.Text = config.Intervaltype;
@@ -48,7 +51,26 @@ namespace ComicCache
         	cacheFolder.Text = config.FolderPath;
         	cachetypecombo.Text = config.Cachetype;
         	resizeCheckBox.Checked = config.Resize;
-        	
+            commonComboBox.Text = config.SelectedCommonResizeSize;
+            customYnumberic.Value = config.SelectedCustomResizeY;
+            customXnumeric.Value = config.SelectedCustomResizeX;
+            switch (config.SelectedResizeStyle)
+            {
+                case ResizeStyle.None:
+                    break;
+                case ResizeStyle.CurrentScreen:
+                    screenSizeRadioButton.Checked = true;
+                    break;
+                case ResizeStyle.Common:
+                    commonRadioButton.Checked = true;
+                    break;
+                case ResizeStyle.Custom:
+                    customRadioButton.Checked = true;
+                    break;
+                default:
+                    break;
+            }
+
         }
         
         public Config config; //= Config.Load();
@@ -123,22 +145,30 @@ namespace ComicCache
 
         }
 
-        private ResizeStyle CurrentResizeStyle() { 
+        private ResizeStyle CurrentResizeStyle() {
             ResizeStyle result = ResizeStyle.None;
-            if(screenSizeRadioButton.Checked){
-                result = ResizeStyle.CurrentScreen;
+            if (resizeCheckBox.Checked) 
+            {
+                if (screenSizeRadioButton.Checked)
+                {
+                    result = ResizeStyle.CurrentScreen;
+                }
+                else if (commonRadioButton.Checked)
+                {
+                    result = ResizeStyle.Common;
+                }
+                else if (customRadioButton.Checked)
+                {
+                    result = ResizeStyle.Custom;
+                }
+                //if (resizeCheckBox.Checked = false) { 
+                //   result = ResizeStyle.None; }
             }
-            else if (commonRadioButton.Checked) { 
-                result = ResizeStyle.Common;
-            }
-            else if (customRadioButton.Checked){
-                result = ResizeStyle.Custom;
-            }
-            if (resizeCheckBox.Checked) { 
-                result = ResizeStyle.None; }
             return result;
         }
+        
     }
+    
     public enum ResizeStyle { 
         None,
         CurrentScreen,

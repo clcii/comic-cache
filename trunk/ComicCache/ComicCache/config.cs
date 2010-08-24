@@ -206,13 +206,45 @@ namespace ComicCache
         private string folderpath="";
         private string comicpath="";
         private string cachetype="";
-        private Size imagesize = new Size();
+        private Size imageresizesize = new Size();
 
-        public Size ImageSize
+        public Size ImageResizeSize
         {
-            get { 
-                return imagesize; }
-            set { imagesize = value; }
+            get {
+                switch (SelectedResizeStyle)
+                    {
+                        case ResizeStyle.None:
+                            imageresizesize = new Size();
+                            break;
+                        case ResizeStyle.CurrentScreen:
+                            imageresizesize = new Size(Screen.PrimaryScreen.WorkingArea.Width, Screen.PrimaryScreen.WorkingArea.Height);
+                            break;
+                        case ResizeStyle.Common:
+                            if (selectedCommonResizeSize != "")
+                            {
+                                string w = SelectedCommonResizeSize.Split(Convert.ToChar("x"))[0];
+                                string h = SelectedCommonResizeSize.Split(Convert.ToChar("x"))[1];
+                                int iw = Convert.ToInt16(w);
+                                int ih = Convert.ToInt16(h);
+                                imageresizesize = new Size(iw, ih);
+                            }
+                            else {
+                                imageresizesize = new Size();
+                            }
+
+                            
+                            break;
+                        case ResizeStyle.Custom:
+                            imageresizesize = new Size(SelectedCustomResizeX, SelectedCustomResizeY);
+                            break;
+                        default:
+                            imageresizesize = new Size();
+                            break;
+                    }
+                
+                
+                return imageresizesize; }
+            set { imageresizesize = value; }
         }
 
 		public string Cachetype {
