@@ -39,6 +39,7 @@ namespace ComicCache{
                 	program.End += (obj, e) =>
                 	{
                     	Log.Instance.Write("Stopping Cacher");
+
                     	program.Stop();
                     	Application.Exit();
                 	};
@@ -63,6 +64,7 @@ namespace ComicCache{
             thread.Start();
 		}
         public void Stop() {
+            configwindow.HideNotify();
 		}
 		public void ThreadStop() {
 			thread.Abort();
@@ -111,9 +113,9 @@ namespace ComicCache{
 			configwindow.ShowNotify();
         }
 
-		static void Application_ApplicationExit(object sender, EventArgs e)
+		private void Application_ApplicationExit(object sender, EventArgs e)
         {
-            
+            Log.Instance.Write("ApplicationExit");
         }
 		#endregion
 		#region Constructors
