@@ -33,7 +33,20 @@ namespace clcii.dialogue
             {
                 if (System.IO.Directory.Exists(fbd.SelectedPath))
                 {
-                    folderslistbox.Items.Add(fbd.SelectedPath);
+                    if (folderslistbox.Items.Count == 1) 
+                    {
+                        if (folderslistbox.Items[0].ToString() == string.Empty)
+                        {
+                            folderslistbox.Items[0] = fbd.SelectedPath;
+                        }
+                        else
+                        {
+                            folderslistbox.Items.Add(fbd.SelectedPath);
+                        }
+                    }
+                    else{
+                        folderslistbox.Items.Add(fbd.SelectedPath);
+                    }
                 }
 
             }
