@@ -9,6 +9,13 @@ namespace ComicCache.objects
     class ComicConverter
     {
         bool resize = false;
+        string filter = "";
+
+        public string Filter
+        {
+            get { return filter; }
+            set { filter = value; }
+        }
 
         public bool Resize
         {
@@ -17,8 +24,6 @@ namespace ComicCache.objects
         }
 
         string comicfilepath = "";
-
-
         public string Comicfilepath
         {
             get { return comicfilepath; }
@@ -50,9 +55,11 @@ namespace ComicCache.objects
             this.ResultSize = newsize;
             this.Resize = resize;
         }
-        public void Save(string destination) {
-            if (img == null){ 
-               img = new ComicCache.imagesource.Imager(Comicfilepath);
+        public void Save(string destination, string filter) {
+
+            if (img == null|this.filter != filter){
+                this.filter = filter;
+               img = new ComicCache.imagesource.Imager(Comicfilepath, filter);
             }
             Image coverimage = img.GetImage();
             if (this.Resize)

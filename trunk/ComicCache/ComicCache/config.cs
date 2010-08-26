@@ -186,7 +186,21 @@ namespace ComicCache
         private string selectedCommonResizeSize = "";
         private int selectedCustomResizeX = 0;
         private int selectedCustomResizeY = 0;
-        
+        private string filefilter = "";
+        private bool filterenabled = false;
+
+        public bool Filterenabled
+        {
+            get { return filterenabled; }
+            set { filterenabled = value; }
+        }
+
+        public string Filefilter
+        {
+            get {return filefilter; }
+            set { filefilter = value; }
+        }
+
         //private string settingsFolder = "";
         
 //		public string SettingsFolder {
