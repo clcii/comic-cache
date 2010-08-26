@@ -8,6 +8,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
 using System.Drawing;
+using System.ComponentModel;
 using Microsoft.Win32;
 
 namespace ComicCache
@@ -18,9 +19,7 @@ namespace ComicCache
 	
 		#region Constructors
     	public Config() {
-			//settingsFolder = ;
-    		//settingsFile = Path.Combine(settingsFolder, Application.ProductName +".xml");
-			//Load();
+
         }
     	#endregion
     	#region Methods
@@ -66,16 +65,6 @@ namespace ComicCache
     			TextWriter tw = new StreamWriter(settingsFile);
     			xs.Serialize(tw,this);
     			tw.Close();
-            //RegistryKey reg = Registry.CurrentUser.CreateSubKey(KEY);
-            //reg.SetValue("folderpath", folderpath,RegistryValueKind.String);
-            //reg.SetValue("cachesize", covers, RegistryValueKind.DWord);
-            //reg.SetValue("comicpath", comicpath, RegistryValueKind.String);
-            //reg.SetValue("intervalnum", intervalnum, RegistryValueKind.DWord);
-            //reg.SetValue("intervaltype", intervaltype, RegistryValueKind.String);
-            //reg.SetValue("cachetype", cachetype, RegistryValueKind.String);
-            //reg.SetValue("resize", resize, RegistryValueKind.Binary);
-            //reg.SetValue("selectedCommonResizeSize", selectedCommonResizeSize, RegistryValueKind.String);
-            //reg.Close();
    			
     		} catch (Exception ex) {
     			Log.Instance.Write(ex.Message);
@@ -83,10 +72,27 @@ namespace ComicCache
     			
     		}
         }
+        public bool IsValid(){
+            
+            
+
+            bool result = false;
+            result =
+                Directory.Exists(settingsFolder) &
+                Directory.Exists(ComicPath) &
+                Intervalnum > 0 &
+                Intervaltype != "" &
+                Covers > 0 &
+                this.ImageFormat != null;
+
+            return result;
+        }
     	#endregion
         #region Properties
         public static string settingsFolder{
-        	get { return Path.Combine(Application.LocalUserAppDataPath, Application.ProductName + "\\");}
+        	get { //return Path.Combine(Application.LocalUserAppDataPath, Application.ProductName + "\\");
+                return Application.LocalUserAppDataPath;
+            }
         
         }
         public static string settingsFile{

@@ -70,8 +70,10 @@ namespace ComicCache{
         public void ThreadProc(){
             Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
             Config myconfig = config;
+           
             //imagesource.Imager img = new ComicCache.imagesource.Imager(config.ComicPath);
-            while (cancel.Equals(false)) {
+            
+            while (cancel.Equals(false)&&myconfig.IsValid()) {
             	List<string> cacheitems = new List<string>();
             	cacheitems.AddRange(Directory.GetFiles(config.FolderPath));
             	foreach(string file in cacheitems)
@@ -92,26 +94,12 @@ namespace ComicCache{
             			inum++;
             			newfilename = Path.Combine(config.FolderPath, "ComicPic" + Convert.ToString(inum) +"." + config.Cachetype);
             		}
-                    
-
-					//newImage = null;
-					//while (newImage==null) {
-						try {
+					try {
                             
 					        cc.Save(newfilename, config.Filterenabled ? config.Filefilter : "");
 						} catch (Exception ex) {
                             Log.Instance.Write(ex.Message);	
 						}
-					//}
-                    //try
-                    //{
-                    //    newImage.Save(newfilename, config.ImageFormat);
-                    //}
-                    //catch (Exception ex)
-                    //{
-                        //Log.Instance.Write(ex.Message);
-                    //}
-            		
             	}
 				Thread.Sleep((int)myconfig.Intervalabs);
             }
