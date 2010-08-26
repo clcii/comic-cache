@@ -85,6 +85,7 @@ namespace ComicCache
         	CopyConfig();
         	config.Save();
         	this.Hide();
+            ShowNotify();
         }
         void ComicbasebuttonClick(object sender, EventArgs e)
         {
@@ -121,16 +122,19 @@ namespace ComicCache
         	}
         	notifyicon.Text = "Comic Cache";
         	notifyicon.Click += new EventHandler(this.notifyicon_Click);
-        	//notifyicon.DoubleClick += new EventHandler(this.notifyicon_Doubleclick);
         	notifyicon.Icon = new Icon("test.ico");
         	notifyicon.Visible = true;	
         }
-        
+        public void HideNotify() {
+            notifyicon.Visible = false;
+            notifyicon = null;
+        }
         private void notifyicon_Click(object Sender, EventArgs e){
         	try{
         		Show();
         		BringToFront();
         		Focus();
+                notifyicon.Visible = false;
 			} catch (Exception ex) {
 				Log.Instance.Write(ex.Message);
 			} finally {
@@ -143,6 +147,7 @@ namespace ComicCache
         	if (e.CloseReason == CloseReason.UserClosing){
         		this.Hide();
         		e.Cancel = true;
+                notifyicon.Visible = true;
         		}
         }
 
