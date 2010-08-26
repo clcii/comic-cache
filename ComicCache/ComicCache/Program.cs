@@ -97,7 +97,8 @@ namespace ComicCache{
 					//newImage = null;
 					//while (newImage==null) {
 						try {
-					        cc.Save(newfilename);
+                            
+					        cc.Save(newfilename, config.Filterenabled ? config.Filefilter : "");
 						} catch (Exception ex) {
                             Log.Instance.Write(ex.Message);	
 						}

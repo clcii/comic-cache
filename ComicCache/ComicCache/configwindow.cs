@@ -25,7 +25,8 @@ namespace ComicCache
         
         void ButtontestClick(object sender, EventArgs e)
         {
-        	CopyConfig();
+        	
+            CopyConfig();
         	//this.Text = "Abs Interval = " + Convert.ToString( config.Intervalabs);
         	Program program = new Program(config);
         	program.Run();
@@ -42,6 +43,9 @@ namespace ComicCache
             config.SelectedCommonResizeSize = commonComboBox.Text;
             config.SelectedCustomResizeX = (int)customXnumeric.Value;
             config.SelectedCustomResizeY = (int)customYnumberic.Value;
+            config.Filefilter = (string)filelimitertextbox.Text;
+            config.Filterenabled = (bool)limitfilescheckbox.Checked;
+
         }
         void LoadConfig(){
         	combointerval.Text = config.Intervaltype;
@@ -54,6 +58,8 @@ namespace ComicCache
             commonComboBox.Text = config.SelectedCommonResizeSize;
             customYnumberic.Value = config.SelectedCustomResizeY;
             customXnumeric.Value = config.SelectedCustomResizeX;
+            limitfilescheckbox.Checked = config.Filterenabled;
+            filelimitertextbox.Text = config.Filefilter;
             switch (config.SelectedResizeStyle)
             {
                 case ResizeStyle.None:
@@ -181,6 +187,11 @@ namespace ComicCache
         private void limitfilescheckbox_CheckedChanged(object sender, EventArgs e)
         {
             filelimitertextbox.Enabled = limitfilescheckbox.Checked;
+        }
+
+        private void filelimitertextbox_TextChanged(object sender, EventArgs e)
+        {
+
         }
         
     }

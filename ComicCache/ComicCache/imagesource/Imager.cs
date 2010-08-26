@@ -9,10 +9,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Drawing.Imaging;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
+using System.IO;
 
 namespace ComicCache.imagesource
 {
@@ -26,6 +26,12 @@ namespace ComicCache.imagesource
 			this.root = root;
 			cis = new clcii.comic.ComicImageSource(Comicstyle.CoversOnly);
 		}
+        public Imager(string root, string filter)
+        {
+            this.root = root;
+            this.Filter = filter;
+            cis = new clcii.comic.ComicImageSource(Comicstyle.CoversOnly);
+        }
 		
 		public Image GetImage(){
 			Image result = null;
@@ -40,67 +46,54 @@ namespace ComicCache.imagesource
 				        }
 					}
 				}
+            
+            if (filter != "*")
+            {
+                List<string> resultlist = new List<string>();
+                foreach (string filteritem in Filter.Split(';'))
+	                {
+		                resultlist.AddRange (
+                            files.FindAll(
+                                delegate(string file)
+                                {
+                                    return file.ToUpper().Contains(filteritem.ToUpper());
+                                }
+                              )
+                          );
+                            
+                    ;
+	                }
+                files = resultlist;
+            }
 			if (files.Count !=0) {
 				Random rnd = new Random();
 				int filenumber = rnd.Next(0,files.Count-1);
 				result = cis.GetImage(files[filenumber]);
 				files.RemoveAt(filenumber);
 			}
-			//if (resize||result != null){
-			//	Size testSize = new Size(800,600);
-			//	result = resizeImage(result, testSize);
-			//	//result = resizeImage(result, newsize);
-			//}
+
 			return result;
 			
 		}
-		
+
+	
 	private List<string> files = new List<string>();
 	private string root = "";
 	private clcii.comic.ComicImageSource cis;
-	private bool resize = false;
-	private Size newsize;
-	
-	public Size Newsize {
-		get { return newsize; }
-		set { newsize = value; }
-	}
-	
-	public bool Resize {
-		get { return resize; }
-		set { resize = value; }
-	}
-	private static Image resizeImage(Image imgToResize, Size size)
-	{
-   		
-		int sourceWidth = imgToResize.Width;
-   		int sourceHeight = imgToResize.Height;
+    private string filter = "";
 
-   		float nPercent = 0;
-   		float nPercentW = 0;
-   		float nPercentH = 0;
-
-   		nPercentW = ((float)size.Width / (float)sourceWidth);
-   		nPercentH = ((float)size.Height / (float)sourceHeight);
-
-   		if (nPercentH < nPercentW)
-      		nPercent = nPercentH;
-   		else
-      		nPercent = nPercentW;
-
-   		int destWidth = (int)(sourceWidth * nPercent);
-   		int destHeight = (int)(sourceHeight * nPercent);
-
-   		Bitmap b = new Bitmap(destWidth, destHeight);
-   		Graphics g = Graphics.FromImage((Image)b);
-   		g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-
-   		g.DrawImage(imgToResize, 0, 0, destWidth, destHeight);
-   		g.Dispose();
-
-   	return (Image)b;
-	}
-	
-	
+    public string Filter
+    {
+        get { return filter; }
+        set {
+            if (value != this.filter) { files.Clear(); }
+            
+            
+            filter = value; }
+    }
+    private bool ContainsFilter(string s)
+    {
+        return s.Contains(Filter);
+    }
 	}
 }
