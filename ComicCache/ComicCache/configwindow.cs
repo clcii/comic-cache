@@ -13,6 +13,7 @@ namespace ComicCache
     public partial class ConfigWindow : Form
     {
 	private NotifyIcon notifyicon;
+    MenuItem[] menuList; 
     	#region Constructors
 	   	public ConfigWindow(Config config)
         {
@@ -123,9 +124,16 @@ namespace ComicCache
         }
         
         public void ShowNotify(){
-           if (notifyicon == null){
+            ContextMenu clickMenu;
+                 menuList = new MenuItem[]{new MenuItem("Sign In"),
+			    new MenuItem("Get Help"), new MenuItem("Open")};
+                 clickMenu = new ContextMenu(menuList);
+ 
+           if (notifyicon == null)
+           {
         		notifyicon = new NotifyIcon();
-        	}
+                notifyicon.ContextMenu = clickMenu;
+           }
         	notifyicon.Text = "Comic Cache";
         	notifyicon.Click += new EventHandler(this.notifyicon_Click);
         	notifyicon.Icon = new Icon("ComicCache.ico");
@@ -136,6 +144,7 @@ namespace ComicCache
             notifyicon = null;
         }
         private void notifyicon_Click(object Sender, EventArgs e){
+            
         	try{
         		Show();
         		BringToFront();

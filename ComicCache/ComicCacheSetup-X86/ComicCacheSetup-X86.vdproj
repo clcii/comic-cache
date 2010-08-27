@@ -77,17 +77,17 @@
     {
         "CustomAction"
         {
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_94B1A6C56AC24391ACA07EF089F8B45B"
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_1DBD36A0407C496C83CFC045417A54F5"
             {
             "Name" = "8:Primary output from ComicCache (Active)"
             "Condition" = "8:"
             "Object" = "8:_40A22A58F3E5455A9E32F8A5C1D4C361"
             "FileType" = "3:2"
-            "InstallAction" = "3:2"
-            "Arguments" = "8:/c"
+            "InstallAction" = "3:1"
+            "Arguments" = "8:"
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
-            "Identifier" = "8:_7319E52F_9BCC_4775_B8DB_BCCA747D55BF"
+            "Identifier" = "8:_D933A5E5_26EC_44D3_BE73_C7BB319F5E10"
             "InstallerClass" = "11:TRUE"
             "CustomActionData" = "8:"
             }
@@ -202,7 +202,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ComicCache"
         "ProductCode" = "8:{05E3A197-D26A-48CA-9FBF-3EC820B06A82}"
-        "PackageCode" = "8:{B8A926A4-94B3-4143-BCBB-BE82FC41BBB4}"
+        "PackageCode" = "8:{DF93695D-4B30-46BA-8047-44C2836FB901}"
         "UpgradeCode" = "8:{87C09693-A0A7-4627-8F58-6E9857BC977E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -777,7 +777,7 @@
                 {
                 }
             }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_7D8F284041A043A488ABA3A1875163CB"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_D01EB7E65AD9439896E9ADCCDBAB49FC"
             {
             "SourcePath" = "8:"
             "TargetName" = "8:"
@@ -799,6 +799,34 @@
             "ProjectOutputGroupRegister" = "3:1"
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:ContentFiles"
+            "OutputProjectGuid" = "8:{260B4C27-FFAA-4975-BF84-190018B213DB}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_D7DB2DC5D7694843943C5C3E4D876E53"
+            {
+            "SourcePath" = "8:"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_C31FA026541F4ED68E975AEB1E457EA6"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:LocalizedResourceDlls"
             "OutputProjectGuid" = "8:{260B4C27-FFAA-4975-BF84-190018B213DB}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
