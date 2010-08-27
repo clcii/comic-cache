@@ -13,17 +13,21 @@ namespace ComicCache
     public partial class ConfigWindow : Form
     {
 	private NotifyIcon notifyicon;
-    MenuItem[] menuList; 
-    	#region Constructors
-	   	public ConfigWindow(Config config)
+    MenuItem[] menuList;
+    #region LocalProperties
+        public Config config; //= Config.Load();
+
+    #endregion
+    #region Constructors
+    public ConfigWindow(Config config)
         {
 	   		InitializeComponent();
 	   		this.config = config;
 	   		LoadConfig();
         }       
         #endregion
-        
-        
+
+    #region Methods
         void ButtontestClick(object sender, EventArgs e)
         {
         	
@@ -35,6 +39,91 @@ namespace ComicCache
                 program.Run();
             }
         }
+        void ButtonsaveClick(object sender, EventArgs e)
+        {
+        	CopyConfig();
+        	config.Save();
+            if (config.IsValid())
+            {
+                this.Hide();
+                ShowNotify();
+            }
+        }
+        void ComicbasebuttonClick(object sender, EventArgs e)
+        {
+        	clcii.dialogue.multifolder basefolder = new clcii.dialogue.multifolder(comicfolder.Text);
+        	basefolder.ShowDialog();
+        	if (basefolder.Result() == DialogResult.OK) {
+        		comicfolder.Text = basefolder.FileImageSourcePath();
+        	}
+        }
+        void CachebrowsebuttonClick(object sender, EventArgs e)
+        {
+        	FolderBrowserDialog fbd = new FolderBrowserDialog();
+        	fbd.SelectedPath = cacheFolder.Text;
+        	if (fbd.ShowDialog() == DialogResult.OK)
+        	{
+        		cacheFolder.Text = fbd.SelectedPath;
+        	}
+        	
+        }
+        void CheckBox1CheckedChanged(object sender, EventArgs e)
+        {
+        	resizePanel.Enabled = resizeCheckBox.Checked;
+        }
+        void ConfigWindowLoad(object sender, EventArgs e)
+        {
+        	screensizetextbox.Text = Convert.ToString(System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width) + "x" + Convert.ToString(System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height);
+        	
+        }
+        void ConfigWindowFormClosing(object sender, FormClosingEventArgs e)
+        {
+        	if (e.CloseReason == CloseReason.UserClosing){
+        		this.Hide();
+        		e.Cancel = true;
+                notifyicon.Visible = true;
+        		}
+        }
+        private void commonRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            this.commonComboBox.Enabled = commonRadioButton.Checked; ;
+        }
+        private void customRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            customXnumeric.Enabled = customRadioButton.Checked;
+            customYnumberic.Enabled = customRadioButton.Checked;
+        }
+        private void limitfilescheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            filelimitertextbox.Enabled = limitfilescheckbox.Checked;
+        }
+        private void filelimitertextbox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void buttoncancel_Click(object sender, EventArgs e)
+        {
+            LoadConfig();
+            if (config.IsValid())
+            {
+                this.Hide();
+                ShowNotify();
+            }
+        }
+
+        private void notifyicon_Click(object Sender, EventArgs e){
+            
+        	try{
+        		Show();
+        		BringToFront();
+        		Focus();
+                notifyicon.Visible = false;
+			} catch (Exception ex) {
+				Log.Instance.Write(ex.Message);
+			} finally {
+			}
+        }
+   
         void CopyConfig(){
         	config.Intervaltype = combointerval.Text;
         	config.Intervalnum = (int)updowninterval.Value;
@@ -82,47 +171,6 @@ namespace ComicCache
             }
 
         }
-        
-        public Config config; //= Config.Load();
-        void ButtonsaveClick(object sender, EventArgs e)
-        {
-        	CopyConfig();
-        	config.Save();
-            if (config.IsValid())
-            {
-                this.Hide();
-                ShowNotify();
-            }
-        }
-        void ComicbasebuttonClick(object sender, EventArgs e)
-        {
-        	clcii.dialogue.multifolder basefolder = new clcii.dialogue.multifolder(comicfolder.Text);
-        	basefolder.ShowDialog();
-        	if (basefolder.Result() == DialogResult.OK) {
-        		comicfolder.Text = basefolder.FileImageSourcePath();
-        	}
-        }
-        void CachebrowsebuttonClick(object sender, EventArgs e)
-        {
-        	FolderBrowserDialog fbd = new FolderBrowserDialog();
-        	fbd.SelectedPath = cacheFolder.Text;
-        	if (fbd.ShowDialog() == DialogResult.OK)
-        	{
-        		cacheFolder.Text = fbd.SelectedPath;
-        	}
-        	
-        }
-        void CheckBox1CheckedChanged(object sender, EventArgs e)
-        {
-        	resizePanel.Enabled = resizeCheckBox.Checked;
-        }
-        
-        void ConfigWindowLoad(object sender, EventArgs e)
-        {
-        	screensizetextbox.Text = Convert.ToString(System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width) + "x" + Convert.ToString(System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height);
-        	
-        }
-        
         public void ShowNotify(){
             ContextMenu clickMenu;
                  menuList = new MenuItem[]{new MenuItem("Sign In"),
@@ -142,35 +190,12 @@ namespace ComicCache
         public void HideNotify() {
             notifyicon.Visible = false;
             notifyicon = null;
-        }
-        private void notifyicon_Click(object Sender, EventArgs e){
-            
-        	try{
-        		Show();
-        		BringToFront();
-        		Focus();
-                notifyicon.Visible = false;
-			} catch (Exception ex) {
-				Log.Instance.Write(ex.Message);
-			} finally {
-			}
-        }
-
-        
-        void ConfigWindowFormClosing(object sender, FormClosingEventArgs e)
-        {
-        	if (e.CloseReason == CloseReason.UserClosing){
-        		this.Hide();
-        		e.Cancel = true;
-                notifyicon.Visible = true;
-        		}
-        }
-
+        }        
+     
         private void resizePanel_Paint(object sender, PaintEventArgs e)
         {
 
-        }
-
+        }      
         private ResizeStyle CurrentResizeStyle() {
             ResizeStyle result = ResizeStyle.None;
             if (resizeCheckBox.Checked) 
@@ -192,37 +217,10 @@ namespace ComicCache
             }
             return result;
         }
+        
+    #endregion
 
-        private void commonRadioButton_CheckedChanged(object sender, EventArgs e)
-        {
-            this.commonComboBox.Enabled = commonRadioButton.Checked; ;
-        }
 
-        private void customRadioButton_CheckedChanged(object sender, EventArgs e)
-        {
-            customXnumeric.Enabled = customRadioButton.Checked;
-            customYnumberic.Enabled = customRadioButton.Checked;
-        }
-
-        private void limitfilescheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-            filelimitertextbox.Enabled = limitfilescheckbox.Checked;
-        }
-
-        private void filelimitertextbox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void buttoncancel_Click(object sender, EventArgs e)
-        {
-            LoadConfig();
-            if (config.IsValid())
-            {
-                this.Hide();
-                ShowNotify();
-            }
-        }
         
     }
     
