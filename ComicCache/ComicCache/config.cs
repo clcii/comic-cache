@@ -242,6 +242,7 @@ namespace ComicCache
 		public string SettingsFile {
 			get { return settingsFile; }
 		}
+        
         private bool resize = false;
         private ResizeStyle selectedResizeStyle = ResizeStyle.None;		
         private double intervalabs=0;
@@ -250,7 +251,7 @@ namespace ComicCache
         private string intervaltype ="Minutes";
         private string folderpath="";
         private string comicpath="";
-        private string cachetype="";
+        private string cachetype = "jpg";
         private Size imageresizesize = new Size();
 
         public Size ImageResizeSize
