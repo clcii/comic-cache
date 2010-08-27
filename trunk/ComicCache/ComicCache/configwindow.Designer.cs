@@ -30,6 +30,7 @@ namespace ComicCache
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigWindow));
             this.buttonsave = new System.Windows.Forms.Button();
             this.buttoncancel = new System.Windows.Forms.Button();
             this.buttontest = new System.Windows.Forms.Button();
@@ -82,6 +83,7 @@ namespace ComicCache
             this.buttoncancel.TabIndex = 20;
             this.buttoncancel.Text = "Cancel";
             this.buttoncancel.UseVisualStyleBackColor = true;
+            this.buttoncancel.Click += new System.EventHandler(this.buttoncancel_Click);
             // 
             // buttontest
             // 
@@ -359,6 +361,7 @@ namespace ComicCache
             this.Controls.Add(this.buttontest);
             this.Controls.Add(this.buttoncancel);
             this.Controls.Add(this.buttonsave);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ConfigWindow";

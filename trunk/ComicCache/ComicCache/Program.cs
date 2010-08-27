@@ -23,6 +23,10 @@ namespace ComicCache{
                     if (process.Id != Process.GetCurrentProcess().Id && process.ProcessName.Equals("ComicCache"))
                         return;
 				Config config = Config.Load();
+                if (config.IsValid() == false) {
+                    Application.Run(new ConfigWindow(config));
+                    return; 
+                }
                 if (args.Length > 0)
                     if (args[0].ToLower().Contains("/p"))
                         return;
@@ -35,16 +39,16 @@ namespace ComicCache{
 
                     //Log.Instance.Write(config.Cachetype);
                     
-                	Program program = new Program(config);
-                	program.End += (obj, e) =>
-                	{
-                    	Log.Instance.Write("Stopping Cacher");
+                Program program = new Program(config);
+                program.End += (obj, e) =>
+                {
+                   	Log.Instance.Write("Stopping Cacher");
 
-                    	program.Stop();
-                    	Application.Exit();
-                	};
+                    program.Stop();
+                    Application.Exit();
+                };
                 program.ShowTrayIcon();
-                //program.Run();
+                program.Run();
                 Application.Run();
             }
             catch (Exception ex)

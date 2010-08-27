@@ -28,8 +28,11 @@ namespace ComicCache
         	
             CopyConfig();
         	//this.Text = "Abs Interval = " + Convert.ToString( config.Intervalabs);
-        	Program program = new Program(config);
-        	program.Run();
+            if (config.IsValid())
+            {
+                Program program = new Program(config);
+                program.Run();
+            }
         }
         void CopyConfig(){
         	config.Intervaltype = combointerval.Text;
@@ -84,8 +87,11 @@ namespace ComicCache
         {
         	CopyConfig();
         	config.Save();
-        	this.Hide();
-            ShowNotify();
+            if (config.IsValid())
+            {
+                this.Hide();
+                ShowNotify();
+            }
         }
         void ComicbasebuttonClick(object sender, EventArgs e)
         {
@@ -122,7 +128,7 @@ namespace ComicCache
         	}
         	notifyicon.Text = "Comic Cache";
         	notifyicon.Click += new EventHandler(this.notifyicon_Click);
-        	notifyicon.Icon = new Icon("test.ico");
+        	notifyicon.Icon = new Icon("ComicCache.ico");
         	notifyicon.Visible = true;	
         }
         public void HideNotify() {
@@ -197,6 +203,16 @@ namespace ComicCache
         private void filelimitertextbox_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttoncancel_Click(object sender, EventArgs e)
+        {
+            LoadConfig();
+            if (config.IsValid())
+            {
+                this.Hide();
+                ShowNotify();
+            }
         }
         
     }

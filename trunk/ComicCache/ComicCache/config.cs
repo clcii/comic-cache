@@ -73,18 +73,43 @@ namespace ComicCache
     		}
         }
         public bool IsValid(){
-            
-            
 
-            bool result = false;
-            result =
-                Directory.Exists(settingsFolder) &
-                Directory.Exists(ComicPath) &
-                Intervalnum > 0 &
-                Intervaltype != "" &
-                Covers > 0 &
-                this.ImageFormat != null;
+            bool result = true;
+            
+            result = Directory.Exists(settingsFolder);
+            if (!result)
+                return result;
+            
+            result = Directory.Exists(ComicPath);
+            if (!result)
+                return result;
+            
+            result = Intervalnum > 0;
+            if (!result)
+                return result;
+            
+            result = Covers > 0 ;
+            if (!result)
+                return result;
+            
+            result = Intervaltype != "";
+            if (!result)
+                return result;
+            
+            if (this.SelectedResizeStyle == ResizeStyle.Common)
+            {
+                result = (this.selectedCommonResizeSize != "");
+                if (!result)
+                    return result;
+            }
+            if (this.SelectedResizeStyle == ResizeStyle.Custom) {
+                result = (this.SelectedCustomResizeX > 0) & (this.SelectedCustomResizeY > 0);
+                if (!result)
+                    return result;
+            }
 
+            result = this.ImageFormat != null;
+            
             return result;
         }
     	#endregion
