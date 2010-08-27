@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComicCache", "ComicCache.csproj", "{260B4C27-FFAA-4975-BF84-190018B213DB}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ComicCacheSetup-X86", "..\ComicCacheSetup-X86\ComicCacheSetup-X86.vdproj", "{51B8EC02-717A-46FD-A8D4-F13D7BBE1D6A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -16,6 +18,9 @@ Global
 		{260B4C27-FFAA-4975-BF84-190018B213DB}.DebugConfig|Any CPU.Build.0 = Debug|Any CPU
 		{260B4C27-FFAA-4975-BF84-190018B213DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{260B4C27-FFAA-4975-BF84-190018B213DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51B8EC02-717A-46FD-A8D4-F13D7BBE1D6A}.Debug|Any CPU.ActiveCfg = Debug
+		{51B8EC02-717A-46FD-A8D4-F13D7BBE1D6A}.DebugConfig|Any CPU.ActiveCfg = Debug
+		{51B8EC02-717A-46FD-A8D4-F13D7BBE1D6A}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
