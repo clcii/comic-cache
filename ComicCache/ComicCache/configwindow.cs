@@ -81,7 +81,7 @@ namespace ComicCache
         	if (e.CloseReason == CloseReason.UserClosing){
         		this.Hide();
         		e.Cancel = true;
-                notifyicon.Visible = true;
+                ShowNotify();
         		}
         }
         private void commonRadioButton_CheckedChanged(object sender, EventArgs e)
@@ -97,10 +97,6 @@ namespace ComicCache
         {
             filelimitertextbox.Enabled = limitfilescheckbox.Checked;
         }
-        private void filelimitertextbox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
         private void buttoncancel_Click(object sender, EventArgs e)
         {
             LoadConfig();
@@ -111,17 +107,24 @@ namespace ComicCache
             }
         }
 
-        private void notifyicon_Click(object Sender, EventArgs e){
-            
-        	try{
-        		Show();
-        		BringToFront();
-        		Focus();
-                notifyicon.Visible = false;
-			} catch (Exception ex) {
-				Log.Instance.Write(ex.Message);
-			} finally {
-			}
+        private void notifyicon_Click(object Sender, System.EventArgs e){
+
+            {
+                try
+                {
+                    Show();
+                    BringToFront();
+                    Focus();
+                    notifyicon.Visible = false;
+                }
+                catch (Exception ex)
+                {
+                    Log.Instance.Write(ex.Message);
+                }
+                finally
+                {
+                }
+            }
         }
    
         void CopyConfig(){
@@ -173,10 +176,18 @@ namespace ComicCache
         }
         public void ShowNotify(){
             ContextMenu clickMenu;
-                 menuList = new MenuItem[]{new MenuItem("Sign In"),
-			    new MenuItem("Get Help"), new MenuItem("Open")};
+            MenuItem menurestore = new MenuItem("Restore");
+            
+            menurestore.Click += notifyicon_Click;
+            
+            MenuItem menuexit = new MenuItem("Exit");
+            menuexit.Click += exitapp;
+            menuList = new MenuItem[]{menurestore, menuexit};
+             
+                 //menuList = new MenuItem[]{new MenuItem("Restore"),
+			    //new MenuItem("Exit")};
                  clickMenu = new ContextMenu(menuList);
- 
+                     
            if (notifyicon == null)
            {
         		notifyicon = new NotifyIcon();
@@ -186,12 +197,17 @@ namespace ComicCache
         	notifyicon.Click += new EventHandler(this.notifyicon_Click);
         	notifyicon.Icon = new Icon("ComicCache.ico");
         	notifyicon.Visible = true;	
+
+        }
+        public void exitapp(object Sender, EventArgs e) {
+            Application.Exit();
+        
         }
         public void HideNotify() {
             notifyicon.Visible = false;
             notifyicon = null;
         }        
-     
+
         private void resizePanel_Paint(object sender, PaintEventArgs e)
         {
 

@@ -324,7 +324,6 @@ namespace ComicCache
             this.filelimitertextbox.Name = "filelimitertextbox";
             this.filelimitertextbox.Size = new System.Drawing.Size(250, 20);
             this.filelimitertextbox.TabIndex = 10;
-            this.filelimitertextbox.TextChanged += new System.EventHandler(this.filelimitertextbox_TextChanged);
             // 
             // limitfilescheckbox
             // 

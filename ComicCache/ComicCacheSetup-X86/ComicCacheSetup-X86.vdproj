@@ -230,6 +230,17 @@
                 {
                 }
             }
+            "{1525181F-901A-416C-8A58-119130FE478E}:_9559B84BD53944B5948C765662E39C3F"
+            {
+            "Name" = "8:#1928"
+            "AlwaysCreate" = "11:FALSE"
+            "Condition" = "8:RUNATSTARTUP"
+            "Transitive" = "11:FALSE"
+            "Property" = "8:StartupFolder"
+                "Folders"
+                {
+                }
+            }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_C31FA026541F4ED68E975AEB1E457EA6"
             {
             "DefaultLocation" = "8:[ProgramFilesFolder]\\[ProductName]"
@@ -238,17 +249,6 @@
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Property" = "8:TARGETDIR"
-                "Folders"
-                {
-                }
-            }
-            "{1525181F-901A-416C-8A58-119130FE478E}:_CB580C61D8A743AE9F5AB560974C7E4C"
-            {
-            "Name" = "8:#1921"
-            "AlwaysCreate" = "11:FALSE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Property" = "8:StartMenuFolder"
                 "Folders"
                 {
                 }
@@ -281,7 +281,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ComicCache"
         "ProductCode" = "8:{05E3A197-D26A-48CA-9FBF-3EC820B06A82}"
-        "PackageCode" = "8:{9F955FDA-6F42-4E16-8917-F30C01439912}"
+        "PackageCode" = "8:{3924DD01-AFE5-41A4-B4D3-5AFCD8272FF1}"
         "UpgradeCode" = "8:{87C09693-A0A7-4627-8F58-6E9857BC977E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -401,20 +401,6 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_2C274EEDC26D45448AE4B0E08DC5BECF"
-            {
-            "Name" = "8:ComicCache"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_40A22A58F3E5455A9E32F8A5C1D4C361"
-            "Folder" = "8:_CB580C61D8A743AE9F5AB560974C7E4C"
-            "WorkingFolder" = "8:_C31FA026541F4ED68E975AEB1E457EA6"
-            "Icon" = "8:_8B844DA7977B44BC8C78DDAAD13EF9AB"
-            "Feature" = "8:"
-            }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_8BCA9DBE3C17470FBDE857625A4E3913"
             {
             "Name" = "8:ComicCache"
@@ -427,6 +413,20 @@
             "Folder" = "8:_D52909B4866C472FB6258164A32DECBB"
             "WorkingFolder" = "8:_C31FA026541F4ED68E975AEB1E457EA6"
             "Icon" = "8:_8B844DA7977B44BC8C78DDAAD13EF9AB"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_9FA38FF8AF954C68BDBF84E2FB5CA9AB"
+            {
+            "Name" = "8:ComicCache"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_40A22A58F3E5455A9E32F8A5C1D4C361"
+            "Folder" = "8:_9559B84BD53944B5948C765662E39C3F"
+            "WorkingFolder" = "8:_C31FA026541F4ED68E975AEB1E457EA6"
+            "Icon" = "8:"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C1C8466C829542D2A2F58CE3183DA9E2"
