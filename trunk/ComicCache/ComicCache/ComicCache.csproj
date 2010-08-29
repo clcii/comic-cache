@@ -113,7 +113,7 @@
     <Compile Include="objects\ComicConverter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="SevenZipSharp.dll" />
+    <Content Include="SevenZipSharp.dll" />
     <EmbeddedResource Include="configwindow.resx">
       <DependentUpon>configwindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -162,9 +162,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ComicCache.ico">
+    <Content Include="ComicCache.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
