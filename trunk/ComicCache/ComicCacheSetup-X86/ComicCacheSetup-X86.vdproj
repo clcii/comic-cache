@@ -21,13 +21,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_8B844DA7977B44BC8C78DDAAD13EF9AB"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_943646C811D49F4E4C3F6229956F3983"
+        "MsmKey" = "8:_CA177E39253FD30C0F5FBC88B8AD6B77"
         "OwnerKey" = "8:_40A22A58F3E5455A9E32F8A5C1D4C361"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -40,7 +34,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_943646C811D49F4E4C3F6229956F3983"
+        "OwnerKey" = "8:_CA177E39253FD30C0F5FBC88B8AD6B77"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -162,34 +156,14 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8B844DA7977B44BC8C78DDAAD13EF9AB"
-            {
-            "SourcePath" = "8:..\\..\\..\\Comic-Cache\\ComicCache\\ComicCache.ico"
-            "TargetName" = "8:ComicCache.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_C31FA026541F4ED68E975AEB1E457EA6"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_943646C811D49F4E4C3F6229956F3983"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CA177E39253FD30C0F5FBC88B8AD6B77"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:SevenZipSharp, Version=1.0.3537.37869, Culture=neutral, PublicKeyToken=20de82c62b055c88, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_943646C811D49F4E4C3F6229956F3983"
+                    "_CA177E39253FD30C0F5FBC88B8AD6B77"
                     {
                     "Name" = "8:SevenZipSharp.dll"
                     "Attributes" = "3:512"
@@ -298,8 +272,8 @@
         "Keywords" = "8:Comics, "
         "ARPCOMMENTS" = "8:Caches Comic Covers for non comic aware programs"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:_8B844DA7977B44BC8C78DDAAD13EF9AB"
-        "ARPIconIndex" = "3:0"
+        "ARPPRODUCTICON" = "8:_40A22A58F3E5455A9E32F8A5C1D4C361"
+        "ARPIconIndex" = "3:32512"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
         "TargetPlatform" = "3:0"
@@ -407,12 +381,12 @@
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
+            "IconIndex" = "3:32512"
             "Transitive" = "11:FALSE"
             "Target" = "8:_40A22A58F3E5455A9E32F8A5C1D4C361"
             "Folder" = "8:_D52909B4866C472FB6258164A32DECBB"
             "WorkingFolder" = "8:_C31FA026541F4ED68E975AEB1E457EA6"
-            "Icon" = "8:_8B844DA7977B44BC8C78DDAAD13EF9AB"
+            "Icon" = "8:_40A22A58F3E5455A9E32F8A5C1D4C361"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_9FA38FF8AF954C68BDBF84E2FB5CA9AB"
@@ -435,12 +409,12 @@
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
+            "IconIndex" = "3:32512"
             "Transitive" = "11:FALSE"
             "Target" = "8:_40A22A58F3E5455A9E32F8A5C1D4C361"
             "Folder" = "8:_3D5EFC5B0B01402CB78B3888E9C088AB"
             "WorkingFolder" = "8:_C31FA026541F4ED68E975AEB1E457EA6"
-            "Icon" = "8:_8B844DA7977B44BC8C78DDAAD13EF9AB"
+            "Icon" = "8:_40A22A58F3E5455A9E32F8A5C1D4C361"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C22F584052964DBABBCFDBFFFA2DCC6A"
@@ -449,12 +423,12 @@
             "Arguments" = "8:/c"
             "Description" = "8:"
             "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
+            "IconIndex" = "3:32512"
             "Transitive" = "11:FALSE"
             "Target" = "8:_40A22A58F3E5455A9E32F8A5C1D4C361"
             "Folder" = "8:_3D5EFC5B0B01402CB78B3888E9C088AB"
             "WorkingFolder" = "8:_C31FA026541F4ED68E975AEB1E457EA6"
-            "Icon" = "8:_8B844DA7977B44BC8C78DDAAD13EF9AB"
+            "Icon" = "8:_40A22A58F3E5455A9E32F8A5C1D4C361"
             "Feature" = "8:"
             }
         }
@@ -1162,34 +1136,6 @@
             "ProjectOutputGroupRegister" = "3:1"
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:ContentFiles"
-            "OutputProjectGuid" = "8:{260B4C27-FFAA-4975-BF84-190018B213DB}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_D7DB2DC5D7694843943C5C3E4D876E53"
-            {
-            "SourcePath" = "8:"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_C31FA026541F4ED68E975AEB1E457EA6"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:LocalizedResourceDlls"
             "OutputProjectGuid" = "8:{260B4C27-FFAA-4975-BF84-190018B213DB}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
