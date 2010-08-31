@@ -12,27 +12,27 @@ namespace ComicCache
 {
     public partial class ConfigWindow : Form
     {
-	private NotifyIcon notifyicon;
-    MenuItem[] menuList;
-    #region LocalProperties
+        private NotifyIcon notifyicon;
+        private ContextMenuStrip clickMenu;
+        #region LocalProperties
         public Config config; //= Config.Load();
 
-    #endregion
-    #region Constructors
-    public ConfigWindow(Config config)
+        #endregion
+        #region Constructors
+        public ConfigWindow(Config config)
         {
-	   		InitializeComponent();
-	   		this.config = config;
-	   		LoadConfig();
-        }       
+            InitializeComponent();
+            this.config = config;
+            LoadConfig();
+        }
         #endregion
 
-    #region Methods
+        #region Methods
         void ButtontestClick(object sender, EventArgs e)
         {
-        	
+
             CopyConfig();
-        	//this.Text = "Abs Interval = " + Convert.ToString( config.Intervalabs);
+            //this.Text = "Abs Interval = " + Convert.ToString( config.Intervalabs);
             if (config.IsValid())
             {
                 Program program = new Program(config);
@@ -41,8 +41,8 @@ namespace ComicCache
         }
         void ButtonsaveClick(object sender, EventArgs e)
         {
-        	CopyConfig();
-        	config.Save();
+            CopyConfig();
+            config.Save();
             if (config.IsValid())
             {
                 this.Hide();
@@ -51,38 +51,40 @@ namespace ComicCache
         }
         void ComicbasebuttonClick(object sender, EventArgs e)
         {
-        	clcii.dialogue.multifolder basefolder = new clcii.dialogue.multifolder(comicfolder.Text);
-        	basefolder.ShowDialog();
-        	if (basefolder.Result() == DialogResult.OK) {
-        		comicfolder.Text = basefolder.FileImageSourcePath();
-        	}
+            clcii.dialogue.multifolder basefolder = new clcii.dialogue.multifolder(comicfolder.Text);
+            basefolder.ShowDialog();
+            if (basefolder.Result() == DialogResult.OK)
+            {
+                comicfolder.Text = basefolder.FileImageSourcePath();
+            }
         }
         void CachebrowsebuttonClick(object sender, EventArgs e)
         {
-        	FolderBrowserDialog fbd = new FolderBrowserDialog();
-        	fbd.SelectedPath = cacheFolder.Text;
-        	if (fbd.ShowDialog() == DialogResult.OK)
-        	{
-        		cacheFolder.Text = fbd.SelectedPath;
-        	}
-        	
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            fbd.SelectedPath = cacheFolder.Text;
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                cacheFolder.Text = fbd.SelectedPath;
+            }
+
         }
         void CheckBox1CheckedChanged(object sender, EventArgs e)
         {
-        	resizePanel.Enabled = resizeCheckBox.Checked;
+            resizePanel.Enabled = resizeCheckBox.Checked;
         }
         void ConfigWindowLoad(object sender, EventArgs e)
         {
-        	screensizetextbox.Text = Convert.ToString(System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width) + "x" + Convert.ToString(System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height);
-        	
+            screensizetextbox.Text = Convert.ToString(System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width) + "x" + Convert.ToString(System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height);
+
         }
         void ConfigWindowFormClosing(object sender, FormClosingEventArgs e)
         {
-        	if (e.CloseReason == CloseReason.UserClosing){
-        		this.Hide();
-        		e.Cancel = true;
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                this.Hide();
+                e.Cancel = true;
                 ShowNotify();
-        		}
+            }
         }
         private void commonRadioButton_CheckedChanged(object sender, EventArgs e)
         {
@@ -107,34 +109,44 @@ namespace ComicCache
             }
         }
 
-        private void notifyicon_Click(object Sender, System.EventArgs e){
+        private void notifyicon_Click(object Sender, MouseEventArgs e)
+        {
 
             {
-                try
+                if (e.Button == System.Windows.Forms.MouseButtons.Left)
                 {
-                    Show();
-                    BringToFront();
-                    Focus();
-                    notifyicon.Visible = false;
-                }
-                catch (Exception ex)
-                {
-                    Log.Instance.Write(ex.Message);
-                }
-                finally
-                {
+                    restore();
                 }
             }
         }
-   
-        void CopyConfig(){
-        	config.Intervaltype = combointerval.Text;
-        	config.Intervalnum = (int)updowninterval.Value;
-        	config.ComicPath = (string)comicfolder.Text;
-        	config.Covers = (int)updowncachesize.Value;
-        	config.FolderPath = (string)cacheFolder.Text;
-        	config.Cachetype = (string)cachetypecombo.Text;
-        	config.Resize = (bool)resizeCheckBox.Checked;
+        void restore()
+        {
+            try
+            {
+                this.Visible = true;
+                this.Show();
+                this.BringToFront();
+                this.Focus();
+                notifyicon.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                Log.Instance.Write(ex.Message);
+            }
+            finally
+            {
+            }
+
+        }
+        void CopyConfig()
+        {
+            config.Intervaltype = combointerval.Text;
+            config.Intervalnum = (int)updowninterval.Value;
+            config.ComicPath = (string)comicfolder.Text;
+            config.Covers = (int)updowncachesize.Value;
+            config.FolderPath = (string)cacheFolder.Text;
+            config.Cachetype = (string)cachetypecombo.Text;
+            config.Resize = (bool)resizeCheckBox.Checked;
             config.SelectedResizeStyle = CurrentResizeStyle();
             config.SelectedCommonResizeSize = commonComboBox.Text;
             config.SelectedCustomResizeX = (int)customXnumeric.Value;
@@ -143,14 +155,15 @@ namespace ComicCache
             config.Filterenabled = (bool)limitfilescheckbox.Checked;
 
         }
-        void LoadConfig(){
-        	combointerval.Text = config.Intervaltype;
-        	updowninterval.Value = config.Intervalnum;
-        	comicfolder.Text = config.ComicPath;
-        	updowncachesize.Value = config.Covers;
-        	cacheFolder.Text = config.FolderPath;
-        	cachetypecombo.Text = config.Cachetype;
-        	resizeCheckBox.Checked = config.Resize;
+        void LoadConfig()
+        {
+            combointerval.Text = config.Intervaltype;
+            updowninterval.Value = config.Intervalnum;
+            comicfolder.Text = config.ComicPath;
+            updowncachesize.Value = config.Covers;
+            cacheFolder.Text = config.FolderPath;
+            cachetypecombo.Text = config.Cachetype;
+            resizeCheckBox.Checked = config.Resize;
             commonComboBox.Text = config.SelectedCommonResizeSize;
             customYnumberic.Value = config.SelectedCustomResizeY;
             customXnumeric.Value = config.SelectedCustomResizeX;
@@ -174,47 +187,85 @@ namespace ComicCache
             }
 
         }
-        public void ShowNotify(){
-            ContextMenu clickMenu;
-            MenuItem menurestore = new MenuItem("Restore");
-            
-            menurestore.Click += notifyicon_Click;
-            
-            MenuItem menuexit = new MenuItem("Exit");
-            menuexit.Click += exitapp;
-            menuList = new MenuItem[]{menurestore, menuexit};
-             
-                 //menuList = new MenuItem[]{new MenuItem("Restore"),
-			    //new MenuItem("Exit")};
-                 clickMenu = new ContextMenu(menuList);
-                     
-           if (notifyicon == null)
-           {
-        		notifyicon = new NotifyIcon();
-                notifyicon.ContextMenu = clickMenu;
-           }
-        	notifyicon.Text = "Comic Cache";
-        	notifyicon.Click += new EventHandler(this.notifyicon_Click);
-        	notifyicon.Icon = new Icon("ComicCache.ico");
-        	notifyicon.Visible = true;	
+        public void ShowNotify()
+        {
+
+            //clickMenu.Opening += new System.ComponentModel.CancelEventHandler();
+            //ToolStripItem[] menuList;
+            //ToolStripItem menurestore = new ;
+
+            //menurestore.Click += notifyicon_Click;
+
+            //MenuItem menuexit = new MenuItem("Exit");
+            //menuexit.Click += exitapp;
+            //menuList = new MenuItem[]{menurestore, menuexit};
+
+            //menuList = new MenuItem[]{new MenuItem("Restore"),
+            //new MenuItem("Exit")};
+            //clickMenu = new ContextMenuStrip();
+            //  clickMenu.Items.AddRange(menuList);
+
+            if (notifyicon == null)
+            {
+                notifyicon = new NotifyIcon();
+                clickMenu = new System.Windows.Forms.ContextMenuStrip();
+                notifyicon.ContextMenuStrip = clickMenu;
+                PrepContextMenu();
+            }
+            notifyicon.Text = "Comic Cache";
+            notifyicon.MouseClick += new MouseEventHandler(this.notifyicon_Click);
+            //notifyicon.Click += new EventHandler(this.notifyicon_Click);
+            notifyicon.Icon = new Icon("ComicCache.ico");
+            notifyicon.Visible = true;
 
         }
-        public void exitapp(object Sender, EventArgs e) {
-            Application.Exit();
-        
+        void PrepContextMenu()
+        {
+            //clickMenu = new ContextMenuStrip();
+            //clickMenu.Opening += new CancelEventHandler(clickMenu_Opening);
+            //ToolStrip ts = new ToolStrip();
+            //ToolStripDropDownButton restorebutton = new ToolStripDropDownButton("Restore", null, null, "Restore");
+            //ts.Items.Add(restorebutton);
+            //ts.Dock = DockStyle.Top;
+            ToolStripItem restorebutton = new ToolStripButton("Restore");
+            restorebutton.Click += new EventHandler(restorebutton_Click);
+            notifyicon.ContextMenuStrip.Items.Add(restorebutton);
+            ToolStripButton exitbutton = new ToolStripButton("Exit");
+            exitbutton.Click += new EventHandler(exitbutton_Click);
+            notifyicon.ContextMenuStrip.Items.Add(exitbutton);
+            //notifyicon.ContextMenuStrip = clickMenu;
         }
-        public void HideNotify() {
+
+        void restorebutton_Click(object sender, EventArgs e)
+        {
+            restore();
+        }
+
+        void exitbutton_Click(object sender, EventArgs e)
+        {
+            HideNotify();
+            Application.Exit();
+        }
+
+        void clickMenu_Opening(object sender, CancelEventArgs e)
+        {
+            //throw new NotImplementedException();
+        }
+
+        public void HideNotify()
+        {
             notifyicon.Visible = false;
             notifyicon = null;
-        }        
+        }
 
         private void resizePanel_Paint(object sender, PaintEventArgs e)
         {
 
-        }      
-        private ResizeStyle CurrentResizeStyle() {
+        }
+        private ResizeStyle CurrentResizeStyle()
+        {
             ResizeStyle result = ResizeStyle.None;
-            if (resizeCheckBox.Checked) 
+            if (resizeCheckBox.Checked)
             {
                 if (screenSizeRadioButton.Checked)
                 {
@@ -233,13 +284,9 @@ namespace ComicCache
             }
             return result;
         }
-        
-    #endregion
 
-
-        
-    }
-    
+        #endregion
+    }    
     public enum ResizeStyle { 
         None,
         CurrentScreen,
