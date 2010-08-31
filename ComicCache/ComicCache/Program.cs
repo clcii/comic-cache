@@ -54,6 +54,7 @@ namespace ComicCache{
             catch (Exception ex)
             {
                 Log.Instance.Write("Unhandled exception on main thread", ex);
+                MessageBox.Show(ex.Message);
             }
             finally
             {
