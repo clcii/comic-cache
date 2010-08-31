@@ -116,7 +116,8 @@ namespace ComicCache
         #region Properties
         public static string settingsFolder{
         	get { //return Path.Combine(Application.LocalUserAppDataPath, Application.ProductName + "\\");
-                return Application.LocalUserAppDataPath;
+                //return Application.UserAppDataPath;
+                return Path.GetDirectoryName(Application.ExecutablePath);
             }
         
         }
