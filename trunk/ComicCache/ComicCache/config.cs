@@ -264,7 +264,7 @@ namespace ComicCache
                             imageresizesize = new Size();
                             break;
                         case ResizeStyle.CurrentScreen:
-                            imageresizesize = new Size(Screen.PrimaryScreen.WorkingArea.Width, Screen.PrimaryScreen.WorkingArea.Height);
+                            imageresizesize = new Size(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
                             break;
                         case ResizeStyle.Common:
                             if (selectedCommonResizeSize != "")

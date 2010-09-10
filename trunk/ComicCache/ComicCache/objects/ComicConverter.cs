@@ -8,36 +8,33 @@ namespace ComicCache.objects
 {
     class ComicConverter
     {
-        bool resize = false;
-        string filter = "";
+    bool resize = false;
+    string filter = "";
+    Size resultSize = new Size();
+    imagesource.Imager img;
+    string comicfilepath = "";
+    ImageFormat resultformat = ImageFormat.Jpeg;
 
         public string Filter
         {
             get { return filter; }
             set { filter = value; }
         }
-
         public bool Resize
         {
             get { return resize; }
             set { resize = value; }
         }
-
-        string comicfilepath = "";
         public string Comicfilepath
         {
             get { return comicfilepath; }
             set { comicfilepath = value; }
         }
-
-        imagesource.Imager img;
-        ImageFormat resultformat = ImageFormat.Jpeg;
         public ImageFormat Resultformat
         {
             get { return resultformat; }
             set { resultformat = value; }
         }
-        Size resultSize = new Size();
         public Size ResultSize
         {
             get { return resultSize; }
@@ -68,11 +65,15 @@ namespace ComicCache.objects
                 Graphics g = Graphics.FromImage(canvas);
                 g.Clear(Color.Black);
                 Rectangle newimagerectangle = new Rectangle();
+                decimal imageratio = (decimal)((decimal)coverimage.Width / (decimal)coverimage.Height);
+                decimal resultratio = (decimal)((decimal)ResultSize.Width / (decimal)ResultSize.Height);
                 
-                if (coverimage.Width >= coverimage.Height) {
+                if (imageratio>resultratio) {
                     newimagerectangle.X = 0;
                     newimagerectangle.Width = ResultSize.Width;
-                    newimagerectangle.Height = Convert.ToInt16( (coverimage.Height * newimagerectangle.Width) / coverimage.Width);
+                    //newimagerectangle.Height = Convert.ToInt16( (coverimage.Height * newimagerectangle.Width) / coverimage.Width);
+                    //decimal ratio = (decimal)Convert.ToDecimal((decimal)coverimage.Height / (decimal)coverimage.Width);
+                    newimagerectangle.Height = (int)Convert.ToInt16(ResultSize.Width * (imageratio));
                     newimagerectangle.Y = Convert.ToInt16( (ResultSize.Height - newimagerectangle.Height) / 2);
                 }
                 else
