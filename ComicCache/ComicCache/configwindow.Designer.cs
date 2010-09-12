@@ -360,6 +360,7 @@ namespace ComicCache
             this.Controls.Add(this.buttontest);
             this.Controls.Add(this.buttoncancel);
             this.Controls.Add(this.buttonsave);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
