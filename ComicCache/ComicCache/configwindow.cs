@@ -40,6 +40,15 @@ namespace ComicCache
             {
                 Program program = new Program(config);
                 program.Run();
+                notifyicon.ContextMenuStrip.Visible = false;
+            }
+        }
+        void refresh() {
+            CopyConfig();
+            if (config.IsValid())
+            {
+                Program program = new Program(config);
+                program.Run();
             }
         }
         void ButtonsaveClick(object sender, EventArgs e)
@@ -192,22 +201,6 @@ namespace ComicCache
         }
         public void ShowNotify()
         {
-
-            //clickMenu.Opening += new System.ComponentModel.CancelEventHandler();
-            //ToolStripItem[] menuList;
-            //ToolStripItem menurestore = new ;
-
-            //menurestore.Click += notifyicon_Click;
-
-            //MenuItem menuexit = new MenuItem("Exit");
-            //menuexit.Click += exitapp;
-            //menuList = new MenuItem[]{menurestore, menuexit};
-
-            //menuList = new MenuItem[]{new MenuItem("Restore"),
-            //new MenuItem("Exit")};
-            //clickMenu = new ContextMenuStrip();
-            //  clickMenu.Items.AddRange(menuList);
-
             if (notifyicon == null)
             {
                 notifyicon = new NotifyIcon();
@@ -224,19 +217,16 @@ namespace ComicCache
         }
         void PrepContextMenu()
         {
-            //clickMenu = new ContextMenuStrip();
-            //clickMenu.Opening += new CancelEventHandler(clickMenu_Opening);
-            //ToolStrip ts = new ToolStrip();
-            //ToolStripDropDownButton restorebutton = new ToolStripDropDownButton("Restore", null, null, "Restore");
-            //ts.Items.Add(restorebutton);
-            //ts.Dock = DockStyle.Top;
             ToolStripItem restorebutton = new ToolStripButton("Restore");
             restorebutton.Click += new EventHandler(restorebutton_Click);
             notifyicon.ContextMenuStrip.Items.Add(restorebutton);
+            ToolStripItem refreshbutton = new ToolStripButton("Refresh");
+            refreshbutton.Click += new EventHandler(ButtontestClick);
+            notifyicon.ContextMenuStrip.Items.Add(refreshbutton);
             ToolStripButton exitbutton = new ToolStripButton("Exit");
             exitbutton.Click += new EventHandler(exitbutton_Click);
             notifyicon.ContextMenuStrip.Items.Add(exitbutton);
-            //notifyicon.ContextMenuStrip = clickMenu;
+            
         }
 
         void restorebutton_Click(object sender, EventArgs e)
