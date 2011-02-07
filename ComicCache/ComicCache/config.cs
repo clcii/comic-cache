@@ -78,39 +78,68 @@ namespace ComicCache
             
             result = Directory.Exists(settingsFolder);
             if (!result)
+            {
+                errormessage = "Settings Folder does not exist";
                 return result;
+            }
             
+            result = Directory.Exists(FolderPath);
+            if (!result)
+            {
+                errormessage = "Destination Folder does not exist";
+                return result;
+            }
             result = Directory.Exists(ComicPath);
             if (!result)
+            {
+                errormessage = "Comics Folder does not exist";
                 return result;
-            
+            }
             result = Intervalnum > 0;
             if (!result)
+            {
+                errormessage = "No time interval indicated";
                 return result;
-            
+            }
             result = Covers > 0 ;
             if (!result)
+            {
+                errormessage = "Zero covers to be produced";
                 return result;
+            }
             
             result = Intervaltype != "";
             if (!result)
+            {
+                errormessage = "Type of interval not indicated";
                 return result;
+            }
             
             if (this.SelectedResizeStyle == ResizeStyle.Common)
             {
                 result = (this.selectedCommonResizeSize != "");
                 if (!result)
+                {
+                    errormessage = "Type of Common Resize not indicated";
                     return result;
+                }
             }
             if (this.SelectedResizeStyle == ResizeStyle.Custom) {
                 result = (this.SelectedCustomResizeX > 0) & (this.SelectedCustomResizeY > 0);
                 if (!result)
+                {
+                    errormessage = "Type of Custom Resize not indicated or invalid";
                     return result;
+                }
             }
-
             result = this.ImageFormat != null;
-            
+            if(!result)
+                {
+                errormessage = "Type of image format not indicated";            
+                return result;
+                }
             return result;
+
         }
     	#endregion
         #region Properties
@@ -152,14 +181,12 @@ namespace ComicCache
         		}
         		
         	}
-        public string FolderPath
-        {
+        public string FolderPath{
             get { return folderpath; }
             set { folderpath = value; }
         }
          
-        public double Intervalabs
-        {
+        public double Intervalabs{
             get { 
         		TimeSpan ts = new TimeSpan();
         		string timestring = Convert.ToString((double)intervalnum) + " " + intervaltype;
@@ -198,7 +225,6 @@ namespace ComicCache
 			get { return resize; }
 			set { resize = value; }
 		}
-        
 		public ResizeStyle SelectedResizeStyle {
 			get { return selectedResizeStyle; }
 			set { selectedResizeStyle = value; }
@@ -243,7 +269,13 @@ namespace ComicCache
 		public string SettingsFile {
 			get { return settingsFile; }
 		}
-        
+        private string errormessage = "";
+
+        public string ErrorMessage
+        {
+            get { return errormessage; }
+            set { errormessage = value; }
+        }
         private bool resize = false;
         private ResizeStyle selectedResizeStyle = ResizeStyle.None;		
         private double intervalabs=0;
