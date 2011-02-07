@@ -58,6 +58,7 @@ namespace ComicCache
             this.resizeCheckBox = new System.Windows.Forms.CheckBox();
             this.filelimitertextbox = new System.Windows.Forms.TextBox();
             this.limitfilescheckbox = new System.Windows.Forms.CheckBox();
+            this.errorlabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.updowninterval)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.updowncachesize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customXnumeric)).BeginInit();
@@ -249,7 +250,7 @@ namespace ComicCache
             this.resizePanel.Enabled = false;
             this.resizePanel.Location = new System.Drawing.Point(12, 237);
             this.resizePanel.Name = "resizePanel";
-            this.resizePanel.Size = new System.Drawing.Size(262, 101);
+            this.resizePanel.Size = new System.Drawing.Size(262, 87);
             this.resizePanel.TabIndex = 12;
             this.resizePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.resizePanel_Paint);
             // 
@@ -336,11 +337,24 @@ namespace ComicCache
             this.limitfilescheckbox.UseVisualStyleBackColor = true;
             this.limitfilescheckbox.CheckedChanged += new System.EventHandler(this.limitfilescheckbox_CheckedChanged);
             // 
+            // errorlabel
+            // 
+            this.errorlabel.AutoSize = true;
+            this.errorlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.errorlabel.ForeColor = System.Drawing.Color.Red;
+            this.errorlabel.Location = new System.Drawing.Point(12, 325);
+            this.errorlabel.Name = "errorlabel";
+            this.errorlabel.Size = new System.Drawing.Size(126, 13);
+            this.errorlabel.TabIndex = 26;
+            this.errorlabel.Text = "Error in configuration";
+            this.errorlabel.Visible = false;
+            // 
             // ConfigWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(280, 377);
+            this.Controls.Add(this.errorlabel);
             this.Controls.Add(this.limitfilescheckbox);
             this.Controls.Add(this.filelimitertextbox);
             this.Controls.Add(this.resizeCheckBox);
@@ -407,6 +421,7 @@ namespace ComicCache
         #endregion
         private TextBox filelimitertextbox;
         private CheckBox limitfilescheckbox;
+        public Label errorlabel;
     }
 }
 

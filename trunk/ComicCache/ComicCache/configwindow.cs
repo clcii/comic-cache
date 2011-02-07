@@ -33,6 +33,9 @@ namespace ComicCache
 
             CopyConfig();
             //this.Text = "Abs Interval = " + Convert.ToString( config.Intervalabs);
+            errorlabel.Text = config.ErrorMessage;
+            errorlabel.Visible = !config.IsValid();
+            
             if (config.IsValid())
             {
                 Program program = new Program(config);

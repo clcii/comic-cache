@@ -80,6 +80,7 @@ namespace ComicCache{
            
             //imagesource.Imager img = new ComicCache.imagesource.Imager(config.ComicPath);
             
+            
             while (cancel.Equals(false)&&myconfig.IsValid()) {
             	List<string> cacheitems = new List<string>();
             	cacheitems.AddRange(Directory.GetFiles(config.FolderPath));
