@@ -40,7 +40,10 @@ namespace ComicCache
             {
                 Program program = new Program(config);
                 program.Run();
-                notifyicon.ContextMenuStrip.Visible = false;
+                if (notifyicon!=null)
+                {
+                    notifyicon.ContextMenuStrip.Visible = false;
+                }
             }
         }
         void refresh() {

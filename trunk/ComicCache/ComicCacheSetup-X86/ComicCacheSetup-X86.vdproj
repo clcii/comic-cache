@@ -21,7 +21,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_943646C811D49F4E4C3F6229956F3983"
+        "MsmKey" = "8:_CA177E39253FD30C0F5FBC88B8AD6B77"
         "OwnerKey" = "8:_40A22A58F3E5455A9E32F8A5C1D4C361"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -34,7 +34,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_943646C811D49F4E4C3F6229956F3983"
+        "OwnerKey" = "8:_CA177E39253FD30C0F5FBC88B8AD6B77"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -156,14 +156,14 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_943646C811D49F4E4C3F6229956F3983"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CA177E39253FD30C0F5FBC88B8AD6B77"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:SevenZipSharp, Version=1.0.3537.37869, Culture=neutral, PublicKeyToken=20de82c62b055c88, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_943646C811D49F4E4C3F6229956F3983"
+                    "_CA177E39253FD30C0F5FBC88B8AD6B77"
                     {
                     "Name" = "8:SevenZipSharp.dll"
                     "Attributes" = "3:512"
@@ -254,15 +254,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ComicCache"
-        "ProductCode" = "8:{C38A0427-D5BB-4AE7-89E7-514EC931C116}"
-        "PackageCode" = "8:{40571F40-9855-4263-85C2-B5CE0F61E508}"
+        "ProductCode" = "8:{3BF10E22-BF46-47CC-AB4B-A7241DB481E1}"
+        "PackageCode" = "8:{EAB2C7B5-753E-4923-B04C-85E180FE7EEE}"
         "UpgradeCode" = "8:{87C09693-A0A7-4627-8F58-6E9857BC977E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:0.1.2"
+        "ProductVersion" = "8:1.0.1"
         "Manufacturer" = "8:clcii"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
