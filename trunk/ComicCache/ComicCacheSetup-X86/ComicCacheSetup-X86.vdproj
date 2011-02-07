@@ -255,7 +255,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ComicCache"
         "ProductCode" = "8:{3BF10E22-BF46-47CC-AB4B-A7241DB481E1}"
-        "PackageCode" = "8:{EAB2C7B5-753E-4923-B04C-85E180FE7EEE}"
+        "PackageCode" = "8:{CF5982D4-8B34-4D4B-9681-8A28EE86708E}"
         "UpgradeCode" = "8:{87C09693-A0A7-4627-8F58-6E9857BC977E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
