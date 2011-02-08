@@ -59,16 +59,21 @@ namespace ComicCache
             this.filelimitertextbox = new System.Windows.Forms.TextBox();
             this.limitfilescheckbox = new System.Windows.Forms.CheckBox();
             this.errorlabel = new System.Windows.Forms.Label();
+            this.keepratioradiobutton = new System.Windows.Forms.RadioButton();
+            this.stretchradiobutton = new System.Windows.Forms.RadioButton();
+            this.cropRadioButton = new System.Windows.Forms.RadioButton();
+            this.grpResizeType = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.updowninterval)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.updowncachesize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customXnumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customYnumberic)).BeginInit();
             this.resizePanel.SuspendLayout();
+            this.grpResizeType.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonsave
             // 
-            this.buttonsave.Location = new System.Drawing.Point(23, 344);
+            this.buttonsave.Location = new System.Drawing.Point(19, 398);
             this.buttonsave.Name = "buttonsave";
             this.buttonsave.Size = new System.Drawing.Size(75, 23);
             this.buttonsave.TabIndex = 19;
@@ -78,7 +83,7 @@ namespace ComicCache
             // 
             // buttoncancel
             // 
-            this.buttoncancel.Location = new System.Drawing.Point(104, 344);
+            this.buttoncancel.Location = new System.Drawing.Point(100, 398);
             this.buttoncancel.Name = "buttoncancel";
             this.buttoncancel.Size = new System.Drawing.Size(75, 23);
             this.buttoncancel.TabIndex = 20;
@@ -88,7 +93,7 @@ namespace ComicCache
             // 
             // buttontest
             // 
-            this.buttontest.Location = new System.Drawing.Point(186, 344);
+            this.buttontest.Location = new System.Drawing.Point(182, 398);
             this.buttontest.Name = "buttontest";
             this.buttontest.Size = new System.Drawing.Size(75, 23);
             this.buttontest.TabIndex = 21;
@@ -206,7 +211,7 @@ namespace ComicCache
             // customXnumeric
             // 
             this.customXnumeric.Enabled = false;
-            this.customXnumeric.Location = new System.Drawing.Point(105, 62);
+            this.customXnumeric.Location = new System.Drawing.Point(118, 109);
             this.customXnumeric.Maximum = new decimal(new int[] {
             2000,
             0,
@@ -219,7 +224,7 @@ namespace ComicCache
             // customYnumberic
             // 
             this.customYnumberic.Enabled = false;
-            this.customYnumberic.Location = new System.Drawing.Point(194, 62);
+            this.customYnumberic.Location = new System.Drawing.Point(207, 109);
             this.customYnumberic.Maximum = new decimal(new int[] {
             2000,
             0,
@@ -231,7 +236,7 @@ namespace ComicCache
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(172, 64);
+            this.label3.Location = new System.Drawing.Point(185, 111);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(16, 20);
             this.label3.TabIndex = 31;
@@ -239,6 +244,7 @@ namespace ComicCache
             // 
             // resizePanel
             // 
+            this.resizePanel.Controls.Add(this.grpResizeType);
             this.resizePanel.Controls.Add(this.screensizetextbox);
             this.resizePanel.Controls.Add(this.commonComboBox);
             this.resizePanel.Controls.Add(this.screenSizeRadioButton);
@@ -248,16 +254,16 @@ namespace ComicCache
             this.resizePanel.Controls.Add(this.customXnumeric);
             this.resizePanel.Controls.Add(this.customYnumberic);
             this.resizePanel.Enabled = false;
-            this.resizePanel.Location = new System.Drawing.Point(12, 237);
+            this.resizePanel.Location = new System.Drawing.Point(12, 238);
             this.resizePanel.Name = "resizePanel";
-            this.resizePanel.Size = new System.Drawing.Size(262, 87);
+            this.resizePanel.Size = new System.Drawing.Size(276, 138);
             this.resizePanel.TabIndex = 12;
             this.resizePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.resizePanel_Paint);
             // 
             // screensizetextbox
             // 
             this.screensizetextbox.Enabled = false;
-            this.screensizetextbox.Location = new System.Drawing.Point(105, 6);
+            this.screensizetextbox.Location = new System.Drawing.Point(118, 53);
             this.screensizetextbox.Name = "screensizetextbox";
             this.screensizetextbox.Size = new System.Drawing.Size(144, 20);
             this.screensizetextbox.TabIndex = 13;
@@ -271,14 +277,14 @@ namespace ComicCache
             "720x480",
             "1024x768",
             "1280x720"});
-            this.commonComboBox.Location = new System.Drawing.Point(105, 31);
+            this.commonComboBox.Location = new System.Drawing.Point(118, 78);
             this.commonComboBox.Name = "commonComboBox";
             this.commonComboBox.Size = new System.Drawing.Size(144, 21);
             this.commonComboBox.TabIndex = 15;
             // 
             // screenSizeRadioButton
             // 
-            this.screenSizeRadioButton.Location = new System.Drawing.Point(3, 3);
+            this.screenSizeRadioButton.Location = new System.Drawing.Point(16, 50);
             this.screenSizeRadioButton.Name = "screenSizeRadioButton";
             this.screenSizeRadioButton.Size = new System.Drawing.Size(92, 24);
             this.screenSizeRadioButton.TabIndex = 12;
@@ -288,7 +294,7 @@ namespace ComicCache
             // 
             // commonRadioButton
             // 
-            this.commonRadioButton.Location = new System.Drawing.Point(3, 31);
+            this.commonRadioButton.Location = new System.Drawing.Point(16, 78);
             this.commonRadioButton.Name = "commonRadioButton";
             this.commonRadioButton.Size = new System.Drawing.Size(71, 24);
             this.commonRadioButton.TabIndex = 14;
@@ -299,7 +305,7 @@ namespace ComicCache
             // 
             // customRadioButton
             // 
-            this.customRadioButton.Location = new System.Drawing.Point(3, 61);
+            this.customRadioButton.Location = new System.Drawing.Point(16, 108);
             this.customRadioButton.Name = "customRadioButton";
             this.customRadioButton.Size = new System.Drawing.Size(71, 24);
             this.customRadioButton.TabIndex = 16;
@@ -310,7 +316,7 @@ namespace ComicCache
             // 
             // resizeCheckBox
             // 
-            this.resizeCheckBox.Location = new System.Drawing.Point(15, 210);
+            this.resizeCheckBox.Location = new System.Drawing.Point(19, 210);
             this.resizeCheckBox.Name = "resizeCheckBox";
             this.resizeCheckBox.Size = new System.Drawing.Size(67, 24);
             this.resizeCheckBox.TabIndex = 11;
@@ -342,18 +348,63 @@ namespace ComicCache
             this.errorlabel.AutoSize = true;
             this.errorlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.errorlabel.ForeColor = System.Drawing.Color.Red;
-            this.errorlabel.Location = new System.Drawing.Point(12, 325);
+            this.errorlabel.Location = new System.Drawing.Point(8, 379);
             this.errorlabel.Name = "errorlabel";
             this.errorlabel.Size = new System.Drawing.Size(126, 13);
             this.errorlabel.TabIndex = 26;
             this.errorlabel.Text = "Error in configuration";
             this.errorlabel.Visible = false;
             // 
+            // keepratioradiobutton
+            // 
+            this.keepratioradiobutton.AutoSize = true;
+            this.keepratioradiobutton.Location = new System.Drawing.Point(17, 19);
+            this.keepratioradiobutton.Name = "keepratioradiobutton";
+            this.keepratioradiobutton.Size = new System.Drawing.Size(78, 17);
+            this.keepratioradiobutton.TabIndex = 32;
+            this.keepratioradiobutton.TabStop = true;
+            this.keepratioradiobutton.Text = "Keep Ratio";
+            this.keepratioradiobutton.UseVisualStyleBackColor = true;
+            // 
+            // stretchradiobutton
+            // 
+            this.stretchradiobutton.AutoSize = true;
+            this.stretchradiobutton.Location = new System.Drawing.Point(110, 19);
+            this.stretchradiobutton.Name = "stretchradiobutton";
+            this.stretchradiobutton.Size = new System.Drawing.Size(59, 17);
+            this.stretchradiobutton.TabIndex = 33;
+            this.stretchradiobutton.TabStop = true;
+            this.stretchradiobutton.Text = "Stretch";
+            this.stretchradiobutton.UseVisualStyleBackColor = true;
+            // 
+            // cropRadioButton
+            // 
+            this.cropRadioButton.AutoSize = true;
+            this.cropRadioButton.Location = new System.Drawing.Point(184, 19);
+            this.cropRadioButton.Name = "cropRadioButton";
+            this.cropRadioButton.Size = new System.Drawing.Size(47, 17);
+            this.cropRadioButton.TabIndex = 34;
+            this.cropRadioButton.TabStop = true;
+            this.cropRadioButton.Text = "Crop";
+            this.cropRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // grpResizeType
+            // 
+            this.grpResizeType.Controls.Add(this.cropRadioButton);
+            this.grpResizeType.Controls.Add(this.stretchradiobutton);
+            this.grpResizeType.Controls.Add(this.keepratioradiobutton);
+            this.grpResizeType.Location = new System.Drawing.Point(14, 3);
+            this.grpResizeType.Name = "grpResizeType";
+            this.grpResizeType.Size = new System.Drawing.Size(248, 44);
+            this.grpResizeType.TabIndex = 27;
+            this.grpResizeType.TabStop = false;
+            this.grpResizeType.Text = "Resize Type";
+            // 
             // ConfigWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(280, 377);
+            this.ClientSize = new System.Drawing.Size(295, 431);
             this.Controls.Add(this.errorlabel);
             this.Controls.Add(this.limitfilescheckbox);
             this.Controls.Add(this.filelimitertextbox);
@@ -388,6 +439,8 @@ namespace ComicCache
             ((System.ComponentModel.ISupportInitialize)(this.customYnumberic)).EndInit();
             this.resizePanel.ResumeLayout(false);
             this.resizePanel.PerformLayout();
+            this.grpResizeType.ResumeLayout(false);
+            this.grpResizeType.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -422,6 +475,10 @@ namespace ComicCache
         private TextBox filelimitertextbox;
         private CheckBox limitfilescheckbox;
         public Label errorlabel;
+        private GroupBox grpResizeType;
+        private RadioButton cropRadioButton;
+        private RadioButton stretchradiobutton;
+        private RadioButton keepratioradiobutton;
     }
 }
 
