@@ -30,25 +30,11 @@ namespace clcii.comic
 		 }
 		public Image GetImage(string filename)
 		{
-            //System.Diagnostics.Debug.Print("Filename = " + filename);
-            //ComicInfo("Opening " + filename);
             currentFile = filename;
             Image oPic = null;
-           // try {
                 Stream archive = new FileStream(filename, FileMode.Open,FileAccess.Read, FileShare.Read);
                 using (oExt = new SevenZipExtractor(archive)){
-              //  }
-            //catch(ThreadAbortException)
-            //	{
-                //ignore
-            //	}
-            //catch(Exception ex)
-                //{
-                  //  ComicError("Cannot open " + filename);
-                  //  ComicError(ex.Message);
-                 //   oExt = null;
-                //    //return null;
-                //}
+
             if (oExt !=null){
                 try
                 {

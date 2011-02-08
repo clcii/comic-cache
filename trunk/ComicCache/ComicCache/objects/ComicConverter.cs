@@ -13,8 +13,13 @@ namespace ComicCache.objects
     Size resultSize = new Size();
     imagesource.Imager img;
     string comicfilepath = "";
+    ResizeRatioType resizeratiotype = ResizeRatioType.Keep;
     ImageFormat resultformat = ImageFormat.Jpeg;
-
+        public ResizeRatioType ResizeRationType
+        {
+            get { return resizeratiotype; }
+            set { resizeratiotype = value;}
+        }
         public string Filter
         {
             get { return filter; }
@@ -46,11 +51,12 @@ namespace ComicCache.objects
             this.Resultformat = format;
 
         }
-        public ComicConverter(string ComicFilePath, ImageFormat format, bool resize, Size newsize) {
+        public ComicConverter(string ComicFilePath, ImageFormat format, bool resize, Size newsize, ResizeRatioType resizeratiotype) {
             this.Comicfilepath = ComicFilePath;
             this.Resultformat = format;
             this.ResultSize = newsize;
             this.Resize = resize;
+            this.ResizeRationType = resizeratiotype;
         }
         public void Save(string destination, string filter) {
 
@@ -67,26 +73,57 @@ namespace ComicCache.objects
                 Rectangle newimagerectangle = new Rectangle();
                 decimal imageratio = (decimal)((decimal)coverimage.Width / (decimal)coverimage.Height);
                 decimal resultratio = (decimal)((decimal)ResultSize.Width / (decimal)ResultSize.Height);
-                
-                if (imageratio>resultratio) {
-                    newimagerectangle.X = 0;
-                    newimagerectangle.Width = ResultSize.Width;
-                    //newimagerectangle.Height = Convert.ToInt16( (coverimage.Height * newimagerectangle.Width) / coverimage.Width);
-                    //decimal ratio = (decimal)Convert.ToDecimal((decimal)coverimage.Height / (decimal)coverimage.Width);
-                    newimagerectangle.Height = (int)Convert.ToInt16(ResultSize.Width * (imageratio));
-                    newimagerectangle.Y = Convert.ToInt16( (ResultSize.Height - newimagerectangle.Height) / 2);
-                }
-                else
-                {
-                    newimagerectangle.Y = 0;
-                    newimagerectangle.Height = ResultSize.Height;
-                    newimagerectangle.Width = Convert.ToInt16((coverimage.Width * newimagerectangle.Height) / coverimage.Height);
-                    newimagerectangle.X = Convert.ToInt16((ResultSize.Width - newimagerectangle.Width) / 2);
-                }
-                g.DrawImage(coverimage, newimagerectangle);
-                g.Dispose();
-                coverimage = canvas;
 
+                switch (this.ResizeRationType)
+                {
+                    case ResizeRatioType.Crop:
+                        if (imageratio > resultratio) 
+                        {
+                            newimagerectangle.X = 0;
+                            newimagerectangle.Width = ResultSize.Width;
+                            newimagerectangle.Height = (int)Convert.ToInt16(ResultSize.Width * (imageratio));
+                            newimagerectangle.Y = Convert.ToInt16((ResultSize.Height - newimagerectangle.Height) / 2);
+
+                        }
+                        else //height of image is greater than result height
+                        {
+                            newimagerectangle.Y = Convert.ToInt16((ResultSize.Height - newimagerectangle.Height) / 2);
+                            newimagerectangle.Height = (int)Convert.ToInt16(ResultSize.Width * (imageratio));
+                            //newimagerectangle.Y = 0;
+                            //newimagerectangle.Height = ResultSize.Height;
+                            newimagerectangle.Width = Convert.ToInt16((coverimage.Width * newimagerectangle.Height) / coverimage.Height);
+                            newimagerectangle.X = Convert.ToInt16((ResultSize.Width - newimagerectangle.Width) / 2);
+                        
+                        }
+                            g.DrawImage(coverimage, newimagerectangle);
+                            g.Dispose();
+                            coverimage = canvas;
+                        break;
+                    case ResizeRatioType.Stretch:
+                        g.DrawImage(coverimage, new Rectangle(0,0,ResultSize.Width,ResultSize.Height));
+                        g.Dispose();
+                        coverimage = canvas;
+                        break;
+                    default:
+                        if (imageratio > resultratio)
+                            {
+                                newimagerectangle.X = 0;
+                                newimagerectangle.Width = ResultSize.Width;
+                                newimagerectangle.Height = (int)Convert.ToInt16(ResultSize.Width * (imageratio));
+                                newimagerectangle.Y = Convert.ToInt16((ResultSize.Height - newimagerectangle.Height) / 2);
+                            }
+                         else
+                            {
+                                newimagerectangle.Y = 0;
+                                newimagerectangle.Height = ResultSize.Height;
+                                newimagerectangle.Width = Convert.ToInt16((coverimage.Width * newimagerectangle.Height) / coverimage.Height);
+                                newimagerectangle.X = Convert.ToInt16((ResultSize.Width - newimagerectangle.Width) / 2);
+                            }
+                            g.DrawImage(coverimage, newimagerectangle);
+                            g.Dispose();
+                            coverimage = canvas;
+                        break;
+                }
             }
 
             coverimage.Save(destination);

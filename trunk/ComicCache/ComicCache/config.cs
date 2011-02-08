@@ -138,6 +138,7 @@ namespace ComicCache
                 errormessage = "Type of image format not indicated";            
                 return result;
                 }
+
             return result;
 
         }
@@ -229,6 +230,10 @@ namespace ComicCache
 			get { return selectedResizeStyle; }
 			set { selectedResizeStyle = value; }
 		}
+        public ResizeRatioType SelectedResizeRatioType {
+            get { return selectedResizeRatioType; }
+            set { selectedResizeRatioType = value; }
+        }
 		public string SelectedCommonResizeSize {
 			get { return selectedCommonResizeSize; }
 			set { selectedCommonResizeSize = value; }
@@ -277,7 +282,8 @@ namespace ComicCache
             set { errormessage = value; }
         }
         private bool resize = false;
-        private ResizeStyle selectedResizeStyle = ResizeStyle.None;		
+        private ResizeStyle selectedResizeStyle = ResizeStyle.None;
+        private ResizeRatioType selectedResizeRatioType = ResizeRatioType.Keep;
         private double intervalabs=0;
         private int covers=1;
         private int intervalnum=0;

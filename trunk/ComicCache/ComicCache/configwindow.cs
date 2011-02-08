@@ -33,21 +33,29 @@ namespace ComicCache
 
             CopyConfig();
             //this.Text = "Abs Interval = " + Convert.ToString( config.Intervalabs);
+            Boolean isValid = config.IsValid();
             errorlabel.Text = config.ErrorMessage;
-            errorlabel.Visible = !config.IsValid();
-            
-            if (config.IsValid())
+            errorlabel.Visible = !isValid;
+
+            if (isValid)
             {
                 Program program = new Program(config);
                 program.Run();
-                if (notifyicon!=null)
+                if (notifyicon != null)
                 {
                     notifyicon.ContextMenuStrip.Visible = false;
                 }
             }
+            else 
+            { 
+                System.Media.SystemSounds.Exclamation.Play();    
+            }
         }
         void refresh() {
             CopyConfig();
+            Boolean isValid = config.IsValid();
+            errorlabel.Text = config.ErrorMessage;
+            errorlabel.Visible = !isValid;
             if (config.IsValid())
             {
                 Program program = new Program(config);
@@ -123,7 +131,10 @@ namespace ComicCache
                 ShowNotify();
             }
         }
-
+        private void validate() { 
+        
+        
+        }
         private void notifyicon_Click(object Sender, MouseEventArgs e)
         {
 
@@ -168,6 +179,12 @@ namespace ComicCache
             config.SelectedCustomResizeY = (int)customYnumberic.Value;
             config.Filefilter = (string)filelimitertextbox.Text;
             config.Filterenabled = (bool)limitfilescheckbox.Checked;
+            if (stretchradiobutton.Checked)
+                { config.SelectedResizeRatioType = ResizeRatioType.Stretch; } 
+            else if (cropRadioButton.Checked) 
+                { config.SelectedResizeRatioType = ResizeRatioType.Crop; } 
+            else 
+                { config.SelectedResizeRatioType = ResizeRatioType.Keep; }
 
         }
         void LoadConfig()
@@ -198,6 +215,19 @@ namespace ComicCache
                     customRadioButton.Checked = true;
                     break;
                 default:
+                    break;
+            }
+            switch (config.SelectedResizeRatioType)
+            { 
+                case ResizeRatioType.Crop:
+                    cropRadioButton.Checked = true;
+                    break;
+                case ResizeRatioType.Stretch:
+                    stretchradiobutton.Checked = true;
+                    break;
+
+                default:
+                    keepratioradiobutton.Checked = true;
                     break;
             }
 
@@ -280,7 +310,19 @@ namespace ComicCache
             }
             return result;
         }
-
+        private ResizeRatioType CurrentResizeRatioType() 
+        {
+            ResizeRatioType result = ResizeRatioType.Keep;
+            if (stretchradiobutton.Checked) 
+                {
+                    result = ResizeRatioType.Keep;
+                }
+            else if (cropRadioButton.Checked) 
+                {
+                    result = ResizeRatioType.Crop;
+                }
+            return result;
+        }
         #endregion
     }    
     public enum ResizeStyle { 
@@ -288,5 +330,10 @@ namespace ComicCache
         CurrentScreen,
         Common,
         Custom
+    }
+    public enum ResizeRatioType { 
+        Keep,
+        Stretch,
+        Crop
     }
 }
