@@ -87,15 +87,21 @@ namespace ComicCache.objects
                         }
                         else //height of image is greater than result height
                         {
-                            newimagerectangle.Y = Convert.ToInt16((ResultSize.Height - newimagerectangle.Height) / 2);
-                            newimagerectangle.Height = (int)Convert.ToInt16(ResultSize.Width * (imageratio));
+                            newimagerectangle.Y = Convert.ToInt16((coverimage.Height - canvas.Height)/2);
+                            newimagerectangle.Height = Convert.ToInt16( coverimage.Height/3);
                             //newimagerectangle.Y = 0;
                             //newimagerectangle.Height = ResultSize.Height;
-                            newimagerectangle.Width = Convert.ToInt16((coverimage.Width * newimagerectangle.Height) / coverimage.Height);
-                            newimagerectangle.X = Convert.ToInt16((ResultSize.Width - newimagerectangle.Width) / 2);
+                            //newimagerectangle.Width = Convert.ToInt16((coverimage.Width * newimagerectangle.Height) / coverimage.Height);
+                            //newimagerectangle.X = Convert.ToInt16((ResultSize.Width - newimagerectangle.Width) / 2);
+                            newimagerectangle.X = 0;
+                            newimagerectangle.Width = coverimage.Width;
+                           
                         
                         }
-                            g.DrawImage(coverimage, newimagerectangle);
+                        Bitmap newimage = new Bitmap(coverimage);
+                        coverimage = (Image) newimage.Clone(newimagerectangle, newimage.PixelFormat);
+
+                            g.DrawImage(coverimage,new Rectangle(new Point(0,0),canvas.Size));
                             g.Dispose();
                             coverimage = canvas;
                         break;
