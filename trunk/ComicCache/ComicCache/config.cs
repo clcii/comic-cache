@@ -118,7 +118,19 @@ namespace ComicCache
                 errormessage = "Type of interval not indicated";
                 return result;
             }
-            
+
+            if (this.Resize)
+            {
+                result = this.selectedResizeStyle != ResizeStyle.None;
+                if (!result)
+                {
+                    errormessage = "New size not inidcated: Screen, Common, or Custom";
+                    return result;
+                }
+                
+
+            }
+
             if (this.SelectedResizeStyle == ResizeStyle.Common)
             {
                 result = (this.selectedCommonResizeSize != "");
@@ -258,6 +270,13 @@ namespace ComicCache
 			get { return selectedCustomResizeY; }
 			set { selectedCustomResizeY = value; }
 		}
+        private Color backgroundcolor = Color.Black;
+
+        public Color BackGroundColor
+        {
+            get { return backgroundcolor; }
+            set { backgroundcolor = value; }
+        }
         private string selectedCommonResizeSize = "";
         private int selectedCustomResizeX = 0;
         private int selectedCustomResizeY = 0;
@@ -275,13 +294,6 @@ namespace ComicCache
             get {return filefilter; }
             set { filefilter = value; }
         }
-
-        //private string settingsFolder = "";
-        
-//		public string SettingsFolder {
-//			get { return settingsFolder; }
-//		}
-//		private string settingsFile = "";
 		
 		public string SettingsFile {
 			get { return settingsFile; }
