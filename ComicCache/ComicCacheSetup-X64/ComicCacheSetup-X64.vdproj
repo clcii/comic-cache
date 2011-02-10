@@ -27,7 +27,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_748CA2391A2CA5A47E8980E2904F1131"
+        "MsmKey" = "8:_7E7247E10553EB28C916419C5F81AB1D"
         "OwnerKey" = "8:_6899561434734EEFB9BD68E2BBD82C2C"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -40,7 +40,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_748CA2391A2CA5A47E8980E2904F1131"
+        "OwnerKey" = "8:_7E7247E10553EB28C916419C5F81AB1D"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -68,6 +68,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
         "Release"
@@ -155,14 +168,14 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_748CA2391A2CA5A47E8980E2904F1131"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7E7247E10553EB28C916419C5F81AB1D"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:SevenZipSharp, Version=1.0.3537.37869, Culture=neutral, PublicKeyToken=20de82c62b055c88, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_748CA2391A2CA5A47E8980E2904F1131"
+                    "_7E7247E10553EB28C916419C5F81AB1D"
                     {
                     "Name" = "8:SevenZipSharp.dll"
                     "Attributes" = "3:512"
@@ -253,15 +266,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ComicCache"
-        "ProductCode" = "8:{14DDD332-D4B4-49C1-B33A-309E23F20785}"
-        "PackageCode" = "8:{15D3738A-1862-445F-A420-525E7398DBED}"
+        "ProductCode" = "8:{1043334D-603F-4A65-9786-F34AEB3E5EB3}"
+        "PackageCode" = "8:{40E741E8-3BD0-4741-B379-FC742DD7F078}"
         "UpgradeCode" = "8:{65381BCE-F11E-4BFB-B606-36002E5C87EA}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.1"
+        "ProductVersion" = "8:1.0.2"
         "Manufacturer" = "8:clcii"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
