@@ -305,6 +305,14 @@ namespace ComicCache
             get { return errormessage; }
             set { errormessage = value; }
         }
+
+        private bool cropfillforBG = false;
+
+        public bool CropfFllForBG
+        {
+            get { return cropfillforBG; }
+            set { cropfillforBG = value; }
+        }
         private bool resize = false;
         private ResizeStyle selectedResizeStyle = ResizeStyle.None;
         private ResizeRatioType selectedResizeRatioType = ResizeRatioType.Keep;

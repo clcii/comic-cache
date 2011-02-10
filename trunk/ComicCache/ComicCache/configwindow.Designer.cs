@@ -65,6 +65,7 @@ namespace ComicCache
             this.errorlabel = new System.Windows.Forms.Label();
             this.backgroundButton = new System.Windows.Forms.Button();
             this.backgroundcolorlabel = new System.Windows.Forms.Label();
+            this.cropfillforGBcheckbox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.updowninterval)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.updowncachesize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customXnumeric)).BeginInit();
@@ -246,6 +247,7 @@ namespace ComicCache
             // 
             // resizePanel
             // 
+            this.resizePanel.Controls.Add(this.cropfillforGBcheckbox);
             this.resizePanel.Controls.Add(this.backgroundcolorlabel);
             this.resizePanel.Controls.Add(this.backgroundButton);
             this.resizePanel.Controls.Add(this.grpResizeType);
@@ -258,9 +260,9 @@ namespace ComicCache
             this.resizePanel.Controls.Add(this.customXnumeric);
             this.resizePanel.Controls.Add(this.customYnumberic);
             this.resizePanel.Enabled = false;
-            this.resizePanel.Location = new System.Drawing.Point(12, 238);
+            this.resizePanel.Location = new System.Drawing.Point(4, 238);
             this.resizePanel.Name = "resizePanel";
-            this.resizePanel.Size = new System.Drawing.Size(276, 174);
+            this.resizePanel.Size = new System.Drawing.Size(284, 174);
             this.resizePanel.TabIndex = 12;
             this.resizePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.resizePanel_Paint);
             // 
@@ -407,7 +409,7 @@ namespace ComicCache
             // backgroundButton
             // 
             this.backgroundButton.BackColor = System.Drawing.Color.Black;
-            this.backgroundButton.Location = new System.Drawing.Point(16, 139);
+            this.backgroundButton.Location = new System.Drawing.Point(7, 139);
             this.backgroundButton.Name = "backgroundButton";
             this.backgroundButton.Size = new System.Drawing.Size(29, 23);
             this.backgroundButton.TabIndex = 32;
@@ -417,11 +419,21 @@ namespace ComicCache
             // backgroundcolorlabel
             // 
             this.backgroundcolorlabel.AutoSize = true;
-            this.backgroundcolorlabel.Location = new System.Drawing.Point(51, 144);
+            this.backgroundcolorlabel.Location = new System.Drawing.Point(42, 144);
             this.backgroundcolorlabel.Name = "backgroundcolorlabel";
             this.backgroundcolorlabel.Size = new System.Drawing.Size(92, 13);
             this.backgroundcolorlabel.TabIndex = 33;
             this.backgroundcolorlabel.Text = "Background Color";
+            // 
+            // cropfillforGBcheckbox
+            // 
+            this.cropfillforGBcheckbox.AutoSize = true;
+            this.cropfillforGBcheckbox.Location = new System.Drawing.Point(140, 140);
+            this.cropfillforGBcheckbox.Name = "cropfillforGBcheckbox";
+            this.cropfillforGBcheckbox.Size = new System.Drawing.Size(138, 17);
+            this.cropfillforGBcheckbox.TabIndex = 34;
+            this.cropfillforGBcheckbox.Text = "Crop Fill for background";
+            this.cropfillforGBcheckbox.UseVisualStyleBackColor = true;
             // 
             // ConfigWindow
             // 
@@ -504,6 +516,7 @@ namespace ComicCache
         private RadioButton keepratioradiobutton;
         private Label backgroundcolorlabel;
         private Button backgroundButton;
+        private CheckBox cropfillforGBcheckbox;
     }
 }
 

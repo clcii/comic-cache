@@ -179,6 +179,7 @@ namespace ComicCache
             config.SelectedCustomResizeY = (int)customYnumberic.Value;
             config.Filefilter = (string)filelimitertextbox.Text;
             config.Filterenabled = (bool)limitfilescheckbox.Checked;
+            config.CropfFllForBG = (bool)cropfillforGBcheckbox.Checked;
             if (stretchradiobutton.Checked)
                 { config.SelectedResizeRatioType = ResizeRatioType.Stretch; } 
             else if (cropRadioButton.Checked) 
@@ -204,6 +205,7 @@ namespace ComicCache
             limitfilescheckbox.Checked = config.Filterenabled;
             filelimitertextbox.Text = config.Filefilter;
             backgroundButton.BackColor = config.BackGroundColor;
+            cropfillforGBcheckbox.Checked = config.CropfFllForBG;
             switch (config.SelectedResizeStyle)
             {
                 case ResizeStyle.None:
