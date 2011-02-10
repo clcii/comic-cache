@@ -175,11 +175,6 @@
             "AssemblyAsmDisplayName" = "8:SevenZipSharp, Version=1.0.3537.37869, Culture=neutral, PublicKeyToken=20de82c62b055c88, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_7E7247E10553EB28C916419C5F81AB1D"
-                    {
-                    "Name" = "8:SevenZipSharp.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:SevenZipSharp.dll"
             "TargetName" = "8:"
@@ -266,15 +261,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ComicCache"
-        "ProductCode" = "8:{1043334D-603F-4A65-9786-F34AEB3E5EB3}"
-        "PackageCode" = "8:{40E741E8-3BD0-4741-B379-FC742DD7F078}"
+        "ProductCode" = "8:{381E2DAD-286B-4D60-AC44-BF5DCE106ADC}"
+        "PackageCode" = "8:{56D7AFE5-B788-480D-8811-E661BEC9AD26}"
         "UpgradeCode" = "8:{65381BCE-F11E-4BFB-B606-36002E5C87EA}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.2"
+        "ProductVersion" = "8:1.0.3"
         "Manufacturer" = "8:clcii"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
