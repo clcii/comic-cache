@@ -186,6 +186,8 @@ namespace ComicCache
             else 
                 { config.SelectedResizeRatioType = ResizeRatioType.Keep; }
 
+            config.BackGroundColor = backgroundButton.BackColor;
+
         }
         void LoadConfig()
         {
@@ -201,6 +203,7 @@ namespace ComicCache
             customXnumeric.Value = config.SelectedCustomResizeX;
             limitfilescheckbox.Checked = config.Filterenabled;
             filelimitertextbox.Text = config.Filefilter;
+            backgroundButton.BackColor = config.BackGroundColor;
             switch (config.SelectedResizeStyle)
             {
                 case ResizeStyle.None:
@@ -324,6 +327,19 @@ namespace ComicCache
             return result;
         }
         #endregion
+
+        private void backgroundButton_Click(object sender, EventArgs e)
+        {
+            ColorDialog colorpicker = new ColorDialog();
+            colorpicker.AllowFullOpen = true;
+            colorpicker.Color = config.BackGroundColor;
+            colorpicker.ShowDialog();
+            if (colorpicker.Color != null) {
+                backgroundButton.BackColor = colorpicker.Color;
+            }
+            
+
+        }
     }    
     public enum ResizeStyle { 
         None,

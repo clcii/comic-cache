@@ -63,6 +63,8 @@ namespace ComicCache
             this.filelimitertextbox = new System.Windows.Forms.TextBox();
             this.limitfilescheckbox = new System.Windows.Forms.CheckBox();
             this.errorlabel = new System.Windows.Forms.Label();
+            this.backgroundButton = new System.Windows.Forms.Button();
+            this.backgroundcolorlabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.updowninterval)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.updowncachesize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customXnumeric)).BeginInit();
@@ -73,7 +75,7 @@ namespace ComicCache
             // 
             // buttonsave
             // 
-            this.buttonsave.Location = new System.Drawing.Point(19, 398);
+            this.buttonsave.Location = new System.Drawing.Point(19, 446);
             this.buttonsave.Name = "buttonsave";
             this.buttonsave.Size = new System.Drawing.Size(75, 23);
             this.buttonsave.TabIndex = 19;
@@ -83,7 +85,7 @@ namespace ComicCache
             // 
             // buttoncancel
             // 
-            this.buttoncancel.Location = new System.Drawing.Point(100, 398);
+            this.buttoncancel.Location = new System.Drawing.Point(100, 446);
             this.buttoncancel.Name = "buttoncancel";
             this.buttoncancel.Size = new System.Drawing.Size(75, 23);
             this.buttoncancel.TabIndex = 20;
@@ -93,7 +95,7 @@ namespace ComicCache
             // 
             // buttontest
             // 
-            this.buttontest.Location = new System.Drawing.Point(182, 398);
+            this.buttontest.Location = new System.Drawing.Point(182, 446);
             this.buttontest.Name = "buttontest";
             this.buttontest.Size = new System.Drawing.Size(75, 23);
             this.buttontest.TabIndex = 21;
@@ -244,6 +246,8 @@ namespace ComicCache
             // 
             // resizePanel
             // 
+            this.resizePanel.Controls.Add(this.backgroundcolorlabel);
+            this.resizePanel.Controls.Add(this.backgroundButton);
             this.resizePanel.Controls.Add(this.grpResizeType);
             this.resizePanel.Controls.Add(this.screensizetextbox);
             this.resizePanel.Controls.Add(this.commonComboBox);
@@ -256,7 +260,7 @@ namespace ComicCache
             this.resizePanel.Enabled = false;
             this.resizePanel.Location = new System.Drawing.Point(12, 238);
             this.resizePanel.Name = "resizePanel";
-            this.resizePanel.Size = new System.Drawing.Size(276, 138);
+            this.resizePanel.Size = new System.Drawing.Size(276, 174);
             this.resizePanel.TabIndex = 12;
             this.resizePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.resizePanel_Paint);
             // 
@@ -270,7 +274,7 @@ namespace ComicCache
             this.grpResizeType.Size = new System.Drawing.Size(248, 44);
             this.grpResizeType.TabIndex = 27;
             this.grpResizeType.TabStop = false;
-            this.grpResizeType.Text = "Resize Type";
+            this.grpResizeType.Text = "Scaling Type";
             // 
             // cropRadioButton
             // 
@@ -282,7 +286,6 @@ namespace ComicCache
             this.cropRadioButton.TabStop = true;
             this.cropRadioButton.Text = "Crop";
             this.cropRadioButton.UseVisualStyleBackColor = true;
-            this.cropRadioButton.Visible = false;
             // 
             // stretchradiobutton
             // 
@@ -394,18 +397,37 @@ namespace ComicCache
             this.errorlabel.AutoSize = true;
             this.errorlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.errorlabel.ForeColor = System.Drawing.Color.Red;
-            this.errorlabel.Location = new System.Drawing.Point(8, 379);
+            this.errorlabel.Location = new System.Drawing.Point(8, 427);
             this.errorlabel.Name = "errorlabel";
             this.errorlabel.Size = new System.Drawing.Size(126, 13);
             this.errorlabel.TabIndex = 26;
             this.errorlabel.Text = "Error in configuration";
             this.errorlabel.Visible = false;
             // 
+            // backgroundButton
+            // 
+            this.backgroundButton.BackColor = System.Drawing.Color.Black;
+            this.backgroundButton.Location = new System.Drawing.Point(16, 139);
+            this.backgroundButton.Name = "backgroundButton";
+            this.backgroundButton.Size = new System.Drawing.Size(29, 23);
+            this.backgroundButton.TabIndex = 32;
+            this.backgroundButton.UseVisualStyleBackColor = false;
+            this.backgroundButton.Click += new System.EventHandler(this.backgroundButton_Click);
+            // 
+            // backgroundcolorlabel
+            // 
+            this.backgroundcolorlabel.AutoSize = true;
+            this.backgroundcolorlabel.Location = new System.Drawing.Point(51, 144);
+            this.backgroundcolorlabel.Name = "backgroundcolorlabel";
+            this.backgroundcolorlabel.Size = new System.Drawing.Size(92, 13);
+            this.backgroundcolorlabel.TabIndex = 33;
+            this.backgroundcolorlabel.Text = "Background Color";
+            // 
             // ConfigWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(295, 431);
+            this.ClientSize = new System.Drawing.Size(295, 481);
             this.Controls.Add(this.errorlabel);
             this.Controls.Add(this.limitfilescheckbox);
             this.Controls.Add(this.filelimitertextbox);
@@ -480,6 +502,8 @@ namespace ComicCache
         private RadioButton cropRadioButton;
         private RadioButton stretchradiobutton;
         private RadioButton keepratioradiobutton;
+        private Label backgroundcolorlabel;
+        private Button backgroundButton;
     }
 }
 
