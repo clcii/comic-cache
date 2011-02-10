@@ -50,6 +50,10 @@ namespace ComicCache
             this.customYnumberic = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.resizePanel = new System.Windows.Forms.Panel();
+            this.grpResizeType = new System.Windows.Forms.GroupBox();
+            this.cropRadioButton = new System.Windows.Forms.RadioButton();
+            this.stretchradiobutton = new System.Windows.Forms.RadioButton();
+            this.keepratioradiobutton = new System.Windows.Forms.RadioButton();
             this.screensizetextbox = new System.Windows.Forms.TextBox();
             this.commonComboBox = new System.Windows.Forms.ComboBox();
             this.screenSizeRadioButton = new System.Windows.Forms.RadioButton();
@@ -59,10 +63,6 @@ namespace ComicCache
             this.filelimitertextbox = new System.Windows.Forms.TextBox();
             this.limitfilescheckbox = new System.Windows.Forms.CheckBox();
             this.errorlabel = new System.Windows.Forms.Label();
-            this.keepratioradiobutton = new System.Windows.Forms.RadioButton();
-            this.stretchradiobutton = new System.Windows.Forms.RadioButton();
-            this.cropRadioButton = new System.Windows.Forms.RadioButton();
-            this.grpResizeType = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.updowninterval)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.updowncachesize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customXnumeric)).BeginInit();
@@ -260,6 +260,52 @@ namespace ComicCache
             this.resizePanel.TabIndex = 12;
             this.resizePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.resizePanel_Paint);
             // 
+            // grpResizeType
+            // 
+            this.grpResizeType.Controls.Add(this.cropRadioButton);
+            this.grpResizeType.Controls.Add(this.stretchradiobutton);
+            this.grpResizeType.Controls.Add(this.keepratioradiobutton);
+            this.grpResizeType.Location = new System.Drawing.Point(14, 3);
+            this.grpResizeType.Name = "grpResizeType";
+            this.grpResizeType.Size = new System.Drawing.Size(248, 44);
+            this.grpResizeType.TabIndex = 27;
+            this.grpResizeType.TabStop = false;
+            this.grpResizeType.Text = "Resize Type";
+            // 
+            // cropRadioButton
+            // 
+            this.cropRadioButton.AutoSize = true;
+            this.cropRadioButton.Location = new System.Drawing.Point(184, 19);
+            this.cropRadioButton.Name = "cropRadioButton";
+            this.cropRadioButton.Size = new System.Drawing.Size(47, 17);
+            this.cropRadioButton.TabIndex = 34;
+            this.cropRadioButton.TabStop = true;
+            this.cropRadioButton.Text = "Crop";
+            this.cropRadioButton.UseVisualStyleBackColor = true;
+            this.cropRadioButton.Visible = false;
+            // 
+            // stretchradiobutton
+            // 
+            this.stretchradiobutton.AutoSize = true;
+            this.stretchradiobutton.Location = new System.Drawing.Point(110, 19);
+            this.stretchradiobutton.Name = "stretchradiobutton";
+            this.stretchradiobutton.Size = new System.Drawing.Size(59, 17);
+            this.stretchradiobutton.TabIndex = 33;
+            this.stretchradiobutton.TabStop = true;
+            this.stretchradiobutton.Text = "Stretch";
+            this.stretchradiobutton.UseVisualStyleBackColor = true;
+            // 
+            // keepratioradiobutton
+            // 
+            this.keepratioradiobutton.AutoSize = true;
+            this.keepratioradiobutton.Location = new System.Drawing.Point(17, 19);
+            this.keepratioradiobutton.Name = "keepratioradiobutton";
+            this.keepratioradiobutton.Size = new System.Drawing.Size(78, 17);
+            this.keepratioradiobutton.TabIndex = 32;
+            this.keepratioradiobutton.TabStop = true;
+            this.keepratioradiobutton.Text = "Keep Ratio";
+            this.keepratioradiobutton.UseVisualStyleBackColor = true;
+            // 
             // screensizetextbox
             // 
             this.screensizetextbox.Enabled = false;
@@ -354,51 +400,6 @@ namespace ComicCache
             this.errorlabel.TabIndex = 26;
             this.errorlabel.Text = "Error in configuration";
             this.errorlabel.Visible = false;
-            // 
-            // keepratioradiobutton
-            // 
-            this.keepratioradiobutton.AutoSize = true;
-            this.keepratioradiobutton.Location = new System.Drawing.Point(17, 19);
-            this.keepratioradiobutton.Name = "keepratioradiobutton";
-            this.keepratioradiobutton.Size = new System.Drawing.Size(78, 17);
-            this.keepratioradiobutton.TabIndex = 32;
-            this.keepratioradiobutton.TabStop = true;
-            this.keepratioradiobutton.Text = "Keep Ratio";
-            this.keepratioradiobutton.UseVisualStyleBackColor = true;
-            // 
-            // stretchradiobutton
-            // 
-            this.stretchradiobutton.AutoSize = true;
-            this.stretchradiobutton.Location = new System.Drawing.Point(110, 19);
-            this.stretchradiobutton.Name = "stretchradiobutton";
-            this.stretchradiobutton.Size = new System.Drawing.Size(59, 17);
-            this.stretchradiobutton.TabIndex = 33;
-            this.stretchradiobutton.TabStop = true;
-            this.stretchradiobutton.Text = "Stretch";
-            this.stretchradiobutton.UseVisualStyleBackColor = true;
-            // 
-            // cropRadioButton
-            // 
-            this.cropRadioButton.AutoSize = true;
-            this.cropRadioButton.Location = new System.Drawing.Point(184, 19);
-            this.cropRadioButton.Name = "cropRadioButton";
-            this.cropRadioButton.Size = new System.Drawing.Size(47, 17);
-            this.cropRadioButton.TabIndex = 34;
-            this.cropRadioButton.TabStop = true;
-            this.cropRadioButton.Text = "Crop";
-            this.cropRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // grpResizeType
-            // 
-            this.grpResizeType.Controls.Add(this.cropRadioButton);
-            this.grpResizeType.Controls.Add(this.stretchradiobutton);
-            this.grpResizeType.Controls.Add(this.keepratioradiobutton);
-            this.grpResizeType.Location = new System.Drawing.Point(14, 3);
-            this.grpResizeType.Name = "grpResizeType";
-            this.grpResizeType.Size = new System.Drawing.Size(248, 44);
-            this.grpResizeType.TabIndex = 27;
-            this.grpResizeType.TabStop = false;
-            this.grpResizeType.Text = "Resize Type";
             // 
             // ConfigWindow
             // 

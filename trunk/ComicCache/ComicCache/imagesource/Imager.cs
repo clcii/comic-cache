@@ -35,17 +35,33 @@ namespace ComicCache.imagesource
 		
 		public Image GetImage(){
 			Image result = null;
-			if (files.Count == 0) {
-				foreach(string subdir in root.Split(';')){
+			if (files.Count == 0) 
+            {
+				foreach(string maindir in root.Split(';')){
 					
-					if (Directory.Exists(subdir)){
-					foreach(string sext in cis.ComicExtensions()){
-						
-						files.AddRange(Directory.GetFiles(subdir, "*"+sext,SearchOption.AllDirectories));
-				        		}
-				        }
-					}
-				}
+					if (Directory.Exists(maindir))
+                    {
+                        foreach (string sext in cis.ComicExtensions())
+                        {
+                            string searchparm = "*" + sext;
+
+                            foreach (string subdir in Directory.GetDirectories(maindir))
+                            {
+
+                                try
+                                {
+                                    files.AddRange(Directory.GetFiles(subdir, searchparm, SearchOption.AllDirectories));
+                                }
+                                catch
+                                {
+
+                                }
+
+                            }
+                        }
+				    }
+			    }
+		    }
             
             if (filter != "*")
             {

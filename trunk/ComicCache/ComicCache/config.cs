@@ -89,11 +89,15 @@ namespace ComicCache
                 errormessage = "Destination Folder does not exist";
                 return result;
             }
-            result = Directory.Exists(ComicPath);
-            if (!result)
-            {
-                errormessage = "Comics Folder does not exist";
-                return result;
+            foreach (string sfolder in this.ComicPaths) {
+                result = Directory.Exists(sfolder);
+                if (!result)
+                {
+                    errormessage = "Comics Folder does not exist";
+                    return result;
+                }
+         
+            
             }
             result = Intervalnum > 0;
             if (!result)
@@ -218,7 +222,15 @@ namespace ComicCache
             get { return comicpath; }
             set { comicpath = value; }
         }
-		public int Covers {
+        public List<string> ComicPaths
+        {
+            get {
+                List<string> results = new List<string>();
+                results.AddRange(comicpath.Split(';'));
+                return results;
+            }
+        }
+        public int Covers {
 			get { return covers; }
 			set { covers = value; }
 		}        
