@@ -270,49 +270,53 @@ namespace ComicCache
 			get { return selectedCustomResizeY; }
 			set { selectedCustomResizeY = value; }
 		}
-        private Color backgroundcolor = Color.Black;
-
+        [XmlIgnore]
         public Color BackGroundColor
         {
             get { return backgroundcolor; }
             set { backgroundcolor = value; }
         }
-        private string selectedCommonResizeSize = "";
-        private int selectedCustomResizeX = 0;
-        private int selectedCustomResizeY = 0;
-        private string filefilter = "";
-        private bool filterenabled = false;
+        [XmlElement("BackGroundColor")]
+        public string BackGroundColorHtml
+        {
+            get { return ColorTranslator.ToHtml(BackGroundColor); }
+            set { BackGroundColor = ColorTranslator.FromHtml(value); }
+        }
+
 
         public bool Filterenabled
         {
             get { return filterenabled; }
             set { filterenabled = value; }
         }
-
         public string Filefilter
         {
             get {return filefilter; }
             set { filefilter = value; }
         }
-		
 		public string SettingsFile {
 			get { return settingsFile; }
 		}
-        private string errormessage = "";
-
         public string ErrorMessage
         {
             get { return errormessage; }
             set { errormessage = value; }
         }
-
-        private bool cropfillforBG = false;
-
         public bool CropfFllForBG
         {
             get { return cropfillforBG; }
             set { cropfillforBG = value; }
         }
+        
+
+        private string errormessage = "";
+        private string selectedCommonResizeSize = "";
+        private int selectedCustomResizeX = 0;
+        private int selectedCustomResizeY = 0;
+        private string filefilter = "";
+        private bool filterenabled = false;
+        private bool cropfillforBG = false;
+        private Color backgroundcolor = Color.Black;
         private bool resize = false;
         private ResizeStyle selectedResizeStyle = ResizeStyle.None;
         private ResizeRatioType selectedResizeRatioType = ResizeRatioType.Keep;
