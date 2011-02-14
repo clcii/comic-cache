@@ -22,6 +22,9 @@ namespace ComicCache
         public ConfigWindow(Config config)
         {
             InitializeComponent();
+
+            setuptooltips();
+
             this.config = config;
             LoadConfig();
         }
@@ -330,6 +333,8 @@ namespace ComicCache
         }
         #endregion
 
+        #region Procedures
+
         private void backgroundButton_Click(object sender, EventArgs e)
         {
             ColorDialog colorpicker = new ColorDialog();
@@ -342,6 +347,38 @@ namespace ComicCache
             
 
         }
+
+        private void homelink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(homelink.Text);
+        }
+
+        private void setuptooltips() {
+            ToolTip forButton = new ToolTip();
+            forButton.SetToolTip(comicbasebutton, "Select base or bases for comic files.  You can type in seperating with ';'s.");
+            forButton.SetToolTip(cachebrowsebutton, "Select where you want the covers to be exported to.  Only one folder allowed");
+            forButton.SetToolTip(updowninterval, "Select number of intervals to wait between refreshes.");
+            forButton.SetToolTip(updowncachesize, "Select number of cover images to export every refresh");
+            forButton.SetToolTip(cachetypecombo, "Select type of images you wish to export.");
+            forButton.SetToolTip(combointerval, "Select type of time intervals to wait between intervals");
+            forButton.SetToolTip(limitfilescheckbox, "Check to limit the images to a certain keyword.  Seperate multiple keywords with ';'");
+            forButton.SetToolTip(keepratioradiobutton, "Do not change page ratio.  All available space will be filled with Background color.  Be sure and choose a SIZE.");
+            forButton.SetToolTip(stretchradiobutton, "Stretch image to fill Scale size. Be sure and choose a SIZE.");
+            forButton.SetToolTip(cropRadioButton, "Crop image in the middle to fill Scale Size. Be sure and choose a SIZE.");
+            forButton.SetToolTip(screenSizeRadioButton, "Size of current screen.");
+            forButton.SetToolTip(commonComboBox, "Common image sizes");
+            forButton.SetToolTip(customRadioButton, "Make your own scale size to fit gadgets, widgets, and doodads");
+            forButton.SetToolTip(backgroundButton, "Click here to select a color to fill back ground for Keep Ratio size.  All others will not show the background color");
+            forButton.SetToolTip(cropfillforGBcheckbox, "Will place a centered cropped transparent copy of the image on top of the background color");
+            forButton.SetToolTip(buttonsave, "Save settings and minimize to tray");
+            forButton.SetToolTip(buttoncancel, "Do not save settings.");
+            forButton.SetToolTip(buttontest, "Run a set of images based off current settings.  The settings will not be saved.");
+            forButton.SetToolTip(resizeCheckBox, "Resize image to resolution.  If not checked, images will be the same resolution as scanned which often varies greatley from source to source");
+
+        }
+
+        #endregion
+
     }    
     public enum ResizeStyle { 
         None,
