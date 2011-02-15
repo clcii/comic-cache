@@ -191,53 +191,64 @@ namespace ComicCache
                 { config.SelectedResizeRatioType = ResizeRatioType.Keep; }
 
             config.BackGroundColor = backgroundButton.BackColor;
+            config.Transparency = (int) transparencyupdown.Value;
 
         }
         void LoadConfig()
         {
-            combointerval.Text = config.Intervaltype;
-            updowninterval.Value = config.Intervalnum;
-            comicfolder.Text = config.ComicPath;
-            updowncachesize.Value = config.Covers;
-            cacheFolder.Text = config.FolderPath;
-            cachetypecombo.Text = config.Cachetype;
-            resizeCheckBox.Checked = config.Resize;
-            commonComboBox.Text = config.SelectedCommonResizeSize;
-            customYnumberic.Value = config.SelectedCustomResizeY;
-            customXnumeric.Value = config.SelectedCustomResizeX;
-            limitfilescheckbox.Checked = config.Filterenabled;
-            filelimitertextbox.Text = config.Filefilter;
-            backgroundButton.BackColor = config.BackGroundColor;
-            cropfillforGBcheckbox.Checked = config.CropfFllForBG;
-            switch (config.SelectedResizeStyle)
+            try
             {
-                case ResizeStyle.None:
-                    break;
-                case ResizeStyle.CurrentScreen:
-                    screenSizeRadioButton.Checked = true;
-                    break;
-                case ResizeStyle.Common:
-                    commonRadioButton.Checked = true;
-                    break;
-                case ResizeStyle.Custom:
-                    customRadioButton.Checked = true;
-                    break;
-                default:
-                    break;
-            }
-            switch (config.SelectedResizeRatioType)
-            { 
-                case ResizeRatioType.Crop:
-                    cropRadioButton.Checked = true;
-                    break;
-                case ResizeRatioType.Stretch:
-                    stretchradiobutton.Checked = true;
-                    break;
+                combointerval.Text = config.Intervaltype;
+                updowninterval.Value = config.Intervalnum;
+                comicfolder.Text = config.ComicPath;
+                updowncachesize.Value = config.Covers;
+                cacheFolder.Text = config.FolderPath;
+                cachetypecombo.Text = config.Cachetype;
+                resizeCheckBox.Checked = config.Resize;
+                commonComboBox.Text = config.SelectedCommonResizeSize;
+                customYnumberic.Value = config.SelectedCustomResizeY;
+                customXnumeric.Value = config.SelectedCustomResizeX;
+                limitfilescheckbox.Checked = config.Filterenabled;
+                filelimitertextbox.Text = config.Filefilter;
+                backgroundButton.BackColor = config.BackGroundColor;
+                cropfillforGBcheckbox.Checked = config.CropfFllForBG;
+                transparencyupdown.Value = (decimal)config.Transparency;
+                switch (config.SelectedResizeStyle)
+                {
+                    case ResizeStyle.None:
+                        break;
+                    case ResizeStyle.CurrentScreen:
+                        screenSizeRadioButton.Checked = true;
+                        break;
+                    case ResizeStyle.Common:
+                        commonRadioButton.Checked = true;
+                        break;
+                    case ResizeStyle.Custom:
+                        customRadioButton.Checked = true;
+                        break;
+                    default:
+                        break;
+                }
+                switch (config.SelectedResizeRatioType)
+                {
+                    case ResizeRatioType.Crop:
+                        cropRadioButton.Checked = true;
+                        break;
+                    case ResizeRatioType.Stretch:
+                        stretchradiobutton.Checked = true;
+                        break;
 
-                default:
-                    keepratioradiobutton.Checked = true;
-                    break;
+                    default:
+                        keepratioradiobutton.Checked = true;
+                        break;
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+
 
         }
         public void ShowNotify()
@@ -374,6 +385,7 @@ namespace ComicCache
             forButton.SetToolTip(buttoncancel, "Do not save settings.");
             forButton.SetToolTip(buttontest, "Run a set of images based off current settings.  The settings will not be saved.");
             forButton.SetToolTip(resizeCheckBox, "Resize image to resolution.  If not checked, images will be the same resolution as scanned which often varies greatley from source to source");
+            forButton.SetToolTip(transparencyupdown, "Set how transparent the cropped image overlay is to the background color.");
 
         }
 

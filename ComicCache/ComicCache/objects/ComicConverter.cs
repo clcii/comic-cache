@@ -17,6 +17,23 @@ namespace ComicCache.objects
     ImageFormat resultformat = ImageFormat.Jpeg;
     Color backgroundcolor = Color.Black;
     bool cropfillforBG = false;
+    int transparency = 0;
+    public Color Backgroundcolor
+    {
+        get { return backgroundcolor; }
+        set { backgroundcolor = value; }
+    }
+
+    public bool CropfillforBG
+    {
+        get { return cropfillforBG; }
+        set { cropfillforBG = value; }
+    }
+    public int Transparency
+    {
+        get { return transparency; }
+        set { transparency = value; }
+    }
         public ResizeRatioType ResizeRationType
         {
             get { return resizeratiotype; }
@@ -53,14 +70,16 @@ namespace ComicCache.objects
             this.Resultformat = format;
 
         }
-        public ComicConverter(string ComicFilePath, ImageFormat format, bool resize, Size newsize, ResizeRatioType resizeratiotype, Color backgroundcolor, bool cropfillforBG) {
-            this.Comicfilepath = ComicFilePath;
-            this.Resultformat = format;
-            this.ResultSize = newsize;
-            this.Resize = resize;
-            this.ResizeRationType = resizeratiotype;
-            this.backgroundcolor = backgroundcolor;
-            this.cropfillforBG = cropfillforBG;
+        public ComicConverter(Config config) {
+            this.Comicfilepath = config.ComicPath;
+            this.Resultformat = config.ImageFormat;
+            this.ResultSize = config.ImageResizeSize    ;
+            this.Resize = config.Resize;
+            this.ResizeRationType = config.SelectedResizeRatioType;
+            this.backgroundcolor = config.BackGroundColor;
+            this.cropfillforBG = config.CropfFllForBG;
+            this.transparency = config.Transparency;
+
         }
         public void Save(string destination, string filter) {
 
@@ -100,6 +119,9 @@ namespace ComicCache.objects
                     Bitmap newimage = new Bitmap(coverimage);
 
                     Image BGimage  = (Image)newimage.Clone(newimagerectangle, newimage.PixelFormat);
+                    float trans = ((float)(100-transparency)/(float)100);
+
+
                     ColorMatrix colorMatrix = new ColorMatrix(
                         new float[][] 
                         {
@@ -114,7 +136,7 @@ namespace ComicCache.objects
                         new float[] {1, 0, 0, 0, 0},
                         new float[] {0, 1, 0, 0, 0},
                         new float[] {0, 0, 1, 0, 0},
-                        new float[] {0, 0, 0, 0.2f, 0}, 
+                        new float[] {0, 0, 0, trans, 0}, 
                         new float[] {0, 0, 0, 0, 1}}; 
 
 

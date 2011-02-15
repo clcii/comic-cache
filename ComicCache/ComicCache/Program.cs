@@ -94,7 +94,7 @@ namespace ComicCache{
 				int inum = 0;
 				string newfilename = "";
 				//Image newImage = null;
-                ComicCache.objects.ComicConverter cc = new objects.ComicConverter(config.ComicPath, config.ImageFormat, config.Resize, config.ImageResizeSize,config.SelectedResizeRatioType, config.BackGroundColor, config.CropfFllForBG);
+                ComicCache.objects.ComicConverter cc = new objects.ComicConverter(config);
             	while (Directory.GetFiles(config.FolderPath).Length < config.Covers) 
                 {
             		newfilename = Path.Combine(config.FolderPath, "ComicPic" + Convert.ToString(inum) +"." + config.Cachetype);
