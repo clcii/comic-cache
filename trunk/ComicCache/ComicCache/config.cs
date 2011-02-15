@@ -282,8 +282,11 @@ namespace ComicCache
             get { return ColorTranslator.ToHtml(BackGroundColor); }
             set { BackGroundColor = ColorTranslator.FromHtml(value); }
         }
-
-
+        public int Transparency
+        {
+            get { return transparency; }
+            set { transparency = value; }
+        }
         public bool Filterenabled
         {
             get { return filterenabled; }
@@ -307,28 +310,6 @@ namespace ComicCache
             get { return cropfillforBG; }
             set { cropfillforBG = value; }
         }
-        
-
-        private string errormessage = "";
-        private string selectedCommonResizeSize = "";
-        private int selectedCustomResizeX = 0;
-        private int selectedCustomResizeY = 0;
-        private string filefilter = "";
-        private bool filterenabled = false;
-        private bool cropfillforBG = false;
-        private Color backgroundcolor = Color.Black;
-        private bool resize = false;
-        private ResizeStyle selectedResizeStyle = ResizeStyle.None;
-        private ResizeRatioType selectedResizeRatioType = ResizeRatioType.Keep;
-        private double intervalabs=0;
-        private int covers=1;
-        private int intervalnum=0;
-        private string intervaltype ="Minutes";
-        private string folderpath="";
-        private string comicpath="";
-        private string cachetype = "jpg";
-        private Size imageresizesize = new Size();
-
         public Size ImageResizeSize
         {
             get {
@@ -372,6 +353,30 @@ namespace ComicCache
 			get { return cachetype; }
 			set { cachetype = value; }
 		}
+
+
+        private int transparency = 80;
+        private string errormessage = "";
+        private string selectedCommonResizeSize = "";
+        private int selectedCustomResizeX = 0;
+        private int selectedCustomResizeY = 0;
+        private string filefilter = "";
+        private bool filterenabled = false;
+        private bool cropfillforBG = false;
+        private Color backgroundcolor = Color.Black;
+        private bool resize = false;
+        private ResizeStyle selectedResizeStyle = ResizeStyle.None;
+        private ResizeRatioType selectedResizeRatioType = ResizeRatioType.Keep;
+        private double intervalabs=0;
+        private int covers=1;
+        private int intervalnum=0;
+        private string intervaltype ="Minutes";
+        private string folderpath="";
+        private string comicpath="";
+        private string cachetype = "jpg";
+        private Size imageresizesize = new Size();
+
+
         //private static readonly string KEY = "Software\\ComicCache";  
         #endregion 
     
