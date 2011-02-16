@@ -353,6 +353,13 @@ namespace ComicCache
 			get { return cachetype; }
 			set { cachetype = value; }
 		}
+        public bool GreyScaleBG
+        {
+            get { return greyscalebg; }
+            set { greyscalebg = value; }
+        }
+
+        private bool greyscalebg = false;
 
 
         private int transparency = 80;

@@ -14,6 +14,7 @@ namespace ComicCache
     {
         private NotifyIcon notifyicon;
         private ContextMenuStrip clickMenu;
+        private Color tempoldcolor;
         #region LocalProperties
         public Config config; //= Config.Load();
 
@@ -97,6 +98,9 @@ namespace ComicCache
         void CheckBox1CheckedChanged(object sender, EventArgs e)
         {
             resizePanel.Enabled = resizeCheckBox.Checked;
+            if(!resizeCheckBox.Checked)
+                tempoldcolor = backgroundButton.BackColor;
+            backgroundButton.BackColor = resizeCheckBox.Checked ? tempoldcolor : Color.Gray;
         }
         void ConfigWindowLoad(object sender, EventArgs e)
         {
@@ -133,10 +137,6 @@ namespace ComicCache
                 this.Hide();
                 ShowNotify();
             }
-        }
-        private void validate() { 
-        
-        
         }
         private void notifyicon_Click(object Sender, MouseEventArgs e)
         {
@@ -183,6 +183,8 @@ namespace ComicCache
             config.Filefilter = (string)filelimitertextbox.Text;
             config.Filterenabled = (bool)limitfilescheckbox.Checked;
             config.CropfFllForBG = (bool)cropfillforGBcheckbox.Checked;
+            config.GreyScaleBG = (bool)greyscalecheckbox.Checked;
+
             if (stretchradiobutton.Checked)
                 { config.SelectedResizeRatioType = ResizeRatioType.Stretch; } 
             else if (cropRadioButton.Checked) 
@@ -213,6 +215,7 @@ namespace ComicCache
                 backgroundButton.BackColor = config.BackGroundColor;
                 cropfillforGBcheckbox.Checked = config.CropfFllForBG;
                 transparencyupdown.Value = (decimal)config.Transparency;
+                greyscalecheckbox.Checked = config.GreyScaleBG;
                 switch (config.SelectedResizeStyle)
                 {
                     case ResizeStyle.None:
@@ -303,10 +306,6 @@ namespace ComicCache
             notifyicon = null;
         }
 
-        private void resizePanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
         private ResizeStyle CurrentResizeStyle()
         {
             ResizeStyle result = ResizeStyle.None;
@@ -385,7 +384,8 @@ namespace ComicCache
             forButton.SetToolTip(buttoncancel, "Do not save settings.");
             forButton.SetToolTip(buttontest, "Run a set of images based off current settings.  The settings will not be saved.");
             forButton.SetToolTip(resizeCheckBox, "Resize image to resolution.  If not checked, images will be the same resolution as scanned which often varies greatley from source to source");
-            forButton.SetToolTip(transparencyupdown, "Set how transparent the cropped image overlay is to the background color.");
+            forButton.SetToolTip(transparencyupdown, "Set how transparent the cropped image overlay is to the background color. Larger numbers are more transparent.");
+            forButton.SetToolTip(greyscalecheckbox, "Remove color from original image before setting as overlay");
 
         }
 
