@@ -4,32 +4,31 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 using System.Drawing.Imaging;
-namespace ComicCache.objects
-{
-    class ComicConverter
-    {
-    bool resize = false;
-    string filter = "";
-    Size resultSize = new Size();
-    imagesource.Imager img;
-    string comicfilepath = "";
-    ResizeRatioType resizeratiotype = ResizeRatioType.Keep;
-    ImageFormat resultformat = ImageFormat.Jpeg;
-    Color backgroundcolor = Color.Black;
-    bool cropfillforBG = false;
-    int transparency = 0;
-    public Color Backgroundcolor
+namespace ComicCache.objects{
+    class ComicConverter{
+        bool resize = false;
+        string filter = "";
+        Size resultSize = new Size();
+        imagesource.Imager img;
+        string comicfilepath = "";
+        ResizeRatioType resizeratiotype = ResizeRatioType.Keep;
+        ImageFormat resultformat = ImageFormat.Jpeg;
+        Color backgroundcolor = Color.Black;
+        bool cropfillforBG = false;
+        int transparency = 0;
+        bool greyscaleBG = false;
+
+        public Color Backgroundcolor
     {
         get { return backgroundcolor; }
         set { backgroundcolor = value; }
     }
-
-    public bool CropfillforBG
+        public bool CropfillforBG
     {
         get { return cropfillforBG; }
         set { cropfillforBG = value; }
     }
-    public int Transparency
+        public int Transparency
     {
         get { return transparency; }
         set { transparency = value; }
@@ -73,13 +72,13 @@ namespace ComicCache.objects
         public ComicConverter(Config config) {
             this.Comicfilepath = config.ComicPath;
             this.Resultformat = config.ImageFormat;
-            this.ResultSize = config.ImageResizeSize    ;
+            this.ResultSize = config.ImageResizeSize;
             this.Resize = config.Resize;
             this.ResizeRationType = config.SelectedResizeRatioType;
             this.backgroundcolor = config.BackGroundColor;
             this.cropfillforBG = config.CropfFllForBG;
             this.transparency = config.Transparency;
-
+            this.greyscaleBG = config.GreyScaleBG;
         }
         public void Save(string destination, string filter) {
 
@@ -117,20 +116,35 @@ namespace ComicCache.objects
                     }
 
                     Bitmap newimage = new Bitmap(coverimage);
+                    if (greyscaleBG) {
+                        Graphics greyg = Graphics.FromImage(newimage);
+                        ColorMatrix greyMatrix = new ColorMatrix();
+                        float[][] greyarray =
+                                new float[][] 
+                                {
+                                new float[] {.3f, .3f, .3f, 0, 0},
+                                new float[] {.59f, .59f, .59f, 0, 0},
+                                new float[] {.11f, .11f, .11f, 0, 0},
+                                new float[] {0, 0, 0, 1, 0},
+                                new float[] {0, 0, 0, 0, 1}
+                            };
+                        greyMatrix = new ColorMatrix(greyarray);
+                        ImageAttributes greyAttributes = new ImageAttributes();
 
+                        greyAttributes.SetColorMatrix(greyMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+                        greyg.DrawImage(newimage, new Rectangle(new Point(0, 0),newimage.Size),0,0,newimage.Width,newimage.Height,GraphicsUnit.Pixel, greyAttributes);
+                        greyg.Dispose();
+                        }
+
+                    
+                    
                     Image BGimage  = (Image)newimage.Clone(newimagerectangle, newimage.PixelFormat);
                     float trans = ((float)(100-transparency)/(float)100);
 
 
-                    ColorMatrix colorMatrix = new ColorMatrix(
-                        new float[][] 
-                        {
-                            new float[] {.3f, .3f, .3f, 0, 0},
-                            new float[] {.59f, .59f, .59f, 0, 0},
-                            new float[] {.11f, .11f, .11f, 0, 0},
-                            new float[] {0, 0, 0, 1, 0},
-                            new float[] {0, 0, 0, 0, 1}
-                        });
+                    ColorMatrix transparencyMatrix = new ColorMatrix();
+                    
+
 
                     float[][] ptsArray ={ 
                         new float[] {1, 0, 0, 0, 0},
@@ -142,8 +156,12 @@ namespace ComicCache.objects
 
                     ImageAttributes attributes = new ImageAttributes();
                     //attributes.SetColorMatrix(colorMatrix);
-                    colorMatrix = new ColorMatrix(ptsArray);
-                    attributes.SetColorMatrix(colorMatrix,ColorMatrixFlag.Default,ColorAdjustType.Bitmap);
+                    transparencyMatrix = new ColorMatrix(ptsArray);
+                    
+
+                    attributes.SetColorMatrix(transparencyMatrix,ColorMatrixFlag.Default,ColorAdjustType.Bitmap);
+                    
+
                     g.DrawImage(BGimage, new Rectangle(new Point(0, 0), canvas.Size),0,0,BGimage.Width,BGimage.Height,GraphicsUnit.Pixel,attributes);
 
                     newimagerectangle = new Rectangle();
@@ -206,6 +224,5 @@ namespace ComicCache.objects
             coverimage.Save(destination);
         
         }
-
     }
 }

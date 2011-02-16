@@ -50,9 +50,14 @@ namespace ComicCache
             this.customYnumberic = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.resizePanel = new System.Windows.Forms.Panel();
-            this.cropfillforGBcheckbox = new System.Windows.Forms.CheckBox();
+            this.backgroundlabel = new System.Windows.Forms.Label();
+            this.backgroundpanel = new System.Windows.Forms.Panel();
+            this.greyscalecheckbox = new System.Windows.Forms.CheckBox();
             this.backgroundcolorlabel = new System.Windows.Forms.Label();
+            this.transparencyupdown = new System.Windows.Forms.NumericUpDown();
+            this.transparencylabel = new System.Windows.Forms.Label();
             this.backgroundButton = new System.Windows.Forms.Button();
+            this.cropfillforGBcheckbox = new System.Windows.Forms.CheckBox();
             this.grpResizeType = new System.Windows.Forms.GroupBox();
             this.cropRadioButton = new System.Windows.Forms.RadioButton();
             this.stretchradiobutton = new System.Windows.Forms.RadioButton();
@@ -67,18 +72,14 @@ namespace ComicCache
             this.limitfilescheckbox = new System.Windows.Forms.CheckBox();
             this.errorlabel = new System.Windows.Forms.Label();
             this.homelink = new System.Windows.Forms.LinkLabel();
-            this.transparencyupdown = new System.Windows.Forms.NumericUpDown();
-            this.transparencylabel = new System.Windows.Forms.Label();
-            this.backgroundpanel = new System.Windows.Forms.Panel();
-            this.backgroundlabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.updowninterval)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.updowncachesize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customXnumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customYnumberic)).BeginInit();
             this.resizePanel.SuspendLayout();
-            this.grpResizeType.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.transparencyupdown)).BeginInit();
             this.backgroundpanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.transparencyupdown)).BeginInit();
+            this.grpResizeType.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonsave
@@ -254,6 +255,7 @@ namespace ComicCache
             // 
             // resizePanel
             // 
+            this.resizePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.resizePanel.Controls.Add(this.backgroundlabel);
             this.resizePanel.Controls.Add(this.backgroundpanel);
             this.resizePanel.Controls.Add(this.grpResizeType);
@@ -270,36 +272,84 @@ namespace ComicCache
             this.resizePanel.Name = "resizePanel";
             this.resizePanel.Size = new System.Drawing.Size(287, 210);
             this.resizePanel.TabIndex = 12;
-            this.resizePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.resizePanel_Paint);
             // 
-            // cropfillforGBcheckbox
+            // backgroundlabel
             // 
-            this.cropfillforGBcheckbox.AutoSize = true;
-            this.cropfillforGBcheckbox.Location = new System.Drawing.Point(110, 14);
-            this.cropfillforGBcheckbox.Name = "cropfillforGBcheckbox";
-            this.cropfillforGBcheckbox.Size = new System.Drawing.Size(95, 17);
-            this.cropfillforGBcheckbox.TabIndex = 34;
-            this.cropfillforGBcheckbox.Text = "Crop Fill Image";
-            this.cropfillforGBcheckbox.UseVisualStyleBackColor = true;
+            this.backgroundlabel.AutoSize = true;
+            this.backgroundlabel.Location = new System.Drawing.Point(34, 135);
+            this.backgroundlabel.Name = "backgroundlabel";
+            this.backgroundlabel.Size = new System.Drawing.Size(65, 13);
+            this.backgroundlabel.TabIndex = 38;
+            this.backgroundlabel.Text = "Background";
+            // 
+            // backgroundpanel
+            // 
+            this.backgroundpanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.backgroundpanel.Controls.Add(this.greyscalecheckbox);
+            this.backgroundpanel.Controls.Add(this.backgroundcolorlabel);
+            this.backgroundpanel.Controls.Add(this.transparencyupdown);
+            this.backgroundpanel.Controls.Add(this.transparencylabel);
+            this.backgroundpanel.Controls.Add(this.backgroundButton);
+            this.backgroundpanel.Controls.Add(this.cropfillforGBcheckbox);
+            this.backgroundpanel.Location = new System.Drawing.Point(8, 138);
+            this.backgroundpanel.Name = "backgroundpanel";
+            this.backgroundpanel.Size = new System.Drawing.Size(276, 69);
+            this.backgroundpanel.TabIndex = 37;
+            // 
+            // greyscalecheckbox
+            // 
+            this.greyscalecheckbox.AutoSize = true;
+            this.greyscalecheckbox.Location = new System.Drawing.Point(166, 20);
+            this.greyscalecheckbox.Name = "greyscalecheckbox";
+            this.greyscalecheckbox.Size = new System.Drawing.Size(78, 17);
+            this.greyscalecheckbox.TabIndex = 37;
+            this.greyscalecheckbox.Text = "Grey Scale";
+            this.greyscalecheckbox.UseVisualStyleBackColor = true;
             // 
             // backgroundcolorlabel
             // 
             this.backgroundcolorlabel.AutoSize = true;
-            this.backgroundcolorlabel.Location = new System.Drawing.Point(37, 14);
+            this.backgroundcolorlabel.Location = new System.Drawing.Point(38, 20);
             this.backgroundcolorlabel.Name = "backgroundcolorlabel";
             this.backgroundcolorlabel.Size = new System.Drawing.Size(31, 13);
             this.backgroundcolorlabel.TabIndex = 33;
             this.backgroundcolorlabel.Text = "Color";
             // 
+            // transparencyupdown
+            // 
+            this.transparencyupdown.Location = new System.Drawing.Point(69, 42);
+            this.transparencyupdown.Name = "transparencyupdown";
+            this.transparencyupdown.Size = new System.Drawing.Size(43, 20);
+            this.transparencyupdown.TabIndex = 35;
+            // 
+            // transparencylabel
+            // 
+            this.transparencylabel.AutoSize = true;
+            this.transparencylabel.Location = new System.Drawing.Point(112, 44);
+            this.transparencylabel.Name = "transparencylabel";
+            this.transparencylabel.Size = new System.Drawing.Size(72, 13);
+            this.transparencylabel.TabIndex = 36;
+            this.transparencylabel.Text = "Transparency";
+            // 
             // backgroundButton
             // 
             this.backgroundButton.BackColor = System.Drawing.Color.Black;
-            this.backgroundButton.Location = new System.Drawing.Point(2, 10);
+            this.backgroundButton.Location = new System.Drawing.Point(3, 16);
             this.backgroundButton.Name = "backgroundButton";
             this.backgroundButton.Size = new System.Drawing.Size(29, 23);
             this.backgroundButton.TabIndex = 32;
             this.backgroundButton.UseVisualStyleBackColor = false;
             this.backgroundButton.Click += new System.EventHandler(this.backgroundButton_Click);
+            // 
+            // cropfillforGBcheckbox
+            // 
+            this.cropfillforGBcheckbox.AutoSize = true;
+            this.cropfillforGBcheckbox.Location = new System.Drawing.Point(69, 20);
+            this.cropfillforGBcheckbox.Name = "cropfillforGBcheckbox";
+            this.cropfillforGBcheckbox.Size = new System.Drawing.Size(95, 17);
+            this.cropfillforGBcheckbox.TabIndex = 34;
+            this.cropfillforGBcheckbox.Text = "Crop Fill Image";
+            this.cropfillforGBcheckbox.UseVisualStyleBackColor = true;
             // 
             // grpResizeType
             // 
@@ -452,43 +502,6 @@ namespace ComicCache
             this.homelink.Text = "http://code.google.com/p/comic-cache/";
             this.homelink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.homelink_LinkClicked);
             // 
-            // transparencyupdown
-            // 
-            this.transparencyupdown.Location = new System.Drawing.Point(83, 37);
-            this.transparencyupdown.Name = "transparencyupdown";
-            this.transparencyupdown.Size = new System.Drawing.Size(43, 20);
-            this.transparencyupdown.TabIndex = 35;
-            // 
-            // transparencylabel
-            // 
-            this.transparencylabel.AutoSize = true;
-            this.transparencylabel.Location = new System.Drawing.Point(130, 39);
-            this.transparencylabel.Name = "transparencylabel";
-            this.transparencylabel.Size = new System.Drawing.Size(72, 13);
-            this.transparencylabel.TabIndex = 36;
-            this.transparencylabel.Text = "Transparency";
-            // 
-            // backgroundpanel
-            // 
-            this.backgroundpanel.Controls.Add(this.backgroundcolorlabel);
-            this.backgroundpanel.Controls.Add(this.transparencyupdown);
-            this.backgroundpanel.Controls.Add(this.transparencylabel);
-            this.backgroundpanel.Controls.Add(this.backgroundButton);
-            this.backgroundpanel.Controls.Add(this.cropfillforGBcheckbox);
-            this.backgroundpanel.Location = new System.Drawing.Point(8, 138);
-            this.backgroundpanel.Name = "backgroundpanel";
-            this.backgroundpanel.Size = new System.Drawing.Size(256, 69);
-            this.backgroundpanel.TabIndex = 37;
-            // 
-            // backgroundlabel
-            // 
-            this.backgroundlabel.AutoSize = true;
-            this.backgroundlabel.Location = new System.Drawing.Point(34, 135);
-            this.backgroundlabel.Name = "backgroundlabel";
-            this.backgroundlabel.Size = new System.Drawing.Size(65, 13);
-            this.backgroundlabel.TabIndex = 38;
-            this.backgroundlabel.Text = "Background";
-            // 
             // ConfigWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -529,11 +542,11 @@ namespace ComicCache
             ((System.ComponentModel.ISupportInitialize)(this.customYnumberic)).EndInit();
             this.resizePanel.ResumeLayout(false);
             this.resizePanel.PerformLayout();
-            this.grpResizeType.ResumeLayout(false);
-            this.grpResizeType.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.transparencyupdown)).EndInit();
             this.backgroundpanel.ResumeLayout(false);
             this.backgroundpanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.transparencyupdown)).EndInit();
+            this.grpResizeType.ResumeLayout(false);
+            this.grpResizeType.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -580,6 +593,7 @@ namespace ComicCache
         private Panel backgroundpanel;
         private NumericUpDown transparencyupdown;
         private Label transparencylabel;
+        private CheckBox greyscalecheckbox;
     }
 }
 
