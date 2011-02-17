@@ -72,6 +72,7 @@ namespace ComicCache
             this.limitfilescheckbox = new System.Windows.Forms.CheckBox();
             this.errorlabel = new System.Windows.Forms.Label();
             this.homelink = new System.Windows.Forms.LinkLabel();
+            this.backgroundimagepanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.updowninterval)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.updowncachesize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customXnumeric)).BeginInit();
@@ -80,6 +81,7 @@ namespace ComicCache
             this.backgroundpanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.transparencyupdown)).BeginInit();
             this.grpResizeType.SuspendLayout();
+            this.backgroundimagepanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonsave
@@ -285,21 +287,19 @@ namespace ComicCache
             // backgroundpanel
             // 
             this.backgroundpanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.backgroundpanel.Controls.Add(this.greyscalecheckbox);
-            this.backgroundpanel.Controls.Add(this.backgroundcolorlabel);
-            this.backgroundpanel.Controls.Add(this.transparencyupdown);
-            this.backgroundpanel.Controls.Add(this.transparencylabel);
-            this.backgroundpanel.Controls.Add(this.backgroundButton);
             this.backgroundpanel.Controls.Add(this.cropfillforGBcheckbox);
+            this.backgroundpanel.Controls.Add(this.backgroundimagepanel);
+            this.backgroundpanel.Controls.Add(this.backgroundcolorlabel);
+            this.backgroundpanel.Controls.Add(this.backgroundButton);
             this.backgroundpanel.Location = new System.Drawing.Point(8, 138);
             this.backgroundpanel.Name = "backgroundpanel";
-            this.backgroundpanel.Size = new System.Drawing.Size(276, 69);
+            this.backgroundpanel.Size = new System.Drawing.Size(274, 69);
             this.backgroundpanel.TabIndex = 37;
             // 
             // greyscalecheckbox
             // 
             this.greyscalecheckbox.AutoSize = true;
-            this.greyscalecheckbox.Location = new System.Drawing.Point(166, 20);
+            this.greyscalecheckbox.Location = new System.Drawing.Point(15, 11);
             this.greyscalecheckbox.Name = "greyscalecheckbox";
             this.greyscalecheckbox.Size = new System.Drawing.Size(78, 17);
             this.greyscalecheckbox.TabIndex = 37;
@@ -317,7 +317,7 @@ namespace ComicCache
             // 
             // transparencyupdown
             // 
-            this.transparencyupdown.Location = new System.Drawing.Point(69, 42);
+            this.transparencyupdown.Location = new System.Drawing.Point(12, 29);
             this.transparencyupdown.Name = "transparencyupdown";
             this.transparencyupdown.Size = new System.Drawing.Size(43, 20);
             this.transparencyupdown.TabIndex = 35;
@@ -325,7 +325,7 @@ namespace ComicCache
             // transparencylabel
             // 
             this.transparencylabel.AutoSize = true;
-            this.transparencylabel.Location = new System.Drawing.Point(112, 44);
+            this.transparencylabel.Location = new System.Drawing.Point(57, 31);
             this.transparencylabel.Name = "transparencylabel";
             this.transparencylabel.Size = new System.Drawing.Size(72, 13);
             this.transparencylabel.TabIndex = 36;
@@ -344,12 +344,13 @@ namespace ComicCache
             // cropfillforGBcheckbox
             // 
             this.cropfillforGBcheckbox.AutoSize = true;
-            this.cropfillforGBcheckbox.Location = new System.Drawing.Point(69, 20);
+            this.cropfillforGBcheckbox.Location = new System.Drawing.Point(109, 3);
             this.cropfillforGBcheckbox.Name = "cropfillforGBcheckbox";
             this.cropfillforGBcheckbox.Size = new System.Drawing.Size(95, 17);
             this.cropfillforGBcheckbox.TabIndex = 34;
             this.cropfillforGBcheckbox.Text = "Crop Fill Image";
             this.cropfillforGBcheckbox.UseVisualStyleBackColor = true;
+            this.cropfillforGBcheckbox.CheckedChanged += new System.EventHandler(this.cropfillforGBcheckbox_CheckedChanged);
             // 
             // grpResizeType
             // 
@@ -395,6 +396,7 @@ namespace ComicCache
             this.keepratioradiobutton.TabStop = true;
             this.keepratioradiobutton.Text = "Keep Ratio";
             this.keepratioradiobutton.UseVisualStyleBackColor = true;
+            this.keepratioradiobutton.CheckedChanged += new System.EventHandler(this.keepratioradiobutton_CheckedChanged);
             // 
             // screensizetextbox
             // 
@@ -502,6 +504,17 @@ namespace ComicCache
             this.homelink.Text = "http://code.google.com/p/comic-cache/";
             this.homelink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.homelink_LinkClicked);
             // 
+            // backgroundimagepanel
+            // 
+            this.backgroundimagepanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.backgroundimagepanel.Controls.Add(this.greyscalecheckbox);
+            this.backgroundimagepanel.Controls.Add(this.transparencyupdown);
+            this.backgroundimagepanel.Controls.Add(this.transparencylabel);
+            this.backgroundimagepanel.Location = new System.Drawing.Point(87, 12);
+            this.backgroundimagepanel.Name = "backgroundimagepanel";
+            this.backgroundimagepanel.Size = new System.Drawing.Size(149, 52);
+            this.backgroundimagepanel.TabIndex = 38;
+            // 
             // ConfigWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -547,6 +560,8 @@ namespace ComicCache
             ((System.ComponentModel.ISupportInitialize)(this.transparencyupdown)).EndInit();
             this.grpResizeType.ResumeLayout(false);
             this.grpResizeType.PerformLayout();
+            this.backgroundimagepanel.ResumeLayout(false);
+            this.backgroundimagepanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -594,6 +609,7 @@ namespace ComicCache
         private NumericUpDown transparencyupdown;
         private Label transparencylabel;
         private CheckBox greyscalecheckbox;
+        private Panel backgroundimagepanel;
     }
 }
 

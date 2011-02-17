@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_03B491EEF04C4956BE9807AEDE15CFB8"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_40A22A58F3E5455A9E32F8A5C1D4C361"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -156,6 +162,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_03B491EEF04C4956BE9807AEDE15CFB8"
+            {
+            "SourcePath" = "8:C:\\Program Files\\ComicCache\\ComicCache.ico"
+            "TargetName" = "8:ComicCache.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_C31FA026541F4ED68E975AEB1E457EA6"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CA177E39253FD30C0F5FBC88B8AD6B77"
             {
             "AssemblyRegister" = "3:1"
@@ -254,15 +280,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ComicCache"
-        "ProductCode" = "8:{8DD70038-2331-4E70-955D-176FC8E99CB3}"
-        "PackageCode" = "8:{D78B5715-168B-4846-BF03-EA8D9B0E0074}"
+        "ProductCode" = "8:{9C22C7CF-4379-4940-B4A5-0433E79F10C3}"
+        "PackageCode" = "8:{93FD0CD4-9DE5-4A8E-BEC2-941DCECEFB24}"
         "UpgradeCode" = "8:{87C09693-A0A7-4627-8F58-6E9857BC977E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.5"
+        "ProductVersion" = "8:1.0.6"
         "Manufacturer" = "8:clcii"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -423,12 +449,12 @@
             "Arguments" = "8:/c"
             "Description" = "8:"
             "ShowCmd" = "3:1"
-            "IconIndex" = "3:32512"
+            "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
             "Target" = "8:_40A22A58F3E5455A9E32F8A5C1D4C361"
             "Folder" = "8:_3D5EFC5B0B01402CB78B3888E9C088AB"
             "WorkingFolder" = "8:_C31FA026541F4ED68E975AEB1E457EA6"
-            "Icon" = "8:_40A22A58F3E5455A9E32F8A5C1D4C361"
+            "Icon" = "8:_03B491EEF04C4956BE9807AEDE15CFB8"
             "Feature" = "8:"
             }
         }
