@@ -33,6 +33,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_A6D21B805AA84149B14EC25E3697BE9A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_6899561434734EEFB9BD68E2BBD82C2C"
         "MsmSig" = "8:_UNDEFINED"
@@ -175,6 +181,11 @@
             "AssemblyAsmDisplayName" = "8:SevenZipSharp, Version=1.0.3537.37869, Culture=neutral, PublicKeyToken=20de82c62b055c88, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_748CA2391A2CA5A47E8980E2904F1131"
+                    {
+                    "Name" = "8:SevenZipSharp.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:SevenZipSharp.dll"
             "TargetName" = "8:"
@@ -192,6 +203,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A6D21B805AA84149B14EC25E3697BE9A"
+            {
+            "SourcePath" = "8:C:\\Program Files\\ComicCache\\ComicCache.ico"
+            "TargetName" = "8:ComicCache.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_C746F45F94F44BAF8C20E44D6B16710C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
         }
@@ -261,15 +292,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ComicCache"
-        "ProductCode" = "8:{1AB070CF-C378-4CDC-9EF7-B37A2734B5DF}"
-        "PackageCode" = "8:{8EF02150-923A-45DE-9171-6531B6A39DB0}"
+        "ProductCode" = "8:{49A0B9AA-7744-4743-9C5B-8E78FF500A51}"
+        "PackageCode" = "8:{FF066BBE-B4F2-404F-9B26-83AC293A9FFB}"
         "UpgradeCode" = "8:{65381BCE-F11E-4BFB-B606-36002E5C87EA}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.5"
+        "ProductVersion" = "8:1.0.6"
         "Manufacturer" = "8:clcii"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -388,12 +419,12 @@
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
+            "IconIndex" = "3:32512"
             "Transitive" = "11:FALSE"
             "Target" = "8:_6899561434734EEFB9BD68E2BBD82C2C"
             "Folder" = "8:_4CF980C8434945C2998395652CBDCF61"
             "WorkingFolder" = "8:_C746F45F94F44BAF8C20E44D6B16710C"
-            "Icon" = "8:"
+            "Icon" = "8:_6899561434734EEFB9BD68E2BBD82C2C"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_3C51C447950F4C95BA65531CA39C4EB3"
@@ -416,12 +447,12 @@
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
+            "IconIndex" = "3:32512"
             "Transitive" = "11:FALSE"
             "Target" = "8:_6899561434734EEFB9BD68E2BBD82C2C"
             "Folder" = "8:_4270DA5ABD964A08A4AD0ABD5C7E72A8"
             "WorkingFolder" = "8:_C746F45F94F44BAF8C20E44D6B16710C"
-            "Icon" = "8:"
+            "Icon" = "8:_6899561434734EEFB9BD68E2BBD82C2C"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_87D6CE7329C84DDC8BCE303E364F63FB"
@@ -435,7 +466,7 @@
             "Target" = "8:_6899561434734EEFB9BD68E2BBD82C2C"
             "Folder" = "8:_4CF980C8434945C2998395652CBDCF61"
             "WorkingFolder" = "8:_C746F45F94F44BAF8C20E44D6B16710C"
-            "Icon" = "8:"
+            "Icon" = "8:_A6D21B805AA84149B14EC25E3697BE9A"
             "Feature" = "8:"
             }
         }

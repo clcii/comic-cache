@@ -391,6 +391,18 @@ namespace ComicCache
 
         #endregion
 
+        private void cropfillforGBcheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            backgroundimagepanel.Enabled = cropfillforGBcheckbox.Checked;
+
+
+        }
+
+        private void keepratioradiobutton_CheckedChanged(object sender, EventArgs e)
+        {
+            backgroundpanel.Enabled = keepratioradiobutton.Checked;
+        }
+
     }    
     public enum ResizeStyle { 
         None,
