@@ -201,6 +201,11 @@
             "AssemblyAsmDisplayName" = "8:SevenZipSharp, Version=1.0.3537.37869, Culture=neutral, PublicKeyToken=20de82c62b055c88, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_748CA2391A2CA5A47E8980E2904F1131"
+                    {
+                    "Name" = "8:SevenZipSharp.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:SevenZipSharp.dll"
             "TargetName" = "8:"
@@ -257,6 +262,17 @@
             "Property" = "8:ProgramMenuFolder"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_F356C0D7EDCF4AC2A548DF3F32DFA00A"
+                    {
+                    "Name" = "8:ComicCache"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_74656EF3676C4A509B5EB01F962B9C66"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_C746F45F94F44BAF8C20E44D6B16710C"
@@ -417,7 +433,7 @@
             "IconIndex" = "3:32512"
             "Transitive" = "11:FALSE"
             "Target" = "8:_6899561434734EEFB9BD68E2BBD82C2C"
-            "Folder" = "8:_4CF980C8434945C2998395652CBDCF61"
+            "Folder" = "8:_F356C0D7EDCF4AC2A548DF3F32DFA00A"
             "WorkingFolder" = "8:_C746F45F94F44BAF8C20E44D6B16710C"
             "Icon" = "8:_6899561434734EEFB9BD68E2BBD82C2C"
             "Feature" = "8:"
@@ -428,12 +444,12 @@
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
+            "IconIndex" = "3:32512"
             "Transitive" = "11:FALSE"
             "Target" = "8:_6899561434734EEFB9BD68E2BBD82C2C"
             "Folder" = "8:_22CB435D535647879E985303EEC7AB69"
             "WorkingFolder" = "8:_C746F45F94F44BAF8C20E44D6B16710C"
-            "Icon" = "8:"
+            "Icon" = "8:_6899561434734EEFB9BD68E2BBD82C2C"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_41E2E1FCF67E49739DF7E8F0899B1884"
@@ -456,12 +472,12 @@
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
+            "IconIndex" = "3:32512"
             "Transitive" = "11:FALSE"
             "Target" = "8:_6899561434734EEFB9BD68E2BBD82C2C"
-            "Folder" = "8:_4CF980C8434945C2998395652CBDCF61"
+            "Folder" = "8:_F356C0D7EDCF4AC2A548DF3F32DFA00A"
             "WorkingFolder" = "8:_C746F45F94F44BAF8C20E44D6B16710C"
-            "Icon" = "8:"
+            "Icon" = "8:_6899561434734EEFB9BD68E2BBD82C2C"
             "Feature" = "8:"
             }
         }
@@ -1145,35 +1161,6 @@
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {
-                }
-            }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_AF4A42CF9FBB466F83E0BD23DAF29238"
-            {
-            "SourcePath" = "8:"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_C746F45F94F44BAF8C20E44D6B16710C"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:ContentFiles"
-            "OutputProjectGuid" = "8:{260B4C27-FFAA-4975-BF84-190018B213DB}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                "ExcludeFilter" = "8:7z.dll"
                 }
             }
         }
