@@ -266,7 +266,8 @@ namespace ComicCache
             notifyicon.Text = "Comic Cache";
             notifyicon.MouseClick += new MouseEventHandler(this.notifyicon_Click);
             //notifyicon.Click += new EventHandler(this.notifyicon_Click);
-            notifyicon.Icon = new Icon("ComicCache.ico");
+            notifyicon.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+                //new Icon("ComicCache.ico");
             notifyicon.Visible = true;
 
         }
