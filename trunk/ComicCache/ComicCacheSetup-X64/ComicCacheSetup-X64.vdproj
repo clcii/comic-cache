@@ -27,6 +27,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_748CA2391A2CA5A47E8980E2904F1131"
+        "OwnerKey" = "8:_6899561434734EEFB9BD68E2BBD82C2C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_755DD06741ED4254AE5C8446F8D7890F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -46,7 +52,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6899561434734EEFB9BD68E2BBD82C2C"
+        "OwnerKey" = "8:_748CA2391A2CA5A47E8980E2904F1131"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -187,6 +193,11 @@
             "AssemblyAsmDisplayName" = "8:SevenZipSharp, Version=1.0.3537.37869, Culture=neutral, PublicKeyToken=20de82c62b055c88, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_748CA2391A2CA5A47E8980E2904F1131"
+                    {
+                    "Name" = "8:SevenZipSharp.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:SevenZipSharp.dll"
             "TargetName" = "8:"
@@ -334,9 +345,9 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:ComicCache X64"
+        "ProductName" = "8:ComicCache"
         "ProductCode" = "8:{49A0B9AA-7744-4743-9C5B-8E78FF500A51}"
-        "PackageCode" = "8:{FF066BBE-B4F2-404F-9B26-83AC293A9FFB}"
+        "PackageCode" = "8:{AEB7BBBD-540B-4E63-A785-BBB4904B36E5}"
         "UpgradeCode" = "8:{65381BCE-F11E-4BFB-B606-36002E5C87EA}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
