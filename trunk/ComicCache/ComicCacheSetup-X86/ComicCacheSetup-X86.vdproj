@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_2F2A427B018C4324A315DFC36BB7A7EC"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_40A22A58F3E5455A9E32F8A5C1D4C361"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -27,8 +33,20 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_DE36DFF695934DE3A778E09529A393EE"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_40A22A58F3E5455A9E32F8A5C1D4C361"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_2F2A427B018C4324A315DFC36BB7A7EC"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -156,6 +174,37 @@
         }
         "File"
         {
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2F2A427B018C4324A315DFC36BB7A7EC"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:MsiRenamer, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_2F2A427B018C4324A315DFC36BB7A7EC"
+                    {
+                    "Name" = "8:MsiRenamer.exe"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:MsiRenamer.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_C31FA026541F4ED68E975AEB1E457EA6"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_943646C811D49F4E4C3F6229956F3983"
             {
             "AssemblyRegister" = "3:1"
@@ -185,6 +234,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DE36DFF695934DE3A778E09529A393EE"
+            {
+            "SourcePath" = "8:ModifyMsiToEnableLaunchApplication.js"
+            "TargetName" = "8:ModifyMsiToEnableLaunchApplication.js"
+            "Tag" = "8:"
+            "Folder" = "8:_C31FA026541F4ED68E975AEB1E457EA6"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
         }
@@ -266,7 +335,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ComicCache"
         "ProductCode" = "8:{9C22C7CF-4379-4940-B4A5-0433E79F10C3}"
-        "PackageCode" = "8:{933E5DBD-060C-4412-994A-CAF095C12982}"
+        "PackageCode" = "8:{D7A33CE1-6F4E-4E41-B2DF-DCDFFCAD934D}"
         "UpgradeCode" = "8:{87C09693-A0A7-4627-8F58-6E9857BC977E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -289,7 +358,7 @@
         "UseSystemSearchPath" = "11:TRUE"
         "TargetPlatform" = "3:0"
         "PreBuildEvent" = "8:"
-        "PostBuildEvent" = "8:cscript.exe \"$(ProjectDir)ModifyMsiToEnableLaunchApplication.js\" \"$(BuiltOuputPath)\""
+        "PostBuildEvent" = "8:cscript.exe \"$(ProjectDir)ModifyMsiToEnableLaunchApplication.js\" \"$(BuiltOuputPath)\"\r\n\"$(ProjectDir)MsiRenamer.exe\" \"$(BuildOutputPath)\""
         "RunPostBuildEvent" = "3:0"
         }
         "Registry"
