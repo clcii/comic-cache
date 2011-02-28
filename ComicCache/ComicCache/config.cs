@@ -207,9 +207,6 @@ namespace ComicCache
             get { 
         		TimeSpan ts = new TimeSpan();
         		string timestring = Convert.ToString((double)intervalnum) + " " + intervaltype;
-        		Log.Instance.Write(timestring);
-        		//TimeSpan.TryParse(timestring, out ts);
-        		
         		switch (intervaltype.ToLower()) {
         			case "seconds":
         				ts += TimeSpan.FromSeconds((double)intervalnum);
@@ -224,9 +221,7 @@ namespace ComicCache
        					ts += TimeSpan.FromDays((double)intervalnum);
        					break;
         		}
-        		Log.Instance.Write(Convert.ToString(ts));
         		intervalabs = (double)ts.TotalMilliseconds;
-        		
         		return intervalabs; }
         }
         public string ComicPath

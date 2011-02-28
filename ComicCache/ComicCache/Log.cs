@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Windows.Forms;
 
 
 namespace ComicCache
@@ -24,6 +25,20 @@ namespace ComicCache
                     StreamWriter writer = null;
                     try
                     {
+                        ConfigWindow configwindow=null;
+                        try
+                        {
+                           configwindow = (ConfigWindow)Application.OpenForms["configwindow"];
+                        }
+                        catch (Exception)
+                        {
+                        }
+
+                        if (configwindow != null)
+                        {
+                            configwindow.SetStatus(message);
+                        }
+
                         writer = File.AppendText(logFilePath);
                         writer.Write(DateTime.Now.ToString());
                         writer.Write(" ");

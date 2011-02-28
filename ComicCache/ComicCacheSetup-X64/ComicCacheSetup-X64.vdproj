@@ -52,13 +52,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_748CA2391A2CA5A47E8980E2904F1131"
+        "OwnerKey" = "8:_755DD06741ED4254AE5C8446F8D7890F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_755DD06741ED4254AE5C8446F8D7890F"
+        "OwnerKey" = "8:_748CA2391A2CA5A47E8980E2904F1131"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -346,15 +346,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ComicCache"
-        "ProductCode" = "8:{49A0B9AA-7744-4743-9C5B-8E78FF500A51}"
-        "PackageCode" = "8:{AEB7BBBD-540B-4E63-A785-BBB4904B36E5}"
+        "ProductCode" = "8:{D930DC25-2868-46AD-B59F-96E808101E11}"
+        "PackageCode" = "8:{09F6A3A7-A982-4A75-AC53-94652531B09D}"
         "UpgradeCode" = "8:{65381BCE-F11E-4BFB-B606-36002E5C87EA}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.6"
+        "ProductVersion" = "8:1.0.7"
         "Manufacturer" = "8:clcii"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
