@@ -132,6 +132,43 @@
                 }
             }
         }
+        "TestRelease"
+        {
+        "DisplayName" = "8:TestRelease"
+        "IsDebugOnly" = "11:FALSE"
+        "IsReleaseOnly" = "11:FALSE"
+        "OutputFilename" = "8:TestRelease\\ComicCacheSetup-X86.msi"
+        "PackageFilesAs" = "3:2"
+        "PackageFileSize" = "3:-2147483648"
+        "CabType" = "3:1"
+        "Compression" = "3:2"
+        "SignOutput" = "11:FALSE"
+        "CertificateFile" = "8:"
+        "PrivateKeyFile" = "8:"
+        "TimeStampServer" = "8:"
+        "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
+        }
     }
     "Deployable"
     {
@@ -358,7 +395,7 @@
         "UseSystemSearchPath" = "11:TRUE"
         "TargetPlatform" = "3:0"
         "PreBuildEvent" = "8:"
-        "PostBuildEvent" = "8:cscript.exe \"$(ProjectDir)ModifyMsiToEnableLaunchApplication.js\" \"$(BuiltOuputPath)\"\r\n\r\nstart \"\" \"$(ProjectDir)MsiRenamer.exe\" \"$(BuiltOuputPath)\"\r\n\r\n"
+        "PostBuildEvent" = "8:cscript.exe \"$(ProjectDir)ModifyMsiToEnableLaunchApplication.js\" \"$(BuiltOuputPath)\"\r\n\r\n"
         "RunPostBuildEvent" = "3:0"
         }
         "Registry"
@@ -1196,7 +1233,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_40A22A58F3E5455A9E32F8A5C1D4C361"
             {
-            "SourcePath" = "8:..\\ComicCache\\obj\\Release\\ComicCache.exe"
+            "SourcePath" = "8:..\\ComicCache\\obj\\TestRelease\\ComicCache.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_C31FA026541F4ED68E975AEB1E457EA6"
