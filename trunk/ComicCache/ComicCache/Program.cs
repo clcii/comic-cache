@@ -18,7 +18,6 @@ namespace ComicCache{
             {
 				Log.Instance.IsEnabled = true;
                 Application.EnableVisualStyles();
-                
 				foreach (Process process in Process.GetProcesses())
                     if (process.Id != Process.GetCurrentProcess().Id && process.ProcessName.Equals("ComicCache"))
                         return;
@@ -35,15 +34,10 @@ namespace ComicCache{
                         Application.Run(new ConfigWindow(config));
                         return;
                     }
-
-
-                    //Log.Instance.Write(config.Cachetype);
-                    
                 Program program = new Program(config);
                 program.End += (obj, e) =>
                 {
                    	Log.Instance.Write("Stopping Cacher");
-
                     program.Stop();
                     Application.Exit();
                 };
@@ -62,29 +56,31 @@ namespace ComicCache{
             }
         }
 		#region Methods
-        public void Run() { 
+            public void Run() { 
 		    // start the thread
-            thread = new Thread(ThreadProc);
-            thread.IsBackground = true;
-            thread.Start();
+            MainThread = new Thread(ThreadProc);
+            MainThread.IsBackground = true;
+            MainThread.Start();
 		}
-        public void Stop() {
+            public void Stop() {
             configwindow.HideNotify();
 		}
-		public void ThreadStop() {
-			thread.Abort();
+		    public void ThreadStop() {
+			MainThread.Abort();
 		}
-        public void ThreadProc(){
-            Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
-            Config myconfig = config;
-            while (cancel.Equals(false)&&myconfig.IsValid()) {
-            	List<string> cacheitems = new List<string>();
-            	cacheitems.AddRange(Directory.GetFiles(config.FolderPath));
-            	foreach(string file in cacheitems)
-                {
-            		try {
-            			File.Delete(file);
-            		} catch (Exception) {
+            public void ThreadProc(){
+                Log.Instance.Write("Refreshing");
+                Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
+                Config myconfig = config;
+                while (cancel.Equals(false)&&myconfig.IsValid()) {
+            	    List<string> cacheitems = new List<string>();
+            	    cacheitems.AddRange(Directory.GetFiles(config.FolderPath));
+            	    foreach(string file in cacheitems)
+                    {
+            		    try 
+                        {
+            			    File.Delete(file);
+            		    } catch (Exception) {
             		}
             	}
 				int inum = 0;
@@ -104,33 +100,52 @@ namespace ComicCache{
                             Log.Instance.Write(ex.Message);	
 						}
             	}
-				Thread.Sleep((int)myconfig.Intervalabs);
+                if (testrun)
+                    {
+                        Log.Instance.Write("Exiting Test Run");
+                        cancel = true;
+                    }
+                else
+                    {
+                        Log.Instance.Write("Waiting till " + System.DateTime.Now.AddMilliseconds((int)myconfig.Intervalabs) );
+				        Thread.Sleep((int)myconfig.Intervalabs);
+                    }
             }
             
         
         }
-        private void ShowTrayIcon(){
+            private void ShowTrayIcon(){
 			configwindow = new ConfigWindow(config);
 			configwindow.ShowNotify();
         }
+            public void RestartMainTreade(Config config) {
+                ThreadStop();
+                this.config = config;
+                Run();
+            }
 
-		private void Application_ApplicationExit(object sender, EventArgs e)
+    		private void Application_ApplicationExit(object sender, EventArgs e)
         {
             Log.Instance.Write("ApplicationExit");
         }
 		#endregion
 		#region Constructors
-        public Program(Config config)
-        {
-            this.config = config;
-        }		
+            public Program(Config config, bool testrun)
+                {
+                    this.config = config;
+                    this.testrun = testrun;
+                }
+            public Program(Config config) {
+                this.config = config;
+            }
 		#endregion
 		#region Properties
 	    private Config config;
-		private Thread thread;
+		private Thread MainThread;
       	public event EventHandler End;
       	public bool cancel = false;
       	public ConfigWindow configwindow;
+        private bool testrun = false;
 		#endregion
     }
 }
