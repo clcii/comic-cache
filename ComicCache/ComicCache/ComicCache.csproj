@@ -91,6 +91,8 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="SevenZipSharp">
       <HintPath>..\..\..\YAPSSCE\dotnet\YetAnotherPhotoScreenSaver\bin\Debug\SevenZipSharp.dll</HintPath>
     </Reference>
@@ -118,6 +120,12 @@
     <Compile Include="configwindow.Designer.cs">
       <DependentUpon>configwindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="dialogue\margin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dialogue\margin.Designer.cs">
+      <DependentUpon>margin.cs</DependentUpon>
+    </Compile>
     <Compile Include="dialogue\multifolder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +141,9 @@
     <None Include="SevenZipSharp.dll" />
     <EmbeddedResource Include="configwindow.resx">
       <DependentUpon>configwindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dialogue\margin.resx">
+      <DependentUpon>margin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="dialogue\multifolder.resx">
       <DependentUpon>multifolder.cs</DependentUpon>
