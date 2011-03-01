@@ -17,7 +17,7 @@ namespace ComicCache.objects{
         bool cropfillforBG = false;
         int transparency = 0;
         bool greyscaleBG = false;
-
+        Config config = new Config();
         public Color Backgroundcolor
     {
         get { return backgroundcolor; }
@@ -70,6 +70,7 @@ namespace ComicCache.objects{
 
         }
         public ComicConverter(Config config) {
+            this.config = config;
             this.Comicfilepath = config.ComicPath;
             this.Resultformat = config.ImageFormat;
             this.ResultSize = config.ImageResizeSize;
@@ -132,6 +133,8 @@ namespace ComicCache.objects{
                         ImageAttributes greyAttributes = new ImageAttributes();
 
                         greyAttributes.SetColorMatrix(greyMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+                        
+                        
                         greyg.DrawImage(newimage, new Rectangle(new Point(0, 0),newimage.Size),0,0,newimage.Width,newimage.Height,GraphicsUnit.Pixel, greyAttributes);
                         greyg.Dispose();
                         }
@@ -160,9 +163,11 @@ namespace ComicCache.objects{
                     
 
                     attributes.SetColorMatrix(transparencyMatrix,ColorMatrixFlag.Default,ColorAdjustType.Bitmap);
+
                     
 
                     g.DrawImage(BGimage, new Rectangle(new Point(0, 0), canvas.Size),0,0,BGimage.Width,BGimage.Height,GraphicsUnit.Pixel,attributes);
+                    //g.DrawImage(BGimage, new Rectangle(new Point(config.leftmargin, config.topmargin), resultsize), 0, 0, BGimage.Width, BGimage.Height, GraphicsUnit.Pixel, attributes);
 
                     newimagerectangle = new Rectangle();
                 } 
@@ -172,8 +177,8 @@ namespace ComicCache.objects{
                     case ResizeRatioType.Crop:
                         if (imageratio > resultratio)
                         {
-                            newimagerectangle.Y = 0;
-                            newimagerectangle.Height = coverimage.Height;
+                            newimagerectangle.Y = 0 ;
+                            newimagerectangle.Height = coverimage.Height ;
                             newimagerectangle.Width = Convert.ToInt16((newimagerectangle.Height * ResultSize.Width) / ResultSize.Height);
                             newimagerectangle.X = Convert.ToInt16((coverimage.Width - newimagerectangle.Width) / 2);
                         }
@@ -181,7 +186,7 @@ namespace ComicCache.objects{
                         {
                             newimagerectangle.X = 0;
                             newimagerectangle.Width = coverimage.Width;
-                            newimagerectangle.Height = Convert.ToInt16((newimagerectangle.Width * ResultSize.Height) / ResultSize.Width);
+                            newimagerectangle.Height = Convert.ToInt16((newimagerectangle.Width * ResultSize.Height) / ResultSize.Width) - config.bottommargin;
                             newimagerectangle.Y = Convert.ToInt16((coverimage.Height - newimagerectangle.Height) / 2);
 
                         }
@@ -202,15 +207,17 @@ namespace ComicCache.objects{
                     default:
                         if (imageratio > resultratio)
                             {
-                                newimagerectangle.X = 0;
-                                newimagerectangle.Width = ResultSize.Width;
-                                newimagerectangle.Height = (int)Convert.ToInt16(ResultSize.Width * (imageratio));
+                                Rectangle adjustedimage = new Rectangle(config.rightmargin,config.topmargin, ResultSize.Width - config.rightmargin - config.leftmargin,coverimage.Height - config.topmargin - config.bottommargin);
+                                newimagerectangle.X = adjustedimage.X;
+                                newimagerectangle.Width = adjustedimage.Width;
+                                newimagerectangle.Height = Convert.ToInt16((coverimage.Height * newimagerectangle.Width) / coverimage.Width);
                                 newimagerectangle.Y = Convert.ToInt16((ResultSize.Height - newimagerectangle.Height) / 2);
                             }
                          else
                             {
-                                newimagerectangle.Y = 0;
-                                newimagerectangle.Height = ResultSize.Height;
+                                Rectangle adjustedimage = new Rectangle(config.rightmargin, config.topmargin, coverimage.Width - config.rightmargin - config.leftmargin, ResultSize.Height - config.topmargin - config.bottommargin);
+                                newimagerectangle.Y = adjustedimage.Y;
+                                newimagerectangle.Height = adjustedimage.Height;
                                 newimagerectangle.Width = Convert.ToInt16((coverimage.Width * newimagerectangle.Height) / coverimage.Height);
                                 newimagerectangle.X = Convert.ToInt16((ResultSize.Width - newimagerectangle.Width) / 2);
                             }

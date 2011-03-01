@@ -108,7 +108,7 @@ namespace ComicCache
             config.Filterenabled = (bool)limitfilescheckbox.Checked;
             config.CropfFllForBG = (bool)cropfillforGBcheckbox.Checked;
             config.GreyScaleBG = (bool)greyscalecheckbox.Checked;
-
+            config.Margins = (string)margintextbox.Text;
             if (stretchradiobutton.Checked)
                 { config.SelectedResizeRatioType = ResizeRatioType.Stretch; } 
             else if (cropRadioButton.Checked) 
@@ -140,6 +140,7 @@ namespace ComicCache
                 cropfillforGBcheckbox.Checked = config.CropfFllForBG;
                 transparencyupdown.Value = (decimal)config.Transparency;
                 greyscalecheckbox.Checked = config.GreyScaleBG;
+                margintextbox.Text = config.Margins;
                 switch (config.SelectedResizeStyle)
                 {
                     case ResizeStyle.None:
@@ -403,6 +404,18 @@ namespace ComicCache
             Application.Exit();
         }            
             #endregion
+
+                private void margintextbox_Click(object sender, EventArgs e)
+                {
+                    dialogue.margin margindialogue = new dialogue.margin(margintextbox.Text);
+                    margindialogue.ShowDialog();
+                    if (margindialogue.Dialogresult == System.Windows.Forms.DialogResult.OK) {
+                        margintextbox.Text = margindialogue.ResultString;
+                    }
+                }
+
+
+   
         # endregion
 
     }    

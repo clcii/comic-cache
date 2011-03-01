@@ -52,6 +52,8 @@ namespace ComicCache
             this.resizePanel = new System.Windows.Forms.Panel();
             this.backgroundlabel = new System.Windows.Forms.Label();
             this.backgroundpanel = new System.Windows.Forms.Panel();
+            this.marginlabel = new System.Windows.Forms.Label();
+            this.margintextbox = new System.Windows.Forms.TextBox();
             this.cropfillforGBcheckbox = new System.Windows.Forms.CheckBox();
             this.backgroundimagepanel = new System.Windows.Forms.Panel();
             this.greyscalecheckbox = new System.Windows.Forms.CheckBox();
@@ -225,7 +227,7 @@ namespace ComicCache
             // customXnumeric
             // 
             this.customXnumeric.Enabled = false;
-            this.customXnumeric.Location = new System.Drawing.Point(118, 109);
+            this.customXnumeric.Location = new System.Drawing.Point(101, 109);
             this.customXnumeric.Maximum = new decimal(new int[] {
             2000,
             0,
@@ -238,7 +240,7 @@ namespace ComicCache
             // customYnumberic
             // 
             this.customYnumberic.Enabled = false;
-            this.customYnumberic.Location = new System.Drawing.Point(207, 109);
+            this.customYnumberic.Location = new System.Drawing.Point(190, 109);
             this.customYnumberic.Maximum = new decimal(new int[] {
             2000,
             0,
@@ -250,7 +252,7 @@ namespace ComicCache
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(185, 111);
+            this.label3.Location = new System.Drawing.Point(168, 111);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(16, 20);
             this.label3.TabIndex = 31;
@@ -273,7 +275,7 @@ namespace ComicCache
             this.resizePanel.Enabled = false;
             this.resizePanel.Location = new System.Drawing.Point(4, 238);
             this.resizePanel.Name = "resizePanel";
-            this.resizePanel.Size = new System.Drawing.Size(287, 210);
+            this.resizePanel.Size = new System.Drawing.Size(258, 210);
             this.resizePanel.TabIndex = 12;
             // 
             // backgroundlabel
@@ -288,14 +290,36 @@ namespace ComicCache
             // backgroundpanel
             // 
             this.backgroundpanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.backgroundpanel.Controls.Add(this.marginlabel);
+            this.backgroundpanel.Controls.Add(this.margintextbox);
             this.backgroundpanel.Controls.Add(this.cropfillforGBcheckbox);
             this.backgroundpanel.Controls.Add(this.backgroundimagepanel);
             this.backgroundpanel.Controls.Add(this.backgroundcolorlabel);
             this.backgroundpanel.Controls.Add(this.backgroundButton);
-            this.backgroundpanel.Location = new System.Drawing.Point(8, 138);
+            this.backgroundpanel.Location = new System.Drawing.Point(3, 138);
             this.backgroundpanel.Name = "backgroundpanel";
-            this.backgroundpanel.Size = new System.Drawing.Size(274, 69);
+            this.backgroundpanel.Size = new System.Drawing.Size(250, 69);
             this.backgroundpanel.TabIndex = 37;
+            // 
+            // marginlabel
+            // 
+            this.marginlabel.AutoSize = true;
+            this.marginlabel.Location = new System.Drawing.Point(1, 45);
+            this.marginlabel.Name = "marginlabel";
+            this.marginlabel.Size = new System.Drawing.Size(44, 13);
+            this.marginlabel.TabIndex = 40;
+            this.marginlabel.Text = "Margins";
+            // 
+            // margintextbox
+            // 
+            this.margintextbox.Location = new System.Drawing.Point(41, 42);
+            this.margintextbox.Name = "margintextbox";
+            this.margintextbox.ReadOnly = true;
+            this.margintextbox.Size = new System.Drawing.Size(66, 20);
+            this.margintextbox.TabIndex = 39;
+            this.margintextbox.TabStop = false;
+            this.margintextbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.margintextbox.Click += new System.EventHandler(this.margintextbox_Click);
             // 
             // cropfillforGBcheckbox
             // 
@@ -314,9 +338,10 @@ namespace ComicCache
             this.backgroundimagepanel.Controls.Add(this.greyscalecheckbox);
             this.backgroundimagepanel.Controls.Add(this.transparencyupdown);
             this.backgroundimagepanel.Controls.Add(this.transparencylabel);
-            this.backgroundimagepanel.Location = new System.Drawing.Point(87, 12);
+            this.backgroundimagepanel.Enabled = false;
+            this.backgroundimagepanel.Location = new System.Drawing.Point(113, 12);
             this.backgroundimagepanel.Name = "backgroundimagepanel";
-            this.backgroundimagepanel.Size = new System.Drawing.Size(149, 52);
+            this.backgroundimagepanel.Size = new System.Drawing.Size(132, 52);
             this.backgroundimagepanel.TabIndex = 38;
             // 
             // greyscalecheckbox
@@ -371,7 +396,8 @@ namespace ComicCache
             this.grpResizeType.Controls.Add(this.keepratioradiobutton);
             this.grpResizeType.Location = new System.Drawing.Point(14, 3);
             this.grpResizeType.Name = "grpResizeType";
-            this.grpResizeType.Size = new System.Drawing.Size(248, 44);
+            this.grpResizeType.Padding = new System.Windows.Forms.Padding(1, 2, 3, 4);
+            this.grpResizeType.Size = new System.Drawing.Size(239, 44);
             this.grpResizeType.TabIndex = 27;
             this.grpResizeType.TabStop = false;
             this.grpResizeType.Text = "Scaling Type";
@@ -379,7 +405,7 @@ namespace ComicCache
             // cropRadioButton
             // 
             this.cropRadioButton.AutoSize = true;
-            this.cropRadioButton.Location = new System.Drawing.Point(184, 19);
+            this.cropRadioButton.Location = new System.Drawing.Point(182, 18);
             this.cropRadioButton.Name = "cropRadioButton";
             this.cropRadioButton.Size = new System.Drawing.Size(47, 17);
             this.cropRadioButton.TabIndex = 34;
@@ -390,7 +416,7 @@ namespace ComicCache
             // stretchradiobutton
             // 
             this.stretchradiobutton.AutoSize = true;
-            this.stretchradiobutton.Location = new System.Drawing.Point(110, 19);
+            this.stretchradiobutton.Location = new System.Drawing.Point(108, 18);
             this.stretchradiobutton.Name = "stretchradiobutton";
             this.stretchradiobutton.Size = new System.Drawing.Size(59, 17);
             this.stretchradiobutton.TabIndex = 33;
@@ -401,7 +427,7 @@ namespace ComicCache
             // keepratioradiobutton
             // 
             this.keepratioradiobutton.AutoSize = true;
-            this.keepratioradiobutton.Location = new System.Drawing.Point(17, 19);
+            this.keepratioradiobutton.Location = new System.Drawing.Point(15, 18);
             this.keepratioradiobutton.Name = "keepratioradiobutton";
             this.keepratioradiobutton.Size = new System.Drawing.Size(78, 17);
             this.keepratioradiobutton.TabIndex = 32;
@@ -413,7 +439,7 @@ namespace ComicCache
             // screensizetextbox
             // 
             this.screensizetextbox.Enabled = false;
-            this.screensizetextbox.Location = new System.Drawing.Point(118, 53);
+            this.screensizetextbox.Location = new System.Drawing.Point(101, 53);
             this.screensizetextbox.Name = "screensizetextbox";
             this.screensizetextbox.Size = new System.Drawing.Size(144, 20);
             this.screensizetextbox.TabIndex = 13;
@@ -427,7 +453,7 @@ namespace ComicCache
             "720x480",
             "1024x768",
             "1280x720"});
-            this.commonComboBox.Location = new System.Drawing.Point(118, 78);
+            this.commonComboBox.Location = new System.Drawing.Point(101, 78);
             this.commonComboBox.Name = "commonComboBox";
             this.commonComboBox.Size = new System.Drawing.Size(144, 21);
             this.commonComboBox.TabIndex = 15;
@@ -466,7 +492,7 @@ namespace ComicCache
             // 
             // resizeCheckBox
             // 
-            this.resizeCheckBox.Location = new System.Drawing.Point(19, 210);
+            this.resizeCheckBox.Location = new System.Drawing.Point(11, 208);
             this.resizeCheckBox.Name = "resizeCheckBox";
             this.resizeCheckBox.Size = new System.Drawing.Size(67, 24);
             this.resizeCheckBox.TabIndex = 11;
@@ -522,14 +548,14 @@ namespace ComicCache
             this.infotextbox.Enabled = false;
             this.infotextbox.Location = new System.Drawing.Point(4, 514);
             this.infotextbox.Name = "infotextbox";
-            this.infotextbox.Size = new System.Drawing.Size(287, 20);
+            this.infotextbox.Size = new System.Drawing.Size(263, 20);
             this.infotextbox.TabIndex = 28;
             // 
             // ConfigWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(303, 538);
+            this.ClientSize = new System.Drawing.Size(269, 538);
             this.Controls.Add(this.infotextbox);
             this.Controls.Add(this.homelink);
             this.Controls.Add(this.errorlabel);
@@ -622,6 +648,8 @@ namespace ComicCache
         private CheckBox greyscalecheckbox;
         private Panel backgroundimagepanel;
         private TextBox infotextbox;
+        private Label marginlabel;
+        private TextBox margintextbox;
     }
 }
 

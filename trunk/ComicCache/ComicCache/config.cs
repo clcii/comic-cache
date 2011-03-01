@@ -265,6 +265,8 @@ namespace ComicCache
 			get { return selectedCustomResizeY; }
 			set { selectedCustomResizeY = value; }
 		}
+        
+        
         [XmlIgnore]
         public Color BackGroundColor
         {
@@ -343,7 +345,7 @@ namespace ComicCache
                 return imageresizesize; }
             set { imageresizesize = value; }
         }
-
+        
 		public string Cachetype {
 			get { return cachetype; }
 			set { cachetype = value; }
@@ -353,8 +355,50 @@ namespace ComicCache
             get { return greyscalebg; }
             set { greyscalebg = value; }
         }
+        public string Margins
+        {
+            get { return margins; }
+            set { margins = value; }
+        }
+        [XmlIgnore]
+        public int leftmargin
+        {
+            get
+            {
+                int value = Convert.ToInt16( Margins.Split(',')[0]);
+                return value;
+            }
+        }
+        [XmlIgnore]
+        public int topmargin { 
+            get {
+                int value = Convert.ToInt16(Margins.Split(',')[1]);
+                return value; 
+                } 
+        }
+        [XmlIgnore]
+        public int rightmargin
+        {
+            get
+            {
+                int value = Convert.ToInt16(Margins.Split(',')[2]);
+                return value;
+            }
+        }
+        [XmlIgnore]
+        public int bottommargin {
+            get
+            {
+                int value = Convert.ToInt16(Margins.Split(',')[3]);
+                return value;
+            }
+        }
+        
+
 
         private bool greyscalebg = false;
+
+        private string margins = "0,0,0,0";
 
 
         private int transparency = 80;
