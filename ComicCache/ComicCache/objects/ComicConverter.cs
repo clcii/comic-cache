@@ -77,7 +77,7 @@ namespace ComicCache.objects{
             this.Resize = config.Resize;
             this.ResizeRationType = config.SelectedResizeRatioType;
             this.backgroundcolor = config.BackGroundColor;
-            this.cropfillforBG = config.CropfFllForBG;
+            this.cropfillforBG = config.CropFillForBG;
             this.transparency = config.Transparency;
             this.greyscaleBG = config.GreyScaleBG;
         }

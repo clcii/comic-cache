@@ -11,47 +11,49 @@ namespace ComicCache.dialogue
 {
     public partial class margin : Form
     {
-        public margin()
+        #region Constructors
+            public margin()
         {
             InitializeComponent();
         }
-        public margin(string originalvalues) {
+            public margin(string originalvalues)
+        {
 
             InitializeComponent();
             resultstring = originalvalues;
             setcontrols(ResultString);
 
         }
-        public margin(string originalvalues, int maxXvalues, int maxYvalues){
+            public margin(string originalvalues, int maxXvalues, int maxYvalues)
+        {
             InitializeComponent();
             resultstring = originalvalues;
-            setmaxmargins(maxXvalues, maxYvalues); 
+            setmaxmargins(maxXvalues, maxYvalues);
             setcontrols(ResultString);
-               
+
 
         }
-            
-        
+        #endregion
+
         private string resultstring = "";
+        private DialogResult dialogresult = DialogResult.Cancel;
+        private int maxymargin = 100;
+        private int maxxmargin = 100;
 
         public string ResultString
         {
             get { return resultstring; }
-            set { resultstring = value;
-            setcontrols(resultstring);
+            set
+            {
+                resultstring = value;
+                setcontrols(resultstring);
             }
         }
-        
-        private DialogResult dialogresult = DialogResult.Cancel;
-        private int maxxmargin = 100;
-
         public int MaxXMargin
         {
             get { return maxxmargin; }
             set { maxxmargin = value; }
         }
-        private int maxymargin = 100;
-
         public int MaxYMargin
         {
             get { return maxymargin; }
@@ -62,7 +64,8 @@ namespace ComicCache.dialogue
             get { return dialogresult; }
             set { dialogresult = value; }
         }
-        private void setmaxmargins(int maxX, int maxY) {
+        private void setmaxmargins(int maxX, int maxY)
+        {
 
             topnumericupdown.Maximum = maxY;
             bottomnumericupdown.Maximum = maxY;
@@ -72,7 +75,7 @@ namespace ComicCache.dialogue
         private void okbutton_Click(object sender, EventArgs e)
         {
             dialogresult = System.Windows.Forms.DialogResult.OK;
-            resultstring = leftnumericupdown.Value + "," + topnumericupdown.Value + "," + rightnumericupdown.Value + "," +  bottomnumericupdown.Value ;
+            resultstring = leftnumericupdown.Value + "," + topnumericupdown.Value + "," + rightnumericupdown.Value + "," + bottomnumericupdown.Value;
             Close();
         }
         private void setcontrols(string text)
@@ -88,7 +91,7 @@ namespace ComicCache.dialogue
             {
                 Log.Instance.Write(ex.Message);
             }
-    
+
         }
     }
 }

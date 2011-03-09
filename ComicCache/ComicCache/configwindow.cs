@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using System.Windows.Forms;
 using System.IO;
 
@@ -12,7 +14,6 @@ namespace ComicCache
 {
     public partial class ConfigWindow : Form
     {
-
         #region LocalProperties
             delegate void setStatusInfo(string text);
             private NotifyIcon notifyicon;
@@ -55,17 +56,19 @@ namespace ComicCache
             return result;
         }
         #endregion
+
+
         #region Constructors
-        public ConfigWindow(Config config)
-        {
-            InitializeComponent();
-
-            setuptooltips();
-
-            this.config = config;
-            LoadConfig();
-        }
+            public ConfigWindow(Config config)
+            {
+                InitializeComponent();
+                setuptooltips();
+                this.config = config;
+                LoadConfig();
+            }
         #endregion
+
+
         #region Procedures
             private void refresh() {
             CopyConfig();
@@ -106,7 +109,7 @@ namespace ComicCache
             config.SelectedCustomResizeY = (int)customYnumberic.Value;
             config.Filefilter = (string)filelimitertextbox.Text;
             config.Filterenabled = (bool)limitfilescheckbox.Checked;
-            config.CropfFllForBG = (bool)cropfillforGBcheckbox.Checked;
+            config.CropFillForBG = (bool)cropfillforGBcheckbox.Checked;
             config.GreyScaleBG = (bool)greyscalecheckbox.Checked;
             config.Margins = (string)margintextbox.Text;
             if (stretchradiobutton.Checked)
@@ -138,7 +141,7 @@ namespace ComicCache
                 limitfilescheckbox.Checked = config.Filterenabled;
                 filelimitertextbox.Text = config.Filefilter;
                 backgroundButton.BackColor = config.BackGroundColor;
-                cropfillforGBcheckbox.Checked = config.CropfFllForBG;
+                cropfillforGBcheckbox.Checked = config.CropFillForBG;
                 transparencyupdown.Value = (decimal)config.Transparency;
                 greyscalecheckbox.Checked = config.GreyScaleBG;
                 margintextbox.Text = config.Margins;
@@ -260,10 +263,11 @@ namespace ComicCache
                 }
             }
         #endregion
-        #region Events
 
+
+        #region Events
             #region FormEvents
-            void ConfigWindowLoad(object sender, EventArgs e)
+                void ConfigWindowLoad(object sender, EventArgs e)
                 {
                 screensizetextbox.Text = Convert.ToString(System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width) + "x" + Convert.ToString(System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height);
     
@@ -277,96 +281,107 @@ namespace ComicCache
                         ShowNotify();
                     }
                 }
-        
+                protected override void WndProc(ref Message message)
+            {
+                if (message.Msg == SingleInstance.WM_SHOWFIRSTINSTANCE)
+                {
+                    ShowWindow();
+                }
+                base.WndProc(ref message);
+            }
+                public void ShowWindow()
+            {
+                WinApi.ShowToFront(this.Handle);
+            }
             #endregion
-
             #region ControlEvents
                 void restorebutton_Click(object sender, EventArgs e)
                     {
                         restore();
                     }
                 void ButtontestClick(object sender, EventArgs e)
-        {
-
-            CopyConfig();
-            //this.Text = "Abs Interval = " + Convert.ToString( config.Intervalabs);
-            Boolean isValid = config.IsValid();
-            errorlabel.Text = config.ErrorMessage;
-            errorlabel.Visible = !isValid;
-
-            if (isValid)
-            {
-                Program program = new Program(config,true);
-                program.Run();
-                if (notifyicon != null)
                 {
-                    notifyicon.ContextMenuStrip.Visible = false;
+                    CopyConfig();
+                    Boolean isValid = config.IsValid();
+                    errorlabel.Text = config.ErrorMessage;
+                    errorlabel.Visible = !isValid;
+                    if (isValid)
+                    {
+                        Program program = new Program(config,true);
+                        program.Run();
+                        if (notifyicon != null)
+                        {
+                            notifyicon.ContextMenuStrip.Visible = false;
+                        }
+                    }
+                    else 
+                    { 
+                        System.Media.SystemSounds.Exclamation.Play();    
+                    }
                 }
-            }
-            else 
-            { 
-                System.Media.SystemSounds.Exclamation.Play();    
-            }
-        }
                 void ButtonsaveClick(object sender, EventArgs e)
-        {
-            CopyConfig();
-            config.Save();
-            if (config.IsValid())
-            {
-                this.Hide();
-                ShowNotify();
+                    {
+                        CopyConfig();
+                        config.Save();
+                        if (config.IsValid())
+                        {
+                            this.Hide();
+                            ShowNotify();
                 
-            }
-        }
+                        }
+                    }
                 void ComicbasebuttonClick(object sender, EventArgs e)
-        {
-            clcii.dialogue.multifolder basefolder = new clcii.dialogue.multifolder(comicfolder.Text);
-            basefolder.ShowDialog();
-            if (basefolder.Result() == DialogResult.OK)
-            {
-                comicfolder.Text = basefolder.FileImageSourcePath();
-            }
-        }
+                    {
+                        clcii.dialogue.multifolder basefolder = new clcii.dialogue.multifolder(comicfolder.Text);
+                        basefolder.ShowDialog();
+                        if (basefolder.Result() == DialogResult.OK)
+                        {
+                            comicfolder.Text = basefolder.FileImageSourcePath();
+                        }
+                    }
                 void CachebrowsebuttonClick(object sender, EventArgs e)
-        {
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
-            fbd.SelectedPath = cacheFolder.Text;
-            if (fbd.ShowDialog() == DialogResult.OK)
-            {
-                cacheFolder.Text = fbd.SelectedPath;
-            }
-
-        }
+                    {
+                        FolderBrowserDialog fbd = new FolderBrowserDialog();
+                        fbd.SelectedPath = cacheFolder.Text;
+                        if (fbd.ShowDialog() == DialogResult.OK)
+                        {
+                            cacheFolder.Text = fbd.SelectedPath;
+                        }
+                    }
                 void CheckBox1CheckedChanged(object sender, EventArgs e)
                 {
                     resizePanel.Enabled = resizeCheckBox.Checked;
                     if(!resizeCheckBox.Checked)
                         tempoldcolor = backgroundButton.BackColor;
                     backgroundButton.BackColor = resizeCheckBox.Checked ? tempoldcolor : Color.Gray;
-        }
+                }
+                void exitbutton_Click(object sender, EventArgs e)
+                {
+                    HideNotify();
+                    Application.Exit();
+                }            
                 private void commonRadioButton_CheckedChanged(object sender, EventArgs e)
-        {
-            this.commonComboBox.Enabled = commonRadioButton.Checked; ;
-        }
+                {
+                    this.commonComboBox.Enabled = commonRadioButton.Checked; ;
+                }
                 private void customRadioButton_CheckedChanged(object sender, EventArgs e)
-        {
-            customXnumeric.Enabled = customRadioButton.Checked;
-            customYnumberic.Enabled = customRadioButton.Checked;
-        }
+                {
+                    customXnumeric.Enabled = customRadioButton.Checked;
+                    customYnumberic.Enabled = customRadioButton.Checked;
+                }
                 private void limitfilescheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-            filelimitertextbox.Enabled = limitfilescheckbox.Checked;
-        }
+                {
+                    filelimitertextbox.Enabled = limitfilescheckbox.Checked;
+                }
                 private void buttoncancel_Click(object sender, EventArgs e)
-        {
-            LoadConfig();
-            if (config.IsValid())
-            {
-                this.Hide();
-                ShowNotify();
-            }
-        }
+                    {
+                        LoadConfig();
+                        if (config.IsValid())
+                        {
+                            this.Hide();
+                            ShowNotify();
+                        }
+                    }
                 private void notifyicon_Click(object Sender, MouseEventArgs e)
         {
 
@@ -386,9 +401,9 @@ namespace ComicCache
                     }
                 }
                 private void homelink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start(homelink.Text);
-        }
+                {
+                    System.Diagnostics.Process.Start(homelink.Text);
+                }
                 private void cropfillforGBcheckbox_CheckedChanged(object sender, EventArgs e)
                     {
                         backgroundimagepanel.Enabled = cropfillforGBcheckbox.Checked;
@@ -398,13 +413,6 @@ namespace ComicCache
                 {
                 backgroundpanel.Enabled = keepratioradiobutton.Checked;
                 }
-                void exitbutton_Click(object sender, EventArgs e)
-        {
-            HideNotify();
-            Application.Exit();
-        }            
-            #endregion
-
                 private void margintextbox_Click(object sender, EventArgs e)
                 {
                     dialogue.margin margindialogue = new dialogue.margin(margintextbox.Text, 360,360);
@@ -413,25 +421,8 @@ namespace ComicCache
                         margintextbox.Text = margindialogue.ResultString;
                     }
                 }
-
-
-   
+            #endregion
         # endregion
-
-                protected override void WndProc(ref Message message)
-                {
-                    if (message.Msg == SingleInstance.WM_SHOWFIRSTINSTANCE)
-                    {
-                        ShowWindow();
-                    }
-
-                    base.WndProc(ref message);
-                }
-                public void ShowWindow()
-                {
-                    // Insert code here to make your form show itself.
-                    WinApi.ShowToFront(this.Handle);
-                }
 
     }    
     public enum ResizeStyle { 

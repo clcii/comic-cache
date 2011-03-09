@@ -13,21 +13,25 @@ using Microsoft.Win32;
 
 namespace ComicCache
 {
-	//[Serializable()]
-	public class Config //: ISerializable
+    //[Serializable()]
+    public class Config //: ISerializable
     {
-	
-		#region Constructors
-    	public Config() {
+
+        #region Constructors
+        public Config()
+        {
 
         }
-    	#endregion
-    	#region Methods
-    	public static Config Load(){
-    		try {
-    			if (File.Exists(settingsFile)) {
-    				Stream stream = File.Open(settingsFile, FileMode.Open);
-    				XmlSerializer xs = new XmlSerializer(typeof(Config));
+        #endregion
+        #region Methods
+        public static Config Load()
+        {
+            try
+            {
+                if (File.Exists(settingsFile))
+                {
+                    Stream stream = File.Open(settingsFile, FileMode.Open);
+                    XmlSerializer xs = new XmlSerializer(typeof(Config));
                     Config cpycfg;
                     try
                     {
@@ -39,65 +43,73 @@ namespace ComicCache
                         Log.Instance.Write("Loading default");
                         cpycfg = new Config();
                     }
-    				
-    				stream.Close();
-    				return cpycfg;
-    				}
-    			else
-    				{
-    			 		return new Config();
-    				}
-    			}
-    		catch (Exception ex) {
-    			Log.Instance.Write(ex.Message);
-    			return null;
-    		} finally {
-    			
-    		}
-   	
-    	}
-        public void Save() {
-    		try {
-    			if (Directory.Exists(settingsFolder) == false){
-						Directory.CreateDirectory(settingsFolder);
-					}	
-    			XmlSerializer xs = new XmlSerializer(typeof(Config));
-    			TextWriter tw = new StreamWriter(settingsFile);
-    			xs.Serialize(tw,this);
-    			tw.Close();
-   			
-    		} catch (Exception ex) {
-    			Log.Instance.Write(ex.Message);
-    		} finally {
-    			
-    		}
-        }
-        public bool IsValid(){
 
+                    stream.Close();
+                    return cpycfg;
+                }
+                else
+                {
+                    return new Config();
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Instance.Write(ex.Message);
+                return null;
+            }
+            finally
+            {
+
+            }
+
+        }
+        public void Save()
+        {
+            try
+            {
+                if (Directory.Exists(settingsFolder) == false)
+                {
+                    Directory.CreateDirectory(settingsFolder);
+                }
+                XmlSerializer xs = new XmlSerializer(typeof(Config));
+                TextWriter tw = new StreamWriter(settingsFile);
+                xs.Serialize(tw, this);
+                tw.Close();
+
+            }
+            catch (Exception ex)
+            {
+                Log.Instance.Write(ex.Message);
+            }
+            finally
+            {
+
+            }
+        }
+        public bool IsValid()
+        {
             bool result = true;
-            
             result = Directory.Exists(settingsFolder);
             if (!result)
             {
                 errormessage = "Settings Folder does not exist";
                 return result;
             }
-            
+
             result = Directory.Exists(FolderPath);
             if (!result)
             {
                 errormessage = "Destination Folder does not exist";
                 return result;
             }
-            foreach (string sfolder in this.ComicPaths) {
+            foreach (string sfolder in this.ComicPaths)
+            {
                 result = Directory.Exists(sfolder);
                 if (!result)
                 {
                     errormessage = "Comics Folder does not exist";
                     return result;
                 }
-         
-            
             }
             result = Intervalnum > 0;
             if (!result)
@@ -105,13 +117,13 @@ namespace ComicCache
                 errormessage = "No time interval indicated";
                 return result;
             }
-            result = Covers > 0 ;
+            result = Covers > 0;
             if (!result)
             {
                 errormessage = "Zero covers to be produced";
                 return result;
             }
-            
+
             result = Intervaltype != "";
             if (!result)
             {
@@ -127,7 +139,6 @@ namespace ComicCache
                     errormessage = "New size not inidcated: Screen, Common, or Custom";
                     return result;
                 }
-                
 
             }
 
@@ -140,7 +151,8 @@ namespace ComicCache
                     return result;
                 }
             }
-            if (this.SelectedResizeStyle == ResizeStyle.Custom) {
+            if (this.SelectedResizeStyle == ResizeStyle.Custom)
+            {
                 result = (this.SelectedCustomResizeX > 0) & (this.SelectedCustomResizeY > 0);
                 if (!result)
                 {
@@ -149,80 +161,92 @@ namespace ComicCache
                 }
             }
             result = this.ImageFormat != null;
-            if(!result)
-                {
-                errormessage = "Type of image format not indicated";            
+            if (!result)
+            {
+                errormessage = "Type of image format not indicated";
                 return result;
-                }
+            }
 
             return result;
 
         }
-    	#endregion
+        #endregion
         #region Properties
-        public static string settingsFolder{
-        	get { //return Path.Combine(Application.LocalUserAppDataPath, Application.ProductName + "\\");
-                //return Application.UserAppDataPath;
+        public static string settingsFolder
+        {
+            get
+            { 
                 return Path.GetDirectoryName(Application.ExecutablePath);
             }
-        
+
         }
-        public static string settingsFile{
-        	get { return Path.Combine(settingsFolder, Application.ProductName +".xml");}
-        
+        public static string settingsFile
+        {
+            get { return Path.Combine(settingsFolder, Application.ProductName + ".xml"); }
+
         }
-        
-		public int Intervalnum {
-			get { return intervalnum; }
-			set { intervalnum = value; }
-		}
-		public string Intervaltype {
-			get { return intervaltype; }
-			set { intervaltype = value; }
-		}        
-        public System.Drawing.Imaging.ImageFormat ImageFormat{
-        	get{ 
-        		System.Drawing.Imaging.ImageFormat result = null;
-        		switch (cachetype) {
-        			case "jpg":
-        				result = System.Drawing.Imaging.ImageFormat.Jpeg;
-        				break;
-        			case "bmp":
-        				result = System.Drawing.Imaging.ImageFormat.Bmp;
-        				break;
-        			case "png":
-        				result = System.Drawing.Imaging.ImageFormat.Png;
-        				break;
-        			}
-        			return result;
-        		}
-        		
-        	}
-        public string FolderPath{
+
+        public int Intervalnum
+        {
+            get { return intervalnum; }
+            set { intervalnum = value; }
+        }
+        public string Intervaltype
+        {
+            get { return intervaltype; }
+            set { intervaltype = value; }
+        }
+        public System.Drawing.Imaging.ImageFormat ImageFormat
+        {
+            get
+            {
+                System.Drawing.Imaging.ImageFormat result = null;
+                switch (cachetype)
+                {
+                    case "jpg":
+                        result = System.Drawing.Imaging.ImageFormat.Jpeg;
+                        break;
+                    case "bmp":
+                        result = System.Drawing.Imaging.ImageFormat.Bmp;
+                        break;
+                    case "png":
+                        result = System.Drawing.Imaging.ImageFormat.Png;
+                        break;
+                }
+                return result;
+            }
+
+        }
+        public string FolderPath
+        {
             get { return folderpath; }
             set { folderpath = value; }
         }
-         
-        public double Intervalabs{
-            get { 
-        		TimeSpan ts = new TimeSpan();
-        		string timestring = Convert.ToString((double)intervalnum) + " " + intervaltype;
-        		switch (intervaltype.ToLower()) {
-        			case "seconds":
-        				ts += TimeSpan.FromSeconds((double)intervalnum);
-        				break;
-        			case "minutes":
-        				ts += TimeSpan.FromMinutes((double)intervalnum);
-       					break;
-        			case "hours":
-       					ts += TimeSpan.FromHours((double)intervalnum);
-       					break;
-        			case "days":
-       					ts += TimeSpan.FromDays((double)intervalnum);
-       					break;
-        		}
-        		intervalabs = (double)ts.TotalMilliseconds;
-        		return intervalabs; }
+
+        public double Intervalabs
+        {
+            get
+            {
+                TimeSpan ts = new TimeSpan();
+                string timestring = Convert.ToString((double)intervalnum) + " " + intervaltype;
+                switch (intervaltype.ToLower())
+                {
+                    case "seconds":
+                        ts += TimeSpan.FromSeconds((double)intervalnum);
+                        break;
+                    case "minutes":
+                        ts += TimeSpan.FromMinutes((double)intervalnum);
+                        break;
+                    case "hours":
+                        ts += TimeSpan.FromHours((double)intervalnum);
+                        break;
+                    case "days":
+                        ts += TimeSpan.FromDays((double)intervalnum);
+                        break;
+                }
+                intervalabs = (double)ts.TotalMilliseconds;
+                return intervalabs;
+            }
         }
         public string ComicPath
         {
@@ -231,42 +255,48 @@ namespace ComicCache
         }
         public List<string> ComicPaths
         {
-            get {
+            get
+            {
                 List<string> results = new List<string>();
                 results.AddRange(comicpath.Split(';'));
                 return results;
             }
         }
-        public int Covers {
-			get { return covers; }
-			set { covers = value; }
-		}        
-		public bool Resize {
-			get { return resize; }
-			set { resize = value; }
-		}
-		public ResizeStyle SelectedResizeStyle {
-			get { return selectedResizeStyle; }
-			set { selectedResizeStyle = value; }
-		}
-        public ResizeRatioType SelectedResizeRatioType {
+        public int Covers
+        {
+            get { return covers; }
+            set { covers = value; }
+        }
+        public bool Resize
+        {
+            get { return resize; }
+            set { resize = value; }
+        }
+        public ResizeStyle SelectedResizeStyle
+        {
+            get { return selectedResizeStyle; }
+            set { selectedResizeStyle = value; }
+        }
+        public ResizeRatioType SelectedResizeRatioType
+        {
             get { return selectedResizeRatioType; }
             set { selectedResizeRatioType = value; }
         }
-		public string SelectedCommonResizeSize {
-			get { return selectedCommonResizeSize; }
-			set { selectedCommonResizeSize = value; }
-		}	
-		public int SelectedCustomResizeX {
-			get { return selectedCustomResizeX; }
-			set { selectedCustomResizeX = value; }
-		}
-		public int SelectedCustomResizeY {
-			get { return selectedCustomResizeY; }
-			set { selectedCustomResizeY = value; }
-		}
-        
-        
+        public string SelectedCommonResizeSize
+        {
+            get { return selectedCommonResizeSize; }
+            set { selectedCommonResizeSize = value; }
+        }
+        public int SelectedCustomResizeX
+        {
+            get { return selectedCustomResizeX; }
+            set { selectedCustomResizeX = value; }
+        }
+        public int SelectedCustomResizeY
+        {
+            get { return selectedCustomResizeY; }
+            set { selectedCustomResizeY = value; }
+        }
         [XmlIgnore]
         public Color BackGroundColor
         {
@@ -291,65 +321,65 @@ namespace ComicCache
         }
         public string Filefilter
         {
-            get {return filefilter; }
+            get { return filefilter; }
             set { filefilter = value; }
         }
-		public string SettingsFile {
-			get { return settingsFile; }
-		}
+        public string SettingsFile
+        {
+            get { return settingsFile; }
+        }
         public string ErrorMessage
         {
             get { return errormessage; }
             set { errormessage = value; }
         }
-        public bool CropfFllForBG
+        public bool CropFillForBG
         {
             get { return cropfillforBG; }
             set { cropfillforBG = value; }
         }
         public Size ImageResizeSize
         {
-            get {
+            get
+            {
                 switch (SelectedResizeStyle)
-                    {
-                        case ResizeStyle.None:
+                {
+                    case ResizeStyle.None:
+                        imageresizesize = new Size();
+                        break;
+                    case ResizeStyle.CurrentScreen:
+                        imageresizesize = new Size(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
+                        break;
+                    case ResizeStyle.Common:
+                        if (selectedCommonResizeSize != "")
+                        {
+                            string w = SelectedCommonResizeSize.Split(Convert.ToChar("x"))[0];
+                            string h = SelectedCommonResizeSize.Split(Convert.ToChar("x"))[1];
+                            int iw = Convert.ToInt16(w);
+                            int ih = Convert.ToInt16(h);
+                            imageresizesize = new Size(iw, ih);
+                        }
+                        else
+                        {
                             imageresizesize = new Size();
-                            break;
-                        case ResizeStyle.CurrentScreen:
-                            imageresizesize = new Size(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
-                            break;
-                        case ResizeStyle.Common:
-                            if (selectedCommonResizeSize != "")
-                            {
-                                string w = SelectedCommonResizeSize.Split(Convert.ToChar("x"))[0];
-                                string h = SelectedCommonResizeSize.Split(Convert.ToChar("x"))[1];
-                                int iw = Convert.ToInt16(w);
-                                int ih = Convert.ToInt16(h);
-                                imageresizesize = new Size(iw, ih);
-                            }
-                            else {
-                                imageresizesize = new Size();
-                            }
-
-                            
-                            break;
-                        case ResizeStyle.Custom:
-                            imageresizesize = new Size(SelectedCustomResizeX, SelectedCustomResizeY);
-                            break;
-                        default:
-                            imageresizesize = new Size();
-                            break;
-                    }
-                
-                
-                return imageresizesize; }
+                        }
+                        break;
+                    case ResizeStyle.Custom:
+                        imageresizesize = new Size(SelectedCustomResizeX, SelectedCustomResizeY);
+                        break;
+                    default:
+                        imageresizesize = new Size();
+                        break;
+                }
+                return imageresizesize;
+            }
             set { imageresizesize = value; }
         }
-        
-		public string Cachetype {
-			get { return cachetype; }
-			set { cachetype = value; }
-		}
+        public string Cachetype
+        {
+            get { return cachetype; }
+            set { cachetype = value; }
+        }
         public bool GreyScaleBG
         {
             get { return greyscalebg; }
@@ -365,16 +395,18 @@ namespace ComicCache
         {
             get
             {
-                int value = Convert.ToInt16( Margins.Split(',')[0]);
+                int value = Convert.ToInt16(Margins.Split(',')[0]);
                 return value;
             }
         }
         [XmlIgnore]
-        public int topmargin { 
-            get {
+        public int topmargin
+        {
+            get
+            {
                 int value = Convert.ToInt16(Margins.Split(',')[1]);
-                return value; 
-                } 
+                return value;
+            }
         }
         [XmlIgnore]
         public int rightmargin
@@ -386,21 +418,16 @@ namespace ComicCache
             }
         }
         [XmlIgnore]
-        public int bottommargin {
+        public int bottommargin
+        {
             get
             {
                 int value = Convert.ToInt16(Margins.Split(',')[3]);
                 return value;
             }
         }
-        
-
-
         private bool greyscalebg = false;
-
         private string margins = "0,0,0,0";
-
-
         private int transparency = 80;
         private string errormessage = "";
         private string selectedCommonResizeSize = "";
@@ -413,19 +440,17 @@ namespace ComicCache
         private bool resize = false;
         private ResizeStyle selectedResizeStyle = ResizeStyle.None;
         private ResizeRatioType selectedResizeRatioType = ResizeRatioType.Keep;
-        private double intervalabs=0;
-        private int covers=1;
-        private int intervalnum=0;
-        private string intervaltype ="Minutes";
-        private string folderpath="";
-        private string comicpath="";
+        private double intervalabs = 0;
+        private int covers = 1;
+        private int intervalnum = 0;
+        private string intervaltype = "Minutes";
+        private string folderpath = "";
+        private string comicpath = "";
         private string cachetype = "jpg";
         private Size imageresizesize = new Size();
-
-
-        //private static readonly string KEY = "Software\\ComicCache";  
-        #endregion 
+        #endregion
     
-	}
-   
+    }
 }
+
+
