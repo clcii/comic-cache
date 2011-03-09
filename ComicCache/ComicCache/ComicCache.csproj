@@ -138,6 +138,8 @@
     <Compile Include="objects\ComicConverter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SingleInstance.cs" />
+    <Compile Include="WinApi.cs" />
     <None Include="SevenZipSharp.dll" />
     <EmbeddedResource Include="configwindow.resx">
       <DependentUpon>configwindow.cs</DependentUpon>

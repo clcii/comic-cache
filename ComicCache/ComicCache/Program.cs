@@ -17,10 +17,15 @@ namespace ComicCache{
             try
             {
 				Log.Instance.IsEnabled = true;
+                //bool onlyInstance = false;
+
+                //Mutex mutex = new Mutex(true, "ComicCache", out onlyInstance);
+                if (!SingleInstance.Start())
+                {
+                    SingleInstance.ShowFirstInstance();
+                    return;
+                }
                 Application.EnableVisualStyles();
-				foreach (Process process in Process.GetProcesses())
-                    if (process.Id != Process.GetCurrentProcess().Id && process.ProcessName.Equals("ComicCache"))
-                        return;
 				Config config = Config.Load();
                 if (config.IsValid() == false) {
                     Application.Run(new ConfigWindow(config));
@@ -44,6 +49,7 @@ namespace ComicCache{
                 program.ShowTrayIcon();
                 program.Run();
                 Application.Run();
+                SingleInstance.Stop();
             }
             catch (Exception ex)
             {
@@ -128,6 +134,21 @@ namespace ComicCache{
         {
             Log.Instance.Write("ApplicationExit");
         }
+            protected void WndProc(ref Message message)
+            {
+                if (message.Msg == SingleInstance.WM_SHOWFIRSTINSTANCE)
+                {
+                    ShowWindow();
+                }
+                
+                //base.WndProc(ref message);
+            }
+
+            public void ShowWindow()
+            {
+                // Insert code here to make your form show itself.
+                WinApi.ShowToFront(configwindow.Handle);
+            }
 		#endregion
 		#region Constructors
             public Program(Config config, bool testrun)
@@ -146,6 +167,8 @@ namespace ComicCache{
       	public bool cancel = false;
       	public ConfigWindow configwindow;
         private bool testrun = false;
+
+
 		#endregion
     }
 }
