@@ -9,27 +9,27 @@ using System.Threading;
 using System.Runtime.InteropServices;
 
 
-namespace ComicCache{
-    class Program{
+namespace ComicCache
+{
+    class Program
+    {
         [STAThread()]
         static void Main(string[] args)
         {
             try
             {
-				Log.Instance.IsEnabled = true;
-                //bool onlyInstance = false;
-
-                //Mutex mutex = new Mutex(true, "ComicCache", out onlyInstance);
+                Log.Instance.IsEnabled = true;
                 if (!SingleInstance.Start())
                 {
                     SingleInstance.ShowFirstInstance();
                     return;
                 }
                 Application.EnableVisualStyles();
-				Config config = Config.Load();
-                if (config.IsValid() == false) {
+                Config config = Config.Load();
+                if (config.IsValid() == false)
+                {
                     Application.Run(new ConfigWindow(config));
-                    return; 
+                    return;
                 }
                 if (args.Length > 0)
                     if (args[0].ToLower().Contains("/p"))
@@ -42,7 +42,7 @@ namespace ComicCache{
                 Program program = new Program(config);
                 program.End += (obj, e) =>
                 {
-                   	Log.Instance.Write("Stopping Cacher");
+                    Log.Instance.Write("Stopping Cacher");
                     program.Stop();
                     Application.Exit();
                 };
@@ -61,114 +61,121 @@ namespace ComicCache{
                 // just in case of abnormal termination
             }
         }
-		#region Methods
-            public void Run() { 
-		    // start the thread
+        #region Methods
+        public void Run()
+        {
+            // start the thread
             MainThread = new Thread(ThreadProc);
             MainThread.IsBackground = true;
             MainThread.Start();
-		}
-            public void Stop() {
+        }
+        public void Stop()
+        {
             configwindow.HideNotify();
-		}
-		    public void ThreadStop() {
-			MainThread.Abort();
-		}
-            public void ThreadProc(){
-                Log.Instance.Write("Refreshing");
-                Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
-                Config myconfig = config;
-                while (cancel.Equals(false)&&myconfig.IsValid()) {
-            	    List<string> cacheitems = new List<string>();
-            	    cacheitems.AddRange(Directory.GetFiles(config.FolderPath));
-            	    foreach(string file in cacheitems)
-                    {
-            		    try 
-                        {
-            			    File.Delete(file);
-            		    } catch (Exception) {
-            		}
-            	}
-				int inum = 0;
-				string newfilename = "";
-                ComicCache.objects.ComicConverter cc = new objects.ComicConverter(config);
-            	while (Directory.GetFiles(config.FolderPath).Length < config.Covers) 
+        }
+        public void ThreadStop()
+        {
+            MainThread.Abort();
+        }
+        public void ThreadProc()
+        {
+            Log.Instance.Write("Refreshing");
+            Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
+            Config myconfig = config;
+            while (cancel.Equals(false) && myconfig.IsValid())
+            {
+                List<string> cacheitems = new List<string>();
+                cacheitems.AddRange(Directory.GetFiles(config.FolderPath));
+                foreach (string file in cacheitems)
                 {
-            		newfilename = Path.Combine(config.FolderPath, "ComicPic" + Convert.ToString(inum) +"." + config.Cachetype);
-            		while (File.Exists(newfilename)) {
-            			inum++;
-            			newfilename = Path.Combine(config.FolderPath, "ComicPic" + Convert.ToString(inum) +"." + config.Cachetype);
-            		}
-					try {
-                            
-					        cc.Save(newfilename, config.Filterenabled ? config.Filefilter : "");
-						} catch (Exception ex) {
-                            Log.Instance.Write(ex.Message);	
-						}
-            	}
+                    try
+                    {
+                        File.Delete(file);
+                    }
+                    catch (Exception)
+                    {
+                    }
+                }
+                int inum = 0;
+                string newfilename = "";
+                ComicCache.objects.ComicConverter cc = new objects.ComicConverter(config);
+                while (Directory.GetFiles(config.FolderPath).Length < config.Covers)
+                {
+                    newfilename = Path.Combine(config.FolderPath, "ComicPic" + Convert.ToString(inum) + "." + config.Cachetype);
+                    while (File.Exists(newfilename))
+                    {
+                        inum++;
+                        newfilename = Path.Combine(config.FolderPath, "ComicPic" + Convert.ToString(inum) + "." + config.Cachetype);
+                    }
+                    try
+                    {
+
+                        cc.Save(newfilename, config.Filterenabled ? config.Filefilter : "");
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Instance.Write(ex.Message);
+                    }
+                }
                 if (testrun)
-                    {
-                        Log.Instance.Write("Exiting Test Run");
-                        cancel = true;
-                    }
+                {
+                    Log.Instance.Write("Exiting Test Run");
+                    cancel = true;
+                }
                 else
-                    {
-                        Log.Instance.Write("Waiting till " + System.DateTime.Now.AddMilliseconds((int)myconfig.Intervalabs) );
-				        Thread.Sleep((int)myconfig.Intervalabs);
-                    }
-            }
-            
-        
-        }
-            private void ShowTrayIcon(){
-			configwindow = new ConfigWindow(config);
-			configwindow.ShowNotify();
-        }
-            public void RestartMainTreade(Config config) {
-                ThreadStop();
-                this.config = config;
-                Run();
+                {
+                    Log.Instance.Write("Waiting till " + System.DateTime.Now.AddMilliseconds((int)myconfig.Intervalabs));
+                    Thread.Sleep((int)myconfig.Intervalabs);
+                }
             }
 
-    		private void Application_ApplicationExit(object sender, EventArgs e)
+
+        }
+        private void ShowTrayIcon()
+        {
+            configwindow = new ConfigWindow(config);
+            configwindow.ShowNotify();
+        }
+        public void RestartMainTreade(Config config)
+        {
+            ThreadStop();
+            this.config = config;
+            Run();
+        }
+        private void Application_ApplicationExit(object sender, EventArgs e)
         {
             Log.Instance.Write("ApplicationExit");
         }
-            protected void WndProc(ref Message message)
-            {
-                if (message.Msg == SingleInstance.WM_SHOWFIRSTINSTANCE)
-                {
-                    ShowWindow();
-                }
-                
-                //base.WndProc(ref message);
-            }
-
-            public void ShowWindow()
-            {
-                // Insert code here to make your form show itself.
-                WinApi.ShowToFront(configwindow.Handle);
-            }
-		#endregion
-		#region Constructors
-            public Program(Config config, bool testrun)
-                {
-                    this.config = config;
-                    this.testrun = testrun;
-                }
-            public Program(Config config) {
-                this.config = config;
-            }
-		#endregion
-		#region Properties
-	    private Config config;
-		private Thread MainThread;
-      	public event EventHandler End;
-      	public bool cancel = false;
-      	public ConfigWindow configwindow;
+        protected void WndProc(ref Message message)
+        {
+            if (message.Msg == SingleInstance.WM_SHOWFIRSTINSTANCE) { ShowWindow(); }
+        }
+        public void ShowWindow()
+        {
+            // Insert code here to make your form show itself.
+            WinApi.ShowToFront(configwindow.Handle);
+        }
+        #endregion
+        #region Constructors
+        public Program(Config config, bool testrun)
+        {
+            this.config = config;
+            this.testrun = testrun;
+        }
+        public Program(Config config)
+        {
+            this.config = config;
+        }
+        #endregion
+        #region Properties
+        private Config config;
+        private Thread MainThread;
+        public event EventHandler End;
+        public bool cancel = false;
+        public ConfigWindow configwindow;
         private bool testrun = false;
 
 
-		#endregion
+        #endregion
     }
 }

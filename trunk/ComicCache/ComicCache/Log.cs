@@ -88,7 +88,6 @@ namespace ComicCache
 		#region Constructors
     	public Log()
         {
-            //System.Diagnostics.Debug.Print(LogFilePath);
             System.IO.Directory.CreateDirectory(Path.GetDirectoryName(logFilePath));
         }		
         public static Log Instance
