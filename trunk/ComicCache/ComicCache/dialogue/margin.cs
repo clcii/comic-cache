@@ -20,7 +20,18 @@ namespace ComicCache.dialogue
             InitializeComponent();
             resultstring = originalvalues;
             setcontrols(ResultString);
+
         }
+        public margin(string originalvalues, int maxXvalues, int maxYvalues){
+            InitializeComponent();
+            resultstring = originalvalues;
+            setmaxmargins(maxXvalues, maxYvalues); 
+            setcontrols(ResultString);
+               
+
+        }
+            
+        
         private string resultstring = "";
 
         public string ResultString
@@ -32,13 +43,32 @@ namespace ComicCache.dialogue
         }
         
         private DialogResult dialogresult = DialogResult.Cancel;
+        private int maxxmargin = 100;
 
+        public int MaxXMargin
+        {
+            get { return maxxmargin; }
+            set { maxxmargin = value; }
+        }
+        private int maxymargin = 100;
+
+        public int MaxYMargin
+        {
+            get { return maxymargin; }
+            set { maxymargin = value; }
+        }
         public DialogResult Dialogresult
         {
             get { return dialogresult; }
             set { dialogresult = value; }
         }
+        private void setmaxmargins(int maxX, int maxY) {
 
+            topnumericupdown.Maximum = maxY;
+            bottomnumericupdown.Maximum = maxY;
+            leftnumericupdown.Maximum = maxX;
+            rightnumericupdown.Maximum = maxX;
+        }
         private void okbutton_Click(object sender, EventArgs e)
         {
             dialogresult = System.Windows.Forms.DialogResult.OK;
@@ -54,10 +84,9 @@ namespace ComicCache.dialogue
                 rightnumericupdown.Value = Convert.ToInt16(text.Split(',')[2]);
                 bottomnumericupdown.Value = Convert.ToInt16(text.Split(',')[3]);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
-                throw;
+                Log.Instance.Write(ex.Message);
             }
     
         }

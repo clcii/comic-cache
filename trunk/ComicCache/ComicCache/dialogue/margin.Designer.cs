@@ -84,21 +84,21 @@
             this.rightnumericupdown.Location = new System.Drawing.Point(110, 45);
             this.rightnumericupdown.Name = "rightnumericupdown";
             this.rightnumericupdown.Size = new System.Drawing.Size(39, 20);
-            this.rightnumericupdown.TabIndex = 7;
+            this.rightnumericupdown.TabIndex = 2;
             // 
             // leftnumericupdown
             // 
             this.leftnumericupdown.Location = new System.Drawing.Point(3, 45);
             this.leftnumericupdown.Name = "leftnumericupdown";
             this.leftnumericupdown.Size = new System.Drawing.Size(39, 20);
-            this.leftnumericupdown.TabIndex = 8;
+            this.leftnumericupdown.TabIndex = 1;
             // 
             // topnumericupdown
             // 
             this.topnumericupdown.Location = new System.Drawing.Point(55, 3);
             this.topnumericupdown.Name = "topnumericupdown";
             this.topnumericupdown.Size = new System.Drawing.Size(39, 20);
-            this.topnumericupdown.TabIndex = 9;
+            this.topnumericupdown.TabIndex = 0;
             // 
             // bottomnumericupdown
             // 
@@ -110,7 +110,7 @@
             0});
             this.bottomnumericupdown.Name = "bottomnumericupdown";
             this.bottomnumericupdown.Size = new System.Drawing.Size(39, 20);
-            this.bottomnumericupdown.TabIndex = 10;
+            this.bottomnumericupdown.TabIndex = 3;
             // 
             // margin
             // 

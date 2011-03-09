@@ -124,6 +124,7 @@ namespace ComicCache
         {
             try
             {
+                backgroundButton.BackColor = resizeCheckBox.Checked ? tempoldcolor : Color.Gray;
                 combointerval.Text = config.Intervaltype;
                 updowninterval.Value = config.Intervalnum;
                 comicfolder.Text = config.ComicPath;
@@ -338,11 +339,11 @@ namespace ComicCache
 
         }
                 void CheckBox1CheckedChanged(object sender, EventArgs e)
-        {
-            resizePanel.Enabled = resizeCheckBox.Checked;
-            if(!resizeCheckBox.Checked)
-                tempoldcolor = backgroundButton.BackColor;
-            backgroundButton.BackColor = resizeCheckBox.Checked ? tempoldcolor : Color.Gray;
+                {
+                    resizePanel.Enabled = resizeCheckBox.Checked;
+                    if(!resizeCheckBox.Checked)
+                        tempoldcolor = backgroundButton.BackColor;
+                    backgroundButton.BackColor = resizeCheckBox.Checked ? tempoldcolor : Color.Gray;
         }
                 private void commonRadioButton_CheckedChanged(object sender, EventArgs e)
         {
@@ -389,15 +390,14 @@ namespace ComicCache
             System.Diagnostics.Process.Start(homelink.Text);
         }
                 private void cropfillforGBcheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-            backgroundimagepanel.Enabled = cropfillforGBcheckbox.Checked;
+                    {
+                        backgroundimagepanel.Enabled = cropfillforGBcheckbox.Checked;
 
-
-        }
+                    }
                 private void keepratioradiobutton_CheckedChanged(object sender, EventArgs e)
-        {
-            backgroundpanel.Enabled = keepratioradiobutton.Checked;
-        }
+                {
+                backgroundpanel.Enabled = keepratioradiobutton.Checked;
+                }
                 void exitbutton_Click(object sender, EventArgs e)
         {
             HideNotify();
@@ -407,7 +407,7 @@ namespace ComicCache
 
                 private void margintextbox_Click(object sender, EventArgs e)
                 {
-                    dialogue.margin margindialogue = new dialogue.margin(margintextbox.Text);
+                    dialogue.margin margindialogue = new dialogue.margin(margintextbox.Text, 360,360);
                     margindialogue.ShowDialog();
                     if (margindialogue.Dialogresult == System.Windows.Forms.DialogResult.OK) {
                         margintextbox.Text = margindialogue.ResultString;
@@ -417,6 +417,21 @@ namespace ComicCache
 
    
         # endregion
+
+                protected override void WndProc(ref Message message)
+                {
+                    if (message.Msg == SingleInstance.WM_SHOWFIRSTINSTANCE)
+                    {
+                        ShowWindow();
+                    }
+
+                    base.WndProc(ref message);
+                }
+                public void ShowWindow()
+                {
+                    // Insert code here to make your form show itself.
+                    WinApi.ShowToFront(this.Handle);
+                }
 
     }    
     public enum ResizeStyle { 
