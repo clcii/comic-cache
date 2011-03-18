@@ -326,7 +326,8 @@ namespace ComicCache
             }
             public void ShowWindow()
             {
-                WinApi.ShowToFront(this.Handle);
+                //WinApi.ShowToFront(this.Handle);
+                restore();
             }
             #endregion
             #region ControlEvents
@@ -419,15 +420,15 @@ namespace ComicCache
                         }
                     }
                 private void notifyicon_Click(object Sender, MouseEventArgs e)
-        {
-
-            {
-                if (e.Button == System.Windows.Forms.MouseButtons.Left)
                 {
-                    restore();
+
+                    {
+                        if (e.Button == System.Windows.Forms.MouseButtons.Left)
+                        {
+                            restore();
+                        }
+                    }
                 }
-            }
-        }
                 private void backgroundButton_Click(object sender, EventArgs e){
                     ColorDialog colorpicker = new ColorDialog();
                     colorpicker.AllowFullOpen = true;
