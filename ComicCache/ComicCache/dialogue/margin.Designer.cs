@@ -133,7 +133,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "margin";
+            this.Text = "Margins";
             ((System.ComponentModel.ISupportInitialize)(this.rightnumericupdown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.leftnumericupdown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.topnumericupdown)).EndInit();
