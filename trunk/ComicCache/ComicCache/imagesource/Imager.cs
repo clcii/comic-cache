@@ -24,45 +24,53 @@ namespace ComicCache.imagesource
 		public Imager(string root)
 		{
 			this.root = root;
-			cis = new clcii.comic.ComicImageSource(Comicstyle.CoversOnly);
+            
 		}
-        public Imager(string root, string filter)
+        public Imager(string root, string filter) : this(root)
         {
-            this.root = root;
             this.Filter = filter;
-            cis = new clcii.comic.ComicImageSource(Comicstyle.CoversOnly);
         }
-		
+        public Imager(string root, string filter, Comicstyle style) : this(root, filter)
+        {
+            this.style = style;
+        }
+
 		public Image GetImage(){
+            if (cis == null) 
+            {
+                cis = new clcii.comic.ComicImageSource(style);
+                fileenum = new fileenum(root, cis.ComicExtensions());
+            }
 			Image result = null;
 			if (files.Count == 0) 
             {
-                foreach(string maindir in root.Split(';')){
-					if (Directory.Exists(maindir))
-                    {
-                        foreach (string sext in cis.ComicExtensions())
-                        {
-                            string searchparm = "*" + sext;
-                            try
-                            {
-                                files.AddRange(Directory.GetFiles(maindir, searchparm,SearchOption.TopDirectoryOnly));
-                            }
-                            catch (Exception)
-                            {
-                            }
-                            foreach (string subdir in Directory.GetDirectories(maindir))
-                            {
-                                try
-                                {
-                                    files.AddRange(Directory.GetFiles(subdir, searchparm, SearchOption.AllDirectories));
-                                }
-                                catch
-                                {
-                                }
-                            }
-                        }
-				    }
-			    }
+                files.AddRange(fileenum.AllFiles);
+                //foreach(string maindir in root.Split(';')){
+                //    if (Directory.Exists(maindir))
+                //    {
+                //        foreach (string sext in cis.ComicExtensions())
+                //        {
+                //            string searchparm = "*" + sext;
+                //            try
+                //            {
+                //                files.AddRange(Directory.GetFiles(maindir, searchparm,SearchOption.TopDirectoryOnly));
+                //            }
+                //            catch (Exception)
+                //            {
+                //            }
+                //            foreach (string subdir in Directory.GetDirectories(maindir))
+                //            {
+                //                try
+                //                {
+                //                    files.AddRange(Directory.GetFiles(subdir, searchparm, SearchOption.AllDirectories));
+                //                }
+                //                catch
+                //                {
+                //                }
+                //            }
+                //        }
+                //    }
+			    //}
 		    }
             
             if (filter != "*")
@@ -93,8 +101,8 @@ namespace ComicCache.imagesource
 			return result;
 			
 		}
-
-	
+        private fileenum fileenum;
+    private Comicstyle style = Comicstyle.CoversOnly;
 	private List<string> files = new List<string>();
 	private string root = "";
 	private clcii.comic.ComicImageSource cis;

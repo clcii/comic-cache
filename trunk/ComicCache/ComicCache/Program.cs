@@ -99,6 +99,7 @@ namespace ComicCache
                 int inum = 0;
                 string newfilename = "";
                 ComicCache.objects.ComicConverter cc = new objects.ComicConverter(config);
+                
                 while (Directory.GetFiles(config.FolderPath).Length < config.Covers)
                 {
                     newfilename = Path.Combine(config.FolderPath, "ComicPic" + Convert.ToString(inum) + "." + config.Cachetype);
@@ -136,7 +137,7 @@ namespace ComicCache
             configwindow = new ConfigWindow(config);
             configwindow.ShowNotify();
         }
-        public void RestartMainTreade(Config config)
+        public void RestartMainTread(Config config)
         {
             ThreadStop();
             this.config = config;
@@ -157,9 +158,8 @@ namespace ComicCache
         }
         #endregion
         #region Constructors
-        public Program(Config config, bool testrun)
+        public Program(Config config, bool testrun) : this(config)
         {
-            this.config = config;
             this.testrun = testrun;
         }
         public Program(Config config)

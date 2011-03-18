@@ -76,6 +76,8 @@ namespace ComicCache
             this.errorlabel = new System.Windows.Forms.Label();
             this.homelink = new System.Windows.Forms.LinkLabel();
             this.infotextbox = new System.Windows.Forms.TextBox();
+            this.comicstylecombobox = new System.Windows.Forms.ComboBox();
+            this.comicstylelabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.updowninterval)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.updowncachesize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customXnumeric)).BeginInit();
@@ -193,7 +195,7 @@ namespace ComicCache
             // 
             this.cachefolderlabel.Location = new System.Drawing.Point(12, 109);
             this.cachefolderlabel.Name = "cachefolderlabel";
-            this.cachefolderlabel.Size = new System.Drawing.Size(112, 23);
+            this.cachefolderlabel.Size = new System.Drawing.Size(80, 23);
             this.cachefolderlabel.TabIndex = 23;
             this.cachefolderlabel.Text = "Cache Folder";
             // 
@@ -551,11 +553,34 @@ namespace ComicCache
             this.infotextbox.Size = new System.Drawing.Size(263, 20);
             this.infotextbox.TabIndex = 28;
             // 
+            // comicstylecombobox
+            // 
+            this.comicstylecombobox.FormattingEnabled = true;
+            this.comicstylecombobox.Items.AddRange(new object[] {
+            "Covers Only",
+            "Entire Comic",
+            "Any Page"});
+            this.comicstylecombobox.Location = new System.Drawing.Point(161, 108);
+            this.comicstylecombobox.Name = "comicstylecombobox";
+            this.comicstylecombobox.Size = new System.Drawing.Size(98, 21);
+            this.comicstylecombobox.TabIndex = 29;
+            // 
+            // comicstylelabel
+            // 
+            this.comicstylelabel.AutoSize = true;
+            this.comicstylelabel.Location = new System.Drawing.Point(111, 111);
+            this.comicstylelabel.Name = "comicstylelabel";
+            this.comicstylelabel.Size = new System.Drawing.Size(30, 13);
+            this.comicstylelabel.TabIndex = 30;
+            this.comicstylelabel.Text = "Style";
+            // 
             // ConfigWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(269, 538);
+            this.Controls.Add(this.comicstylelabel);
+            this.Controls.Add(this.comicstylecombobox);
             this.Controls.Add(this.infotextbox);
             this.Controls.Add(this.homelink);
             this.Controls.Add(this.errorlabel);
@@ -651,6 +676,8 @@ namespace ComicCache
         private TextBox infotextbox;
         private Label marginlabel;
         private TextBox margintextbox;
+        private ComboBox comicstylecombobox;
+        private Label comicstylelabel;
     }
 }
 

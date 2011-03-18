@@ -17,8 +17,39 @@ namespace clcii.dialogue
         public multifolder(string foldersString)
         {
             InitializeComponent();
-            string[] folders = foldersString.Split(';');
-            folderslistbox.Items.AddRange(folders);
+            List<string> allfolders = new List<string>();
+            List<string> includefolders = new List<string>();
+            List<string> excludefolders = new List<string>();
+            
+            allfolders.AddRange(foldersString.Split(';'));
+            excludefolders.AddRange
+                (
+                    allfolders.FindAll
+                    (
+                        delegate(string exclude)
+                        {
+                            return exclude.StartsWith("!");
+                        }
+                    )
+                );
+            includefolders.AddRange
+                (
+                    allfolders.FindAll
+                    (
+                        delegate(string include)
+                        {
+                            return !excludefolders.Contains(include);
+                        }
+                    )
+                );
+            foreach (string excludeitm in excludefolders)
+            {
+                excludefolderslistbox.Items.Add(excludeitm.TrimStart('!'));
+            }
+
+            folderslistbox.Items.AddRange(includefolders.ToArray());
+
+
         }
 
         private void multifolder_Load(object sender, EventArgs e)
@@ -65,8 +96,16 @@ namespace clcii.dialogue
         }
         public string FileImageSourcePath()
         {
-            string[] values = new string[folderslistbox.Items.Count];
-            folderslistbox.Items.CopyTo(values, 0);
+            List<string> values = new List<string>();
+            string[] dump;
+            dump = new string[folderslistbox.Items.Count];
+            folderslistbox.Items.CopyTo(dump,0);
+            values.AddRange(dump);
+            foreach (string itm in excludefolderslistbox.Items)
+            {
+                values.Add("!" + itm);
+            }
+            
             return string.Join(";", values);
         
         }
@@ -82,6 +121,42 @@ namespace clcii.dialogue
         {
             result = DialogResult.Cancel;
             this.Close();
+        }
+
+        private void addbuttonexclude_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                if (System.IO.Directory.Exists(fbd.SelectedPath))
+                {
+                    if (excludefolderslistbox.Items.Count == 1)
+                    {
+                        if (excludefolderslistbox.Items[0].ToString() == string.Empty)
+                        {
+                            excludefolderslistbox.Items[0] = fbd.SelectedPath;
+                        }
+                        else
+                        {
+                            excludefolderslistbox.Items.Add(fbd.SelectedPath);
+                        }
+                    }
+                    else
+                    {
+                        excludefolderslistbox.Items.Add(fbd.SelectedPath);
+                    }
+                }
+
+            }
+
+        }
+
+        private void removebuttonexclude_Click(object sender, EventArgs e)
+        {
+            if (excludefolderslistbox.SelectedItem != null)
+            {
+                excludefolderslistbox.Items.Remove(excludefolderslistbox.SelectedItem);
+            }
         }
     }
 

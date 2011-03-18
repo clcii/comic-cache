@@ -30,6 +30,7 @@ namespace clcii.comic
 		 }
 		public Image GetImage(string filename)
 		{
+            Log.Instance.Write("Getting " + Path.GetFileName(filename));
             currentFile = filename;
             Image oPic = null;
                 Stream archive = new FileStream(filename, FileMode.Open,FileAccess.Read, FileShare.Read);

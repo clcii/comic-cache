@@ -85,7 +85,7 @@ namespace ComicCache.objects{
 
             if (img == null|this.filter != filter){
                 this.filter = filter;
-               img = new ComicCache.imagesource.Imager(Comicfilepath, filter);
+               img = new ComicCache.imagesource.Imager(Comicfilepath, filter, config.Comicstyle);
             }
             Image coverimage = img.GetImage();
             if (this.Resize)

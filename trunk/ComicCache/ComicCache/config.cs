@@ -104,7 +104,7 @@ namespace ComicCache
             }
             foreach (string sfolder in this.ComicPaths)
             {
-                result = Directory.Exists(sfolder);
+                result = Directory.Exists(sfolder.TrimStart('!'));
                 if (!result)
                 {
                     errormessage = "Comics Folder does not exist";
@@ -426,6 +426,18 @@ namespace ComicCache
                 return value;
             }
         }
+        [XmlIgnore]
+        public Comicstyle Comicstyle{
+            get
+            {
+                return this.comicstyle;
+            }
+            set {
+                comicstyle = value;
+            }
+        }
+
+        private Comicstyle comicstyle = Comicstyle.CoversOnly;
         private bool greyscalebg = false;
         private string margins = "0,0,0,0";
         private int transparency = 80;
