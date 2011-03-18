@@ -37,23 +37,23 @@
             this.excludefolderslistbox = new System.Windows.Forms.ListBox();
             this.removebuttonexclude = new System.Windows.Forms.Button();
             this.addbuttonexclude = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.Includelabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // folderslistbox
             // 
             this.folderslistbox.FormattingEnabled = true;
-            this.folderslistbox.Location = new System.Drawing.Point(12, 36);
+            this.folderslistbox.Location = new System.Drawing.Point(12, 25);
             this.folderslistbox.Name = "folderslistbox";
             this.folderslistbox.Size = new System.Drawing.Size(213, 147);
-            this.folderslistbox.TabIndex = 5;
+            this.folderslistbox.TabIndex = 1;
             // 
             // removebutton
             // 
-            this.removebutton.Location = new System.Drawing.Point(231, 104);
+            this.removebutton.Location = new System.Drawing.Point(231, 90);
             this.removebutton.Name = "removebutton";
             this.removebutton.Size = new System.Drawing.Size(110, 23);
-            this.removebutton.TabIndex = 4;
+            this.removebutton.TabIndex = 3;
             this.removebutton.Text = "Remove";
             this.removebutton.UseVisualStyleBackColor = true;
             this.removebutton.Click += new System.EventHandler(this.removebutton_Click);
@@ -63,26 +63,26 @@
             this.addbutton.Location = new System.Drawing.Point(231, 61);
             this.addbutton.Name = "addbutton";
             this.addbutton.Size = new System.Drawing.Size(110, 23);
-            this.addbutton.TabIndex = 3;
+            this.addbutton.TabIndex = 2;
             this.addbutton.Text = "Add";
             this.addbutton.UseVisualStyleBackColor = true;
             this.addbutton.Click += new System.EventHandler(this.addbutton_Click);
             // 
             // cancelbutton
             // 
-            this.cancelbutton.Location = new System.Drawing.Point(136, 355);
+            this.cancelbutton.Location = new System.Drawing.Point(122, 355);
             this.cancelbutton.Name = "cancelbutton";
-            this.cancelbutton.Size = new System.Drawing.Size(89, 23);
-            this.cancelbutton.TabIndex = 6;
+            this.cancelbutton.Size = new System.Drawing.Size(103, 23);
+            this.cancelbutton.TabIndex = 8;
             this.cancelbutton.Text = "Cancel";
             this.cancelbutton.UseVisualStyleBackColor = true;
             this.cancelbutton.Click += new System.EventHandler(this.cancelbutton_Click);
             // 
             // okbutton
             // 
-            this.okbutton.Location = new System.Drawing.Point(15, 355);
+            this.okbutton.Location = new System.Drawing.Point(12, 355);
             this.okbutton.Name = "okbutton";
-            this.okbutton.Size = new System.Drawing.Size(89, 23);
+            this.okbutton.Size = new System.Drawing.Size(104, 23);
             this.okbutton.TabIndex = 7;
             this.okbutton.Text = "OK";
             this.okbutton.UseVisualStyleBackColor = true;
@@ -103,14 +103,14 @@
             this.excludefolderslistbox.Location = new System.Drawing.Point(12, 202);
             this.excludefolderslistbox.Name = "excludefolderslistbox";
             this.excludefolderslistbox.Size = new System.Drawing.Size(213, 147);
-            this.excludefolderslistbox.TabIndex = 9;
+            this.excludefolderslistbox.TabIndex = 4;
             // 
             // removebuttonexclude
             // 
             this.removebuttonexclude.Location = new System.Drawing.Point(231, 283);
             this.removebuttonexclude.Name = "removebuttonexclude";
             this.removebuttonexclude.Size = new System.Drawing.Size(110, 23);
-            this.removebuttonexclude.TabIndex = 11;
+            this.removebuttonexclude.TabIndex = 6;
             this.removebuttonexclude.Text = "Remove";
             this.removebuttonexclude.UseVisualStyleBackColor = true;
             this.removebuttonexclude.Click += new System.EventHandler(this.removebuttonexclude_Click);
@@ -120,35 +120,35 @@
             this.addbuttonexclude.Location = new System.Drawing.Point(231, 254);
             this.addbuttonexclude.Name = "addbuttonexclude";
             this.addbuttonexclude.Size = new System.Drawing.Size(110, 23);
-            this.addbuttonexclude.TabIndex = 10;
+            this.addbuttonexclude.TabIndex = 5;
             this.addbuttonexclude.Text = "Add";
             this.addbuttonexclude.UseVisualStyleBackColor = true;
             this.addbuttonexclude.Click += new System.EventHandler(this.addbuttonexclude_Click);
             // 
-            // label1
+            // Includelabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 13);
-            this.label1.TabIndex = 12;
-            this.label1.Text = "Include";
+            this.Includelabel.AutoSize = true;
+            this.Includelabel.Location = new System.Drawing.Point(12, 9);
+            this.Includelabel.Name = "Includelabel";
+            this.Includelabel.Size = new System.Drawing.Size(42, 13);
+            this.Includelabel.TabIndex = 12;
+            this.Includelabel.Text = "Include";
             // 
             // multifolder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(345, 387);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.removebuttonexclude);
-            this.Controls.Add(this.addbuttonexclude);
+            this.Controls.Add(this.folderslistbox);
+            this.Controls.Add(this.Includelabel);
+            this.Controls.Add(this.addbutton);
+            this.Controls.Add(this.removebutton);
             this.Controls.Add(this.excludefolderslistbox);
             this.Controls.Add(this.labelExlcude);
+            this.Controls.Add(this.addbuttonexclude);
+            this.Controls.Add(this.removebuttonexclude);
             this.Controls.Add(this.okbutton);
             this.Controls.Add(this.cancelbutton);
-            this.Controls.Add(this.folderslistbox);
-            this.Controls.Add(this.removebutton);
-            this.Controls.Add(this.addbutton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -172,6 +172,6 @@
         private System.Windows.Forms.ListBox excludefolderslistbox;
         private System.Windows.Forms.Button removebuttonexclude;
         private System.Windows.Forms.Button addbuttonexclude;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label Includelabel;
     }
 }

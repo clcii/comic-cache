@@ -94,7 +94,7 @@ namespace ComicCache
             this.buttonsave.Location = new System.Drawing.Point(20, 470);
             this.buttonsave.Name = "buttonsave";
             this.buttonsave.Size = new System.Drawing.Size(75, 23);
-            this.buttonsave.TabIndex = 19;
+            this.buttonsave.TabIndex = 28;
             this.buttonsave.Text = "Save";
             this.buttonsave.UseVisualStyleBackColor = true;
             this.buttonsave.Click += new System.EventHandler(this.ButtonsaveClick);
@@ -104,7 +104,7 @@ namespace ComicCache
             this.buttoncancel.Location = new System.Drawing.Point(101, 470);
             this.buttoncancel.Name = "buttoncancel";
             this.buttoncancel.Size = new System.Drawing.Size(75, 23);
-            this.buttoncancel.TabIndex = 20;
+            this.buttoncancel.TabIndex = 29;
             this.buttoncancel.Text = "Cancel";
             this.buttoncancel.UseVisualStyleBackColor = true;
             this.buttoncancel.Click += new System.EventHandler(this.buttoncancel_Click);
@@ -114,7 +114,7 @@ namespace ComicCache
             this.buttontest.Location = new System.Drawing.Point(183, 470);
             this.buttontest.Name = "buttontest";
             this.buttontest.Size = new System.Drawing.Size(75, 23);
-            this.buttontest.TabIndex = 21;
+            this.buttontest.TabIndex = 30;
             this.buttontest.Text = "Test";
             this.buttontest.UseVisualStyleBackColor = true;
             this.buttontest.Click += new System.EventHandler(this.ButtontestClick);
@@ -178,7 +178,7 @@ namespace ComicCache
             this.cacheFolder.Location = new System.Drawing.Point(12, 135);
             this.cacheFolder.Name = "cacheFolder";
             this.cacheFolder.Size = new System.Drawing.Size(197, 20);
-            this.cacheFolder.TabIndex = 7;
+            this.cacheFolder.TabIndex = 8;
             // 
             // cachebrowsebutton
             // 
@@ -186,7 +186,7 @@ namespace ComicCache
             this.cachebrowsebutton.Location = new System.Drawing.Point(215, 133);
             this.cachebrowsebutton.Name = "cachebrowsebutton";
             this.cachebrowsebutton.Size = new System.Drawing.Size(47, 23);
-            this.cachebrowsebutton.TabIndex = 8;
+            this.cachebrowsebutton.TabIndex = 9;
             this.cachebrowsebutton.Text = "...";
             this.cachebrowsebutton.UseVisualStyleBackColor = true;
             this.cachebrowsebutton.Click += new System.EventHandler(this.CachebrowsebuttonClick);
@@ -237,7 +237,7 @@ namespace ComicCache
             0});
             this.customXnumeric.Name = "customXnumeric";
             this.customXnumeric.Size = new System.Drawing.Size(62, 20);
-            this.customXnumeric.TabIndex = 17;
+            this.customXnumeric.TabIndex = 21;
             // 
             // customYnumberic
             // 
@@ -250,7 +250,7 @@ namespace ComicCache
             0});
             this.customYnumberic.Name = "customYnumberic";
             this.customYnumberic.Size = new System.Drawing.Size(57, 20);
-            this.customYnumberic.TabIndex = 18;
+            this.customYnumberic.TabIndex = 22;
             // 
             // label3
             // 
@@ -318,7 +318,7 @@ namespace ComicCache
             this.margintextbox.Name = "margintextbox";
             this.margintextbox.ReadOnly = true;
             this.margintextbox.Size = new System.Drawing.Size(66, 20);
-            this.margintextbox.TabIndex = 39;
+            this.margintextbox.TabIndex = 24;
             this.margintextbox.TabStop = false;
             this.margintextbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.margintextbox.Click += new System.EventHandler(this.margintextbox_Click);
@@ -329,7 +329,7 @@ namespace ComicCache
             this.cropfillforGBcheckbox.Location = new System.Drawing.Point(109, 3);
             this.cropfillforGBcheckbox.Name = "cropfillforGBcheckbox";
             this.cropfillforGBcheckbox.Size = new System.Drawing.Size(95, 17);
-            this.cropfillforGBcheckbox.TabIndex = 34;
+            this.cropfillforGBcheckbox.TabIndex = 25;
             this.cropfillforGBcheckbox.Text = "Crop Fill Image";
             this.cropfillforGBcheckbox.UseVisualStyleBackColor = true;
             this.cropfillforGBcheckbox.CheckedChanged += new System.EventHandler(this.cropfillforGBcheckbox_CheckedChanged);
@@ -352,7 +352,7 @@ namespace ComicCache
             this.greyscalecheckbox.Location = new System.Drawing.Point(15, 11);
             this.greyscalecheckbox.Name = "greyscalecheckbox";
             this.greyscalecheckbox.Size = new System.Drawing.Size(78, 17);
-            this.greyscalecheckbox.TabIndex = 37;
+            this.greyscalecheckbox.TabIndex = 26;
             this.greyscalecheckbox.Text = "Grey Scale";
             this.greyscalecheckbox.UseVisualStyleBackColor = true;
             // 
@@ -361,7 +361,7 @@ namespace ComicCache
             this.transparencyupdown.Location = new System.Drawing.Point(12, 29);
             this.transparencyupdown.Name = "transparencyupdown";
             this.transparencyupdown.Size = new System.Drawing.Size(43, 20);
-            this.transparencyupdown.TabIndex = 35;
+            this.transparencyupdown.TabIndex = 27;
             // 
             // transparencylabel
             // 
@@ -387,7 +387,7 @@ namespace ComicCache
             this.backgroundButton.Location = new System.Drawing.Point(3, 16);
             this.backgroundButton.Name = "backgroundButton";
             this.backgroundButton.Size = new System.Drawing.Size(29, 23);
-            this.backgroundButton.TabIndex = 32;
+            this.backgroundButton.TabIndex = 23;
             this.backgroundButton.UseVisualStyleBackColor = false;
             this.backgroundButton.Click += new System.EventHandler(this.backgroundButton_Click);
             // 
@@ -410,7 +410,7 @@ namespace ComicCache
             this.cropRadioButton.Location = new System.Drawing.Point(182, 18);
             this.cropRadioButton.Name = "cropRadioButton";
             this.cropRadioButton.Size = new System.Drawing.Size(47, 17);
-            this.cropRadioButton.TabIndex = 34;
+            this.cropRadioButton.TabIndex = 15;
             this.cropRadioButton.TabStop = true;
             this.cropRadioButton.Text = "Crop";
             this.cropRadioButton.UseVisualStyleBackColor = true;
@@ -421,7 +421,7 @@ namespace ComicCache
             this.stretchradiobutton.Location = new System.Drawing.Point(108, 18);
             this.stretchradiobutton.Name = "stretchradiobutton";
             this.stretchradiobutton.Size = new System.Drawing.Size(59, 17);
-            this.stretchradiobutton.TabIndex = 33;
+            this.stretchradiobutton.TabIndex = 14;
             this.stretchradiobutton.TabStop = true;
             this.stretchradiobutton.Text = "Stretch";
             this.stretchradiobutton.UseVisualStyleBackColor = true;
@@ -432,7 +432,7 @@ namespace ComicCache
             this.keepratioradiobutton.Location = new System.Drawing.Point(15, 18);
             this.keepratioradiobutton.Name = "keepratioradiobutton";
             this.keepratioradiobutton.Size = new System.Drawing.Size(78, 17);
-            this.keepratioradiobutton.TabIndex = 32;
+            this.keepratioradiobutton.TabIndex = 13;
             this.keepratioradiobutton.TabStop = true;
             this.keepratioradiobutton.Text = "Keep Ratio";
             this.keepratioradiobutton.UseVisualStyleBackColor = true;
@@ -444,7 +444,7 @@ namespace ComicCache
             this.screensizetextbox.Location = new System.Drawing.Point(101, 53);
             this.screensizetextbox.Name = "screensizetextbox";
             this.screensizetextbox.Size = new System.Drawing.Size(144, 20);
-            this.screensizetextbox.TabIndex = 13;
+            this.screensizetextbox.TabIndex = 17;
             // 
             // commonComboBox
             // 
@@ -458,14 +458,14 @@ namespace ComicCache
             this.commonComboBox.Location = new System.Drawing.Point(101, 78);
             this.commonComboBox.Name = "commonComboBox";
             this.commonComboBox.Size = new System.Drawing.Size(144, 21);
-            this.commonComboBox.TabIndex = 15;
+            this.commonComboBox.TabIndex = 19;
             // 
             // screenSizeRadioButton
             // 
             this.screenSizeRadioButton.Location = new System.Drawing.Point(16, 50);
             this.screenSizeRadioButton.Name = "screenSizeRadioButton";
             this.screenSizeRadioButton.Size = new System.Drawing.Size(92, 24);
-            this.screenSizeRadioButton.TabIndex = 12;
+            this.screenSizeRadioButton.TabIndex = 16;
             this.screenSizeRadioButton.TabStop = true;
             this.screenSizeRadioButton.Text = "Screen Size";
             this.screenSizeRadioButton.UseVisualStyleBackColor = true;
@@ -475,7 +475,7 @@ namespace ComicCache
             this.commonRadioButton.Location = new System.Drawing.Point(16, 78);
             this.commonRadioButton.Name = "commonRadioButton";
             this.commonRadioButton.Size = new System.Drawing.Size(71, 24);
-            this.commonRadioButton.TabIndex = 14;
+            this.commonRadioButton.TabIndex = 18;
             this.commonRadioButton.TabStop = true;
             this.commonRadioButton.Text = "Common";
             this.commonRadioButton.UseVisualStyleBackColor = true;
@@ -486,7 +486,7 @@ namespace ComicCache
             this.customRadioButton.Location = new System.Drawing.Point(16, 108);
             this.customRadioButton.Name = "customRadioButton";
             this.customRadioButton.Size = new System.Drawing.Size(71, 24);
-            this.customRadioButton.TabIndex = 16;
+            this.customRadioButton.TabIndex = 20;
             this.customRadioButton.TabStop = true;
             this.customRadioButton.Text = "Custom";
             this.customRadioButton.UseVisualStyleBackColor = true;
@@ -497,7 +497,7 @@ namespace ComicCache
             this.resizeCheckBox.Location = new System.Drawing.Point(11, 208);
             this.resizeCheckBox.Name = "resizeCheckBox";
             this.resizeCheckBox.Size = new System.Drawing.Size(67, 24);
-            this.resizeCheckBox.TabIndex = 11;
+            this.resizeCheckBox.TabIndex = 12;
             this.resizeCheckBox.Text = "Resize";
             this.resizeCheckBox.UseVisualStyleBackColor = true;
             this.resizeCheckBox.CheckedChanged += new System.EventHandler(this.CheckBox1CheckedChanged);
@@ -508,7 +508,7 @@ namespace ComicCache
             this.filelimitertextbox.Location = new System.Drawing.Point(11, 184);
             this.filelimitertextbox.Name = "filelimitertextbox";
             this.filelimitertextbox.Size = new System.Drawing.Size(250, 20);
-            this.filelimitertextbox.TabIndex = 10;
+            this.filelimitertextbox.TabIndex = 11;
             // 
             // limitfilescheckbox
             // 
@@ -516,7 +516,7 @@ namespace ComicCache
             this.limitfilescheckbox.Location = new System.Drawing.Point(12, 161);
             this.limitfilescheckbox.Name = "limitfilescheckbox";
             this.limitfilescheckbox.Size = new System.Drawing.Size(194, 17);
-            this.limitfilescheckbox.TabIndex = 9;
+            this.limitfilescheckbox.TabIndex = 10;
             this.limitfilescheckbox.Text = "Limit to Files with Names Containing";
             this.limitfilescheckbox.UseVisualStyleBackColor = true;
             this.limitfilescheckbox.CheckedChanged += new System.EventHandler(this.limitfilescheckbox_CheckedChanged);
@@ -539,7 +539,7 @@ namespace ComicCache
             this.homelink.Location = new System.Drawing.Point(18, 500);
             this.homelink.Name = "homelink";
             this.homelink.Size = new System.Drawing.Size(202, 13);
-            this.homelink.TabIndex = 27;
+            this.homelink.TabIndex = 31;
             this.homelink.TabStop = true;
             this.homelink.Text = "http://code.google.com/p/comic-cache/";
             this.homelink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.homelink_LinkClicked);
@@ -563,7 +563,7 @@ namespace ComicCache
             this.comicstylecombobox.Location = new System.Drawing.Point(161, 108);
             this.comicstylecombobox.Name = "comicstylecombobox";
             this.comicstylecombobox.Size = new System.Drawing.Size(98, 21);
-            this.comicstylecombobox.TabIndex = 29;
+            this.comicstylecombobox.TabIndex = 7;
             // 
             // comicstylelabel
             // 
