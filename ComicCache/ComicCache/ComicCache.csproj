@@ -132,6 +132,7 @@
     <Compile Include="dialogue\multifolder.Designer.cs">
       <DependentUpon>multifolder.cs</DependentUpon>
     </Compile>
+    <Compile Include="fileenum.cs" />
     <Compile Include="imagesource\ComicImager.cs" />
     <Compile Include="imagesource\Imager.cs" />
     <Compile Include="Log.cs" />

@@ -121,12 +121,44 @@ namespace ComicCache
 
             config.BackGroundColor = backgroundButton.BackColor;
             config.Transparency = (int) transparencyupdown.Value;
+            switch (comicstylecombobox.Text)
+            {
+                    
+                case "Covers only":
+                    config.Comicstyle = Comicstyle.CoversOnly;
+                    break;
+                case "Any Page":
+                    config.Comicstyle = Comicstyle.AnyPage;
+                    break;
+                case "Entire Comic":
+                    config.Comicstyle = Comicstyle.Entire;
+                    break;
+                default:
+                    config.Comicstyle = Comicstyle.CoversOnly;
+                    break;
+            }
 
         }
             private void LoadConfig()
         {
             try
             {
+                switch (config.Comicstyle)
+                {
+
+                    case Comicstyle.CoversOnly:
+                        comicstylecombobox.Text = "Covers Only";
+                        break;
+                    case Comicstyle.AnyPage:
+                        comicstylecombobox.Text = "Any Page";
+                        break;
+                    case Comicstyle.Entire:
+                        comicstylecombobox.Text = "Entire Comic";
+                        break;
+                    default:
+                        comicstylecombobox.Text = "Covers Only";
+                        break;
+                }
                 backgroundButton.BackColor = resizeCheckBox.Checked ? tempoldcolor : Color.Gray;
                 combointerval.Text = config.Intervaltype;
                 updowninterval.Value = config.Intervalnum;
@@ -259,6 +291,10 @@ namespace ComicCache
                 else
                 {
                     this.infotextbox.Text = text;
+                    if (notifyicon != null) {
+                        notifyicon.BalloonTipText = text;
+                        notifyicon.ShowBalloonTip(100);
+                    }
                 
                 }
             }
@@ -267,21 +303,20 @@ namespace ComicCache
 
         #region Events
             #region FormEvents
-                void ConfigWindowLoad(object sender, EventArgs e)
-                {
+            void ConfigWindowLoad(object sender, EventArgs e)
+            {
                 screensizetextbox.Text = Convert.ToString(System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width) + "x" + Convert.ToString(System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height);
-    
-                }
-                void ConfigWindowFormClosing(object sender, FormClosingEventArgs e)
+            }
+            void ConfigWindowFormClosing(object sender, FormClosingEventArgs e)
+            {
+                if (e.CloseReason == CloseReason.UserClosing)
                 {
-                    if (e.CloseReason == CloseReason.UserClosing)
-                    {
-                        this.Hide();
-                        e.Cancel = true;
-                        ShowNotify();
-                    }
+                    this.Hide();
+                    e.Cancel = true;
+                    ShowNotify();
                 }
-                protected override void WndProc(ref Message message)
+            }
+            protected override void WndProc(ref Message message)
             {
                 if (message.Msg == SingleInstance.WM_SHOWFIRSTINSTANCE)
                 {
@@ -289,7 +324,7 @@ namespace ComicCache
                 }
                 base.WndProc(ref message);
             }
-                public void ShowWindow()
+            public void ShowWindow()
             {
                 WinApi.ShowToFront(this.Handle);
             }
@@ -325,10 +360,11 @@ namespace ComicCache
                         config.Save();
                         if (config.IsValid())
                         {
+                            config.Save();
                             this.Hide();
                             ShowNotify();
-                
                         }
+                          
                     }
                 void ComicbasebuttonClick(object sender, EventArgs e)
                     {
