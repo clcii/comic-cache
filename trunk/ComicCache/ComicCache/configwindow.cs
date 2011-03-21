@@ -263,10 +263,12 @@ namespace ComicCache
         {
             if (notifyicon == null)
             {
+                
                 notifyicon = new NotifyIcon();
                 clickMenu = new System.Windows.Forms.ContextMenuStrip();
                 notifyicon.ContextMenuStrip = clickMenu;
                 PrepContextMenu();
+
             }
             notifyicon.Text = "Comic Cache";
             notifyicon.MouseClick += new MouseEventHandler(this.notifyicon_Click);
@@ -274,6 +276,7 @@ namespace ComicCache
             notifyicon.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
                 //new Icon("ComicCache.ico");
             notifyicon.Visible = true;
+             
 
         }
             public void HideNotify()

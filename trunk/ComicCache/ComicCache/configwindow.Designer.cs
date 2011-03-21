@@ -451,8 +451,8 @@ namespace ComicCache
             this.commonComboBox.Enabled = false;
             this.commonComboBox.FormattingEnabled = true;
             this.commonComboBox.Items.AddRange(new object[] {
-            "800x600",
             "720x480",
+            "800x600",
             "1024x768",
             "1280x720"});
             this.commonComboBox.Location = new System.Drawing.Point(101, 78);
