@@ -135,7 +135,9 @@ namespace ComicCache
         private void ShowTrayIcon()
         {
             configwindow = new ConfigWindow(config);
+            //Application.DoEvents();
             configwindow.ShowNotify();
+            //Application.DoEvents();
         }
         public void RestartMainTread(Config config)
         {
@@ -153,8 +155,11 @@ namespace ComicCache
         }
         public void ShowWindow()
         {
-            // Insert code here to make your form show itself.
-            WinApi.ShowToFront(configwindow.Handle);
+            if (configwindow != null)
+            {
+                // Insert code here to make your form show itself.
+                WinApi.ShowToFront(configwindow.Handle);
+            }
         }
         #endregion
         #region Constructors

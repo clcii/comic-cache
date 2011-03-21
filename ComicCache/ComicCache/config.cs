@@ -200,7 +200,7 @@ namespace ComicCache
         {
             get
             {
-                System.Drawing.Imaging.ImageFormat result = null;
+                System.Drawing.Imaging.ImageFormat result = System.Drawing.Imaging.ImageFormat.Jpeg;
                 switch (cachetype)
                 {
                     case "jpg":
@@ -395,8 +395,16 @@ namespace ComicCache
         {
             get
             {
-                int value = Convert.ToInt16(Margins.Split(',')[0]);
-                return value;
+                try
+                {
+                    int value = Convert.ToInt16(Margins.Split(',')[0]);
+                    return value;
+                }
+                catch (Exception)
+                {
+
+                    return 0;
+                }
             }
         }
         [XmlIgnore]
@@ -404,8 +412,16 @@ namespace ComicCache
         {
             get
             {
-                int value = Convert.ToInt16(Margins.Split(',')[1]);
-                return value;
+                try
+                {
+                    int value = Convert.ToInt16(Margins.Split(',')[1]);
+                    return value;
+
+                }
+                catch (Exception)
+                {
+                    return 0;
+                }
             }
         }
         [XmlIgnore]
@@ -413,8 +429,17 @@ namespace ComicCache
         {
             get
             {
-                int value = Convert.ToInt16(Margins.Split(',')[2]);
-                return value;
+                try
+                {
+                    int value = Convert.ToInt16(Margins.Split(',')[2]);
+                    return value;
+
+                }
+                catch (Exception)
+                {
+
+                    return 0;
+                }
             }
         }
         [XmlIgnore]
@@ -422,8 +447,17 @@ namespace ComicCache
         {
             get
             {
+                try
+                {
                 int value = Convert.ToInt16(Margins.Split(',')[3]);
                 return value;
+                }
+                catch (Exception)
+                {
+
+                    return 0;
+                }
+
             }
         }
         [XmlIgnore]
@@ -436,7 +470,7 @@ namespace ComicCache
                 comicstyle = value;
             }
         }
-
+        
         private Comicstyle comicstyle = Comicstyle.CoversOnly;
         private bool greyscalebg = false;
         private string margins = "0,0,0,0";
