@@ -25,29 +25,37 @@ namespace ComicCache
                     return;
                 }
                 Application.EnableVisualStyles();
-                Config config = Config.Load();
-                if (config.IsValid() == false)
+                AllConfigs configs = AllConfigs.Load();
+                //Config config = Config.Load();
+                foreach (Config config in configs.Configs)
                 {
-                    Application.Run(new ConfigWindow(config));
-                    return;
+                    if (config.IsValid() == false)
+                    {
+                        Application.Run(new ConfigWindow(configs));
+                        return;
+                    }
                 }
                 if (args.Length > 0)
                     if (args[0].ToLower().Contains("/p"))
                         return;
                     else if (args[0].ToLower().Contains("/c"))
                     {
-                        Application.Run(new ConfigWindow(config));
+                        Application.Run(new ConfigWindow(configs));
                         return;
                     }
-                Program program = new Program(config);
-                program.End += (obj, e) =>
+                foreach (Config conf in configs.Configs)
                 {
-                    Log.Instance.Write("Stopping Cacher");
-                    program.Stop();
-                    Application.Exit();
-                };
-                program.ShowTrayIcon();
-                program.Run();
+                    Program program = new Program(conf);
+                    program.End += (obj, e) =>
+                        {
+                            Log.Instance.Write("Stopping Cacher");
+                            program.Stop();
+                            Application.Exit();
+                        };
+                    program.ShowTrayIcon();
+                    program.Run();
+                }
+
                 Application.Run();
                 SingleInstance.Stop();
             }
@@ -65,7 +73,7 @@ namespace ComicCache
         public void Run()
         {
             // start the thread
-            MainThread = new Thread(ThreadProc);
+            config.Thread = new Thread(ThreadProc);
             MainThread.IsBackground = true;
             MainThread.Start();
         }
@@ -134,7 +142,8 @@ namespace ComicCache
         }
         private void ShowTrayIcon()
         {
-            configwindow = new ConfigWindow(config);
+            AllConfigs configs = AllConfigs.Load();
+            configwindow = new ConfigWindow(configs);
             //Application.DoEvents();
             configwindow.ShowNotify();
             //Application.DoEvents();
