@@ -113,7 +113,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AllConfigs.cs" />
     <Compile Include="config.cs" />
+    <Compile Include="controls\configcontrol.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="controls\configcontrol.Designer.cs">
+      <DependentUpon>configcontrol.cs</DependentUpon>
+    </Compile>
     <Compile Include="configwindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,6 +149,9 @@
     <Compile Include="SingleInstance.cs" />
     <Compile Include="WinApi.cs" />
     <None Include="SevenZipSharp.dll" />
+    <EmbeddedResource Include="controls\configcontrol.resx">
+      <DependentUpon>configcontrol.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="configwindow.resx">
       <DependentUpon>configwindow.cs</DependentUpon>
     </EmbeddedResource>

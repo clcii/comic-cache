@@ -10,6 +10,7 @@ using System.Xml.Serialization;
 using System.Drawing;
 using System.ComponentModel;
 using Microsoft.Win32;
+using System.Threading;
 
 namespace ComicCache
 {
@@ -24,77 +25,16 @@ namespace ComicCache
         }
         #endregion
         #region Methods
-        public static Config Load()
-        {
-            try
-            {
-                if (File.Exists(settingsFile))
-                {
-                    Stream stream = File.Open(settingsFile, FileMode.Open);
-                    XmlSerializer xs = new XmlSerializer(typeof(Config));
-                    Config cpycfg;
-                    try
-                    {
-                        cpycfg = (Config)xs.Deserialize(stream);
-                    }
-                    catch (Exception ex)
-                    {
-                        Log.Instance.Write(ex.Message);
-                        Log.Instance.Write("Loading default");
-                        cpycfg = new Config();
-                    }
 
-                    stream.Close();
-                    return cpycfg;
-                }
-                else
-                {
-                    return new Config();
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Instance.Write(ex.Message);
-                return null;
-            }
-            finally
-            {
-
-            }
-
-        }
-        public void Save()
-        {
-            try
-            {
-                if (Directory.Exists(settingsFolder) == false)
-                {
-                    Directory.CreateDirectory(settingsFolder);
-                }
-                XmlSerializer xs = new XmlSerializer(typeof(Config));
-                TextWriter tw = new StreamWriter(settingsFile);
-                xs.Serialize(tw, this);
-                tw.Close();
-
-            }
-            catch (Exception ex)
-            {
-                Log.Instance.Write(ex.Message);
-            }
-            finally
-            {
-
-            }
-        }
         public bool IsValid()
         {
             bool result = true;
-            result = Directory.Exists(settingsFolder);
-            if (!result)
-            {
-                errormessage = "Settings Folder does not exist";
-                return result;
-            }
+           // result = Directory.Exists(settingsFolder);
+           // if (!result)
+           // {
+            //    errormessage = "Settings Folder does not exist";
+            //    return result;
+            //}
 
             result = Directory.Exists(FolderPath);
             if (!result)
@@ -172,19 +112,7 @@ namespace ComicCache
         }
         #endregion
         #region Properties
-        public static string settingsFolder
-        {
-            get
-            { 
-                return Path.GetDirectoryName(Application.ExecutablePath);
-            }
 
-        }
-        public static string settingsFile
-        {
-            get { return Path.Combine(settingsFolder, Application.ProductName + ".xml"); }
-
-        }
 
         public int Intervalnum
         {
@@ -324,10 +252,7 @@ namespace ComicCache
             get { return filefilter; }
             set { filefilter = value; }
         }
-        public string SettingsFile
-        {
-            get { return settingsFile; }
-        }
+
         public string ErrorMessage
         {
             get { return errormessage; }
@@ -470,7 +395,13 @@ namespace ComicCache
                 comicstyle = value;
             }
         }
-        
+        [XmlIgnore]
+        public Thread Thread
+        {
+            get { return thread; }
+            set { thread = value; }
+        }
+
         private Comicstyle comicstyle = Comicstyle.CoversOnly;
         private bool greyscalebg = false;
         private string margins = "0,0,0,0";
@@ -494,6 +425,10 @@ namespace ComicCache
         private string comicpath = "";
         private string cachetype = "jpg";
         private Size imageresizesize = new Size();
+        private Thread thread;
+
+
+        
         #endregion
     
     }
