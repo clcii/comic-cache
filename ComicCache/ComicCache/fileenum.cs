@@ -31,7 +31,15 @@ namespace ComicCache
         {
             foreach (string fld in BaseFolders)
 	        {
-                GetFolder(fld);
+                try
+                {
+                    GetFolder(fld);
+                }
+                catch (Exception ex)
+                {
+                    Log.Instance.Write(ex.Message);
+                }
+                
 	        }
         }
         private void GetFiles(string fld) 
