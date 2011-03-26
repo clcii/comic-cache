@@ -294,11 +294,6 @@ namespace ComicCache
                 else
                 {
                     this.infotextbox.Text = text;
-                    if (notifyicon != null) {
-                        notifyicon.BalloonTipText = text;
-                        notifyicon.ShowBalloonTip(100);
-                    }
-                
                 }
             }
         #endregion
@@ -309,6 +304,17 @@ namespace ComicCache
             void ConfigWindowLoad(object sender, EventArgs e)
             {
                 screensizetextbox.Text = Convert.ToString(System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width) + "x" + Convert.ToString(System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height);
+                string vernum = "";
+                try
+                {
+                    vernum = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(3);
+                }
+                catch (Exception)
+                {
+                    
+                    vernum = Application.ProductVersion;
+                }
+                this.Text = "ComicCache " + vernum;
             }
             void ConfigWindowFormClosing(object sender, FormClosingEventArgs e)
             {
