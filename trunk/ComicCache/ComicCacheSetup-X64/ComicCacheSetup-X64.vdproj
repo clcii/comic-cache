@@ -33,14 +33,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_748CA2391A2CA5A47E8980E2904F1131"
-        "OwnerKey" = "8:_6899561434734EEFB9BD68E2BBD82C2C"
+        "MsmKey" = "8:_755DD06741ED4254AE5C8446F8D7890F"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_755DD06741ED4254AE5C8446F8D7890F"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_7E7247E10553EB28C916419C5F81AB1D"
+        "OwnerKey" = "8:_6899561434734EEFB9BD68E2BBD82C2C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -64,7 +64,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_748CA2391A2CA5A47E8980E2904F1131"
+        "OwnerKey" = "8:_7E7247E10553EB28C916419C5F81AB1D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -266,37 +266,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_748CA2391A2CA5A47E8980E2904F1131"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:SevenZipSharp, Version=1.0.3537.37869, Culture=neutral, PublicKeyToken=20de82c62b055c88, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_748CA2391A2CA5A47E8980E2904F1131"
-                    {
-                    "Name" = "8:SevenZipSharp.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:SevenZipSharp.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_C746F45F94F44BAF8C20E44D6B16710C"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_755DD06741ED4254AE5C8446F8D7890F"
             {
             "AssemblyRegister" = "3:1"
@@ -326,6 +295,37 @@
             "Register" = "3:1"
             "Exclude" = "11:TRUE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7E7247E10553EB28C916419C5F81AB1D"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:SevenZipSharp, Version=1.0.3537.37869, Culture=neutral, PublicKeyToken=20de82c62b055c88, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_7E7247E10553EB28C916419C5F81AB1D"
+                    {
+                    "Name" = "8:SevenZipSharp.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:SevenZipSharp.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_C746F45F94F44BAF8C20E44D6B16710C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8DB4B491699542B883C7B8A7AB37D8B3"
@@ -426,15 +426,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ComicCachex64"
-        "ProductCode" = "8:{111F2509-59C2-42F8-AA0D-FFB089681480}"
-        "PackageCode" = "8:{3EF81E99-1A94-47AB-AB52-FA55FE41A8B9}"
+        "ProductCode" = "8:{ADF93352-F91C-4016-A75B-33AE09CA31ED}"
+        "PackageCode" = "8:{0EA5B763-1999-4C37-BE8E-9C7FF8DF058B}"
         "UpgradeCode" = "8:{65381BCE-F11E-4BFB-B606-36002E5C87EA}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.8"
+        "ProductVersion" = "8:1.0.9"
         "Manufacturer" = "8:clcii"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -1260,7 +1260,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_6899561434734EEFB9BD68E2BBD82C2C"
             {
-            "SourcePath" = "8:"
+            "SourcePath" = "8:..\\ComicCache\\obj\\TestRelease\\ComicCache.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_C746F45F94F44BAF8C20E44D6B16710C"
