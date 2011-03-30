@@ -114,6 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AllConfigs.cs" />
+    <Compile Include="cacher.cs" />
     <Compile Include="config.cs" />
     <Compile Include="controls\configcontrol.cs">
       <SubType>UserControl</SubType>
