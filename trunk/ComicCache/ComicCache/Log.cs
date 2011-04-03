@@ -38,7 +38,11 @@ namespace ComicCache
                         {
                             configwindow.SetStatus(message);
                         }
-
+                        if (File.GetCreationTime(LogFilePath) < DateTime.Now.AddDays(-7)) 
+                            {
+                                File.Delete(this.LogFilePath);
+                            }
+                        
                         writer = File.AppendText(logFilePath);
                         writer.Write(DateTime.Now.ToString());
                         writer.Write(" ");

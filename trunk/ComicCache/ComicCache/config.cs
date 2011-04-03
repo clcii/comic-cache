@@ -28,27 +28,47 @@ namespace ComicCache
         {
             try
             {
-                if (File.Exists(settingsFile))
+                try
                 {
-                    Stream stream = File.Open(settingsFile, FileMode.Open);
-                    XmlSerializer xs = new XmlSerializer(typeof(Config));
-                    Config cpycfg;
-                    try
+                    string filePath = "";
+                    if (File.Exists(Config.oldsettingsFilepath))
                     {
-                        cpycfg = (Config)xs.Deserialize(stream);
+                        filePath = Config.oldsettingsFilepath;
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        Log.Instance.Write(ex.Message);
-                        Log.Instance.Write("Loading default");
-                        cpycfg = new Config();
+                        filePath = settingsFile;
                     }
 
-                    stream.Close();
-                    return cpycfg;
+                    if (File.Exists(settingsFile))
+                    {
+                        Stream stream = File.Open(settingsFile, FileMode.Open);
+                        XmlSerializer xs = new XmlSerializer(typeof(Config));
+                        Config cpycfg;
+                        try
+                        {
+                            cpycfg = (Config)xs.Deserialize(stream);
+                        }
+                        catch (Exception ex)
+                        {
+                            Log.Instance.Write(ex.Message);
+                            Log.Instance.Write("Loading default");
+                            cpycfg = new Config();
+                        }
+
+                        stream.Close();
+                        return cpycfg;
+                    }
+                    else
+                    {
+                        return new Config();
+                    }
+
                 }
-                else
+                catch (Exception ex)
                 {
+
+                    Log.Instance.Write("Unable to load config" + CrLf + ex.Message);
                     return new Config();
                 }
             }
@@ -67,14 +87,27 @@ namespace ComicCache
         {
             try
             {
-                if (Directory.Exists(settingsFolder) == false)
+                try
                 {
-                    Directory.CreateDirectory(settingsFolder);
+                    if (Directory.Exists(settingsFolder) == false)
+                    {
+                        Directory.CreateDirectory(settingsFolder);
+                    }
+                    XmlSerializer xs = new XmlSerializer(typeof(Config));
+                    TextWriter tw = new StreamWriter(settingsFile);
+                    xs.Serialize(tw, this);
+                    tw.Close();
+                    
                 }
-                XmlSerializer xs = new XmlSerializer(typeof(Config));
-                TextWriter tw = new StreamWriter(settingsFile);
-                xs.Serialize(tw, this);
-                tw.Close();
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show("Unable to save config" + CrLf + ex.Message);
+                }
+                if(File.Exists(Config.oldsettingsFilepath))
+                {
+                    File.Delete(Config.oldsettingsFilepath);
+                }
 
             }
             catch (Exception ex)
@@ -89,12 +122,12 @@ namespace ComicCache
         public bool IsValid()
         {
             bool result = true;
-            result = Directory.Exists(settingsFolder);
-            if (!result)
-            {
-                errormessage = "Settings Folder does not exist";
-                return result;
-            }
+            //result = Directory.Exists(settingsFolder);
+            //if (!result)
+            //{
+                //errormessage = "Settings Folder does not exist";
+                //return result;
+            //}
 
             result = Directory.Exists(FolderPath);
             if (!result)
@@ -175,8 +208,9 @@ namespace ComicCache
         public static string settingsFolder
         {
             get
-            { 
-                return Path.GetDirectoryName(Application.ExecutablePath);
+            {
+                return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),Application.ProductName);
+                    // Path.GetDirectoryName(Application.ExecutablePath);
             }
 
         }
@@ -184,6 +218,10 @@ namespace ComicCache
         {
             get { return Path.Combine(settingsFolder, Application.ProductName + ".xml"); }
 
+        }
+        public static string oldsettingsFilepath 
+        {
+            get { return Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), Application.ProductName + ".xml"); }
         }
 
         public int Intervalnum
@@ -494,6 +532,7 @@ namespace ComicCache
         private string comicpath = "";
         private string cachetype = "jpg";
         private Size imageresizesize = new Size();
+        public static string CrLf = "\r\n";
         #endregion
     
     }
