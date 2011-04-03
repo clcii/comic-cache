@@ -305,15 +305,8 @@ namespace ComicCache
             {
                 screensizetextbox.Text = Convert.ToString(System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width) + "x" + Convert.ToString(System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height);
                 string vernum = "";
-                try
-                {
-                    vernum = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(3);
-                }
-                catch (Exception)
-                {
-                    
                     vernum = Application.ProductVersion;
-                }
+
                 this.Text = "ComicCache " + vernum;
             }
             void ConfigWindowFormClosing(object sender, FormClosingEventArgs e)
@@ -346,6 +339,7 @@ namespace ComicCache
                     }
                 void ButtontestClick(object sender, EventArgs e)
                 {
+                    Config oldconfig = config;
                     CopyConfig();
                     Boolean isValid = config.IsValid();
                     errorlabel.Text = config.ErrorMessage;
@@ -363,18 +357,27 @@ namespace ComicCache
                     { 
                         System.Media.SystemSounds.Exclamation.Play();    
                     }
+                    config = oldconfig;
                 }
                 void ButtonsaveClick(object sender, EventArgs e)
                     {
+                        
                         CopyConfig();
-                        config.Save();
-                        if (config.IsValid())
+                        Boolean isValid = config.IsValid();
+                        errorlabel.Text = config.ErrorMessage;
+                        errorlabel.Visible = !isValid;
+                        if (isValid)
                         {
                             config.Save();
                             this.Hide();
                             ShowNotify();
                         }
-                          
+                        else
+                        {
+                            System.Media.SystemSounds.Exclamation.Play();
+                            
+                        }
+                          //config.Save();
                     }
                 void ComicbasebuttonClick(object sender, EventArgs e)
                     {
@@ -421,6 +424,7 @@ namespace ComicCache
                 }
                 private void buttoncancel_Click(object sender, EventArgs e)
                     {
+                        config = Config.Load();
                         LoadConfig();
                         if (config.IsValid())
                         {
