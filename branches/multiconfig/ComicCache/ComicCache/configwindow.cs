@@ -18,18 +18,17 @@ namespace ComicCache
             delegate void setStatusInfo(string text);
             private NotifyIcon notifyicon;
             private ContextMenuStrip clickMenu;
-            private AllConfigs allconfigs;
+            private AllConfigs allconfigs = AllConfigs.Load();
 
         #endregion
 
 
         #region Constructors
-            public ConfigWindow(AllConfigs allconfig)
-            {
+            public ConfigWindow(AllConfigs myallconfigs) {
                 InitializeComponent();
-                this.allconfigs = allconfig;
+                this.allconfigs = myallconfigs;
                 setuptooltips();
-                foreach (Config conf in allconfig.Configs)
+                foreach (Config conf in allconfigs.Configs)
                 {
                     configtabs.TabPages.Add("Config");
                     TabPage tab = configtabs.TabPages[configtabs.TabIndex - 1];

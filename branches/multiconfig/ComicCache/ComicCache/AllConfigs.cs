@@ -15,7 +15,7 @@ using Microsoft.Win32;
 namespace ComicCache
 {
     
-    class AllConfigs
+    public class AllConfigs
     {
         List<Config> configs = new List<Config>();
         public static string settingsFolder
